@@ -8,48 +8,10 @@
                                 <!-- begin page title -->
                                 <div class="d-block d-sm-flex flex-nowrap align-items-center">
                                     <div class="page-title mb-2 mb-sm-0">
-                                        <h1>Data Table</h1>
+                                        <h1>All Users List</h1>
                                     </div>
                                     <div class="ml-auto d-flex align-items-center">
-                                        <button class="btn btn-primary" data-toggle="modal" data-target="#defaultModal">Add Category</button>
-
-                                        <!-- Default -->
-                                        <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog" aria-labelledby="defaultModal" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Modal title</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <form method="POST" enctype="multipart/form-data">
-                                                        <div class="modal-body">
-
-
-                                                            <div class="form-group">
-                                                                <label for="modelemail">Category Name</label>
-                                                                <input name="cate_gory_name" required type="text" class="form-control" id="modelemail">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="modelpass">Category Descriptions</label>
-                                                                <textarea name="decryptions" name="" class="form-control" id=""></textarea>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="modelpass">Category Image</label>
-                                                                <input id="file_image" required accept="image/*" name="file_image" type="file" class="form-control">
-                                                            </div>
-
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                                                            <button type="submit" name="add_category" class="btn btn-success">Save changes</button>
-                                                        </div>
-
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    
 
                                     </div>
                                 </div>
@@ -104,7 +66,7 @@
                                                             </td>
                                                             <th>
                                                                 <form method="POST">
-                                                                    <input type="hidden" name="user_id" value="$value['rowid']" />
+                                                                    <input type="hidden" name="user_id" value="<?=$value['rowid']?>" />
                                                                     <?php
                                                                     if ($value['user_status'] == '1') {
                                                                         echo '<button value="2" name="user_status" class="btn btn-danger btn-sm">Suspend</button>';

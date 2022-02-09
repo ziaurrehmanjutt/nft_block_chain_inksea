@@ -1,12 +1,17 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Admin extends CI_Controller
+class User extends CI_Controller
 {
 
     public function __construct()
     {
         parent::__construct();
+        if(!isset($_SESSION['login'])){
+            redirect('login');
+        }
+
+
     }
     public function render_view($page = '',$data = [],$menu = '',$extra = false)
     {

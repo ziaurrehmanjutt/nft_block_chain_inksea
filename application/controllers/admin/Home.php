@@ -56,11 +56,11 @@ class Home extends Admin
 	public function users()
 	{
 		if (isset($_POST['user_status'])) {
-			$response = $this->Settings_Model->delete_category($_POST['delete_category']);
-			$_SESSION["user_status_info"] = "Category Deleted  Successfully";
-			redirect('admin/categories', 'refresh');
+			$response = $this->Settings_Model->change_user_status($_POST['user_id'],$_POST['user_status']);
+			$_SESSION["user_status_info"] = "User Updated  Successfully";
+			redirect('admin/users', 'refresh');
 		}
 		$response['list'] = $this->Settings_Model->all_users();
-		$this->render_view('extra/users.php', $response);
+		$this->render_view('extra/users.php', $response,'users');
 	}
 }

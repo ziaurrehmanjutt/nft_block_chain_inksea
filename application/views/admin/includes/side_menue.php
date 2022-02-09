@@ -4,20 +4,20 @@
         <div class="sidebar-nav scrollbar scroll_light">
             <ul class="metismenu " id="sidebarNav">
                 <li class="nav-static-title">Personal</li>
-                <li class="active">
+                <li class="">
                     <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
                         <i class="nav-icon ti ti-rocket"></i>
                         <span class="nav-title">Settings</span>
                         <span class="nav-label label label-danger">9</span>
                     </a>
                     <ul aria-expanded="false">
-                        <li class="active"> <a href='#'>Categories</a> </li>
+                        <li class=""> <a href='<?=base_url('admin/categories')?>'>Categories</a> </li>
                       
                     </ul>
                 </li>
                 <li><a href="app-chat.html" aria-expanded="false"><i class="nav-icon ti ti-comment"></i><span class="nav-title">Dashboard</span></a> </li>
                
-                <li><a href="mail-inbox.html" aria-expanded="false"><i class="nav-icon ti ti-email"></i><span class="nav-title">Users</span></a> </li>
+                <li class="<?=$menu == 'users' ? 'active' : ''?>"><a href="<?=base_url('admin/users')?>" aria-expanded="false"><i class="nav-icon ti ti-email"></i><span class="nav-title">Users</span></a> </li>
               
               
                 <li class="nav-static-title">NFTs , Live Auction</li>

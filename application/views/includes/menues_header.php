@@ -74,7 +74,7 @@
 											<li><a href="wallet">Connect Wallet</a></li>
 										</ul>
 									</li>
-									<li><a href="#">Activity</a></li>
+									<li><a href="<?=base_url('activity')?>">Activity</a></li>
                                     <?php if(!isset($_SESSION['login'])): ?>
                                         <li><a href="login">Login</a></li>
                                     <?php  endif;  ?>

@@ -39,4 +39,12 @@ class Settings_Model extends Admin_Model
         $this->db->order_by('rowid','DESC');
         return $this->db->get()->result_array();
     }
+
+    public function change_user_status($id,$st){
+
+        // echo 
+        $this->db->set('user_status',$st);
+        $this->db->where('rowid',$id);
+        return $this->db->update('users');
+    }
 }

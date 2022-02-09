@@ -56,6 +56,11 @@ $route['wallet'] = 'login/wallet';
 $route['logout'] = 'login/logout';
 
 
+/////Activity
+$route['activity'] = 'user/Activity';
+$route['create'] = 'user/Activity/create';
+
+
 /////Admin URL
 
 //
