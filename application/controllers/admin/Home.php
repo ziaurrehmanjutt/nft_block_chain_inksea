@@ -63,4 +63,19 @@ class Home extends Admin
 		$response['list'] = $this->Settings_Model->all_users();
 		$this->render_view('extra/users.php', $response,'users');
 	}
+
+	public function for_approved()
+	{
+		if (isset($_POST['approve'])) {
+			$response = $this->Settings_Model->approve_nft($_POST['approve']);
+			$_SESSION["user_status_info"] = "NFT Approved  Successfully";
+			redirect('admin/nft/pending', 'refresh');
+		}else if (isset($_POST['delete_nft'])) {
+			$response = $this->Settings_Model->delete_nft($_POST['delete_nft']);
+			$_SESSION["user_status_info"] = "NFT Deleted Successfully";
+			redirect('admin/nft/pending', 'refresh');
+		}
+		$response['list'] = $this->Settings_Model->get_new_nft();
+		$this->render_view('extra/for_approve.php', $response,'users');
+	}
 }

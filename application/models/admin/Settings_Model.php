@@ -47,4 +47,27 @@ class Settings_Model extends Admin_Model
         $this->db->where('rowid',$id);
         return $this->db->update('users');
     }
+
+    public function get_new_nft(){
+        $this->db->select('all_nfts_list.*,cate_name,user_name');
+        $this->db->join('all_categories', 'all_categories.rowid=all_nfts_list.nft_category');
+        $this->db->join('users', 'users.rowid=all_nfts_list.nft_user','left');
+        $this->db->from('all_nfts_list');
+        $this->db->where('nft_status',0);
+        // $this->db->order_by('rowid','DESC');
+        return $this->db->get()->result_array();
+    } 
+
+    public function approve_nft($id){
+        $this->db->set('nft_status',1);
+        $this->db->where('rowid',$id);
+        return $this->db->update('all_nfts_list');
+    }
+
+    public function delete_nft($id){
+        $this->db->where('rowid',$id);
+        $this->db->delete('all_nfts_list');
+        return ;
+
+    }
 }

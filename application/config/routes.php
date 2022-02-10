@@ -59,6 +59,7 @@ $route['logout'] = 'login/logout';
 /////Activity
 $route['activity'] = 'user/Activity';
 $route['create'] = 'user/Activity/create';
+$route['sale/create/(:num)'] = 'user/Activity/create_sale/$1';
 
 
 /////Admin URL
@@ -66,6 +67,7 @@ $route['create'] = 'user/Activity/create';
 //
 $route['admin/categories'] = 'admin/home/categories';
 $route['admin/users'] = 'admin/home/users';
+$route['admin/nft/pending'] = 'admin/home/for_approved';
 
 
 ///Extra urls

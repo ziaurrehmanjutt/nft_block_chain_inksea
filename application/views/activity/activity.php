@@ -26,61 +26,45 @@
                             </button>
                         </div><!-- end tablist -->
                         <div tabindex="0" role="tabpanel" aria-labelledby="all" id="all-tab">
-                            <div class="tab-puchage">
-                                <!-- tab item -->
-                                <div class="tab-purchage-img">
-                                    <a href="item-details.html">
-                                        <img src="<?=base_url('assets/')?>img/avatar/11.jpg" alt="author" class="responsive-fluid" />
-                                    </a>
-                                </div>
-                                <div class="purchage-text-link">
-                                    <a class="puchage-tilte" href="#">Human Machanism Picture <span class="purchage_spanbtn"><i class='bx bx-shopping-bag'></i></span></a>
-                                    <p class="purchage-value">Total Value : <span class="eth-counter">450 ETH</span></p>
-                                    <p class="purchage-text">
-                                        Purchased by
-                                        <a href="author-details.html" class="author-link">@Devid Wane</a> for 0.01 ETH 2 hours ago
-                                    </p>
-                                </div>
-                            </div> <!-- end tab item -->
-                            <div class="tab-puchage">
-                                <!-- tab item -->
-                                <div class="tab-purchage-img">
-                                    <a href="item-details.html">
-                                        <img src="<?=base_url('assets/')?>img/avatar/1.jpg" alt="author" class="responsive-fluid" />
-                                    </a>
-                                </div>
-                                <div class="purchage-text-link">
-                                    <a class="puchage-tilte" href="#">Wane O brain <span class="purchage_spanbtn"><i class='bx bxs-user-check'></i></span></a>
-                                    <p class="purchage-text">
-                                        started following
-                                        <a href="author-details.html" class="author-link">@Max Doe</a> 4 hours ago
-                                    </p>
-                                    <p class="purchage-value">Total Spent : <span class="eth-counter">3.5 ETH</span></p>
-                                </div>
-                            </div> <!-- end tab item -->
-                            <div class="tab-puchage">
-                                <!-- tab item -->
-                                <div class="tab-purchage-img">
-                                    <a href="item-details.html">
-                                        <img src="<?=base_url('assets/')?>img/avatar/2.jpg" alt="author" class="responsive-fluid" />
-                                    </a>
-                                </div>
-                                <div class="purchage-text-link">
-                                    <a class="puchage-tilte" href="#">Robotic Body Art<span class="purchage_spanbtn"><i class='bx bx-shopping-bag'></i></span></a>
-                                    <p class="purchage-value">Total Value : <span class="eth-counter">45 ETH</span></p>
-                                    <p class="purchage-text">
-                                        1 part purchased by
-                                        <a href="author-details.html" class="author-link">@Max Doe</a> for 0.01 ETH 8 hours ago
-                                    </p>
-                                </div>
-                            </div> <!-- end tab item -->
+                            <!-- tab item -->
+                            <?php foreach ($all as $key => $value) { ?>
+                                <div class="tab-puchage">
+
+
+                                    <div class="tab-purchage-img">
+                                        <a href="item-details.html">
+                                            <img src="<?= base_url('assets/nfts/') . $value['nft_file'] ?>" alt="author" class="responsive-fluid" />
+                                        </a>
+                                    </div>
+
+                                    <div class="purchage-text-link"> 
+                                        <?php if(0) : ?>
+                                            <a class="puchage-tilte" href=""><?= $value['nft_name'] ?> <span class="purchage_spanbtn"><i class='bx bx-shopping-bag'></i></span></a>
+                                        <?php else: ?>
+                                            <a class="puchage-tilte" href="<?=base_url('sale/create/').$value['rowid']?>"><?= $value['nft_name'] ?> <span class="purchage_spanbtn"><i class='bx bx-shopping-bag'></i></span></a>
+                                        <?php endif;  ?>
+                                        <p class="purchage-value">Total Value : <span class="eth-counter"><?= $value['nft_price'] ?> ETH</span></p>
+                                        <p class="purchage-text">
+                                            <span>
+                                                <span>Status: </span>
+                                                <?php if($value['nft_status'] == '0'): ?>
+                                                    <span class="badge badge-warning">Pending</span>
+                                                <?php elseif($value['nft_status'] == '1'): ?>
+                                                    <span class="badge badge-success">Approved</span>
+                                                <?php endif ?>
+                                            </span>
+                                            OnSale : No
+                                        </p>
+                                    </div>
+                                </div> <!-- end tab item -->
+                            <?php } ?>
                         </div> <!-- end tab panel -->
                         <div tabindex="0" role="tabpanel" aria-labelledby="purchage" id="purchage-tab" hidden>
                             <div class="tab-puchage">
                                 <!-- tab item -->
                                 <div class="tab-purchage-img">
                                     <a href="item-details.html">
-                                        <img src="<?=base_url('assets/')?>img/avatar/3.jpg" alt="author" class="responsive-fluid" />
+                                        <img src="<?= base_url('assets/') ?>img/avatar/3.jpg" alt="author" class="responsive-fluid" />
                                     </a>
                                 </div>
                                 <div class="purchage-text-link">
@@ -96,7 +80,7 @@
                                 <!-- tab item -->
                                 <div class="tab-purchage-img">
                                     <a href="item-details.html">
-                                        <img src="<?=base_url('assets/')?>img/avatar/4.jpg" alt="author" class="responsive-fluid" />
+                                        <img src="<?= base_url('assets/') ?>img/avatar/4.jpg" alt="author" class="responsive-fluid" />
                                     </a>
                                 </div>
                                 <div class="purchage-text-link">
@@ -112,7 +96,7 @@
                                 <!-- tab item -->
                                 <div class="tab-purchage-img">
                                     <a href="item-details.html">
-                                        <img src="<?=base_url('assets/')?>img/avatar/5.jpg" alt="author" class="responsive-fluid" />
+                                        <img src="<?= base_url('assets/') ?>img/avatar/5.jpg" alt="author" class="responsive-fluid" />
                                     </a>
                                 </div>
                                 <div class="purchage-text-link">
@@ -130,7 +114,7 @@
                                 <!-- tab item -->
                                 <div class="tab-purchage-img">
                                     <a href="item-details.html">
-                                        <img src="<?=base_url('assets/')?>img/avatar/6.jpg" alt="author" class="responsive-fluid" />
+                                        <img src="<?= base_url('assets/') ?>img/avatar/6.jpg" alt="author" class="responsive-fluid" />
                                     </a>
                                 </div>
                                 <div class="purchage-text-link">
@@ -146,7 +130,7 @@
                                 <!-- tab item -->
                                 <div class="tab-purchage-img">
                                     <a href="item-details.html">
-                                        <img src="<?=base_url('assets/')?>img/avatar/5.jpg" alt="author" class="responsive-fluid" />
+                                        <img src="<?= base_url('assets/') ?>img/avatar/5.jpg" alt="author" class="responsive-fluid" />
                                     </a>
                                 </div>
                                 <div class="purchage-text-link">
@@ -164,7 +148,7 @@
                                 <!-- tab item -->
                                 <div class="tab-purchage-img">
                                     <a href="item-details.html">
-                                        <img src="<?=base_url('assets/')?>img/avatar/4.jpg" alt="author" class="responsive-fluid" />
+                                        <img src="<?= base_url('assets/') ?>img/avatar/4.jpg" alt="author" class="responsive-fluid" />
                                     </a>
                                 </div>
                                 <div class="purchage-text-link">
@@ -180,7 +164,7 @@
                                 <!-- tab item -->
                                 <div class="tab-purchage-img">
                                     <a href="item-details.html">
-                                        <img src="<?=base_url('assets/')?>img/avatar/3.jpg" alt="author" class="responsive-fluid" />
+                                        <img src="<?= base_url('assets/') ?>img/avatar/3.jpg" alt="author" class="responsive-fluid" />
                                     </a>
                                 </div>
                                 <div class="purchage-text-link">
@@ -198,7 +182,7 @@
                                 <!-- tab item -->
                                 <div class="tab-purchage-img">
                                     <a href="item-details.html">
-                                        <img src="<?=base_url('assets/')?>img/avatar/2.jpg" alt="author" class="responsive-fluid" />
+                                        <img src="<?= base_url('assets/') ?>img/avatar/2.jpg" alt="author" class="responsive-fluid" />
                                     </a>
                                 </div>
                                 <div class="purchage-text-link">
@@ -214,7 +198,7 @@
                                 <!-- tab item -->
                                 <div class="tab-purchage-img">
                                     <a href="item-details.html">
-                                        <img src="<?=base_url('assets/')?>img/avatar/1.jpg" alt="author" class="responsive-fluid" />
+                                        <img src="<?= base_url('assets/') ?>img/avatar/1.jpg" alt="author" class="responsive-fluid" />
                                     </a>
                                 </div>
                                 <div class="purchage-text-link">
@@ -251,3 +235,4 @@
         </div> <!-- end container -->
     </div> <!-- End  Activity -->
 </section> <!-- end tab area white -->
+

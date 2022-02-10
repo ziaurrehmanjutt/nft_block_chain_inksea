@@ -1025,6 +1025,7 @@
             <!-- start container -->
             <div id="owl-demo" class="owl-carousel new-proslider">
                 <!-- start owl-carousel -->
+                <?php foreach($live as $val): ?>
                 <div class="single_product mt-50 pb-30">
                     <!-- Single Product -->
                     <div class="jumbotron countdown show" data-Date='2022/04/24 23:59:59' data-endText="Auction ended">
@@ -1111,6 +1112,7 @@
                         </span><!-- end place bid -->
                     </div><!-- end product link -->
                 </div><!-- end Single Product -->
+                <?php endforeach; ?>
                 <div class="single_product mt-50 pb-30">
                     <!-- Single Product -->
                     <div class="jumbotron countdown show" data-Date='2022/07/24 23:59:59' data-endText="Auction ended">

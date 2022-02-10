@@ -1,7 +1,7 @@
 <?php
 class User_Model extends CI_Model
 {
-    protected $userID;
+    public $userID;
     public function __construct()
     {
         if(isset($_SESSION['login'])){

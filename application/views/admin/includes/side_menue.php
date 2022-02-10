@@ -31,10 +31,11 @@
                         <li> <a href="#">Already Sold</a> </li>
 
                         <li> <a href="#">Waiting for Payment</a> </li> 
+                        <li> <a href="<?=base_url('admin/nft/pending')?>">Waiting for Approve</a> </li> 
 
                         <li> <a href="#">Complained</a> </li>
 
-                    </ul>
+                    </ul> 
                 </li>
                 <li>
                     <a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i class="nav-icon ti ti-layout-column3-alt"></i><span class="nav-title">Message</span></a>

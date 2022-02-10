@@ -77,9 +77,9 @@ $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 
-	'username' => 'root',
-	'password' => '',
-	'database' => 'wallet2',
+	'username' => 'root', //inkseadotio_beta
+	'password' => '', //Gd;2#VUj9w9E
+	'database' => 'wallet2', //inkseadotio_beta
 
 
 	

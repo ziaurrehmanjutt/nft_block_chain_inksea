@@ -4,6 +4,7 @@ class Activity_Model extends User_Model
 {
     public function __construct()
     {
+        parent::__construct();
         
     }
 
@@ -41,6 +42,10 @@ class Activity_Model extends User_Model
         );
         
       
+        // echo "<pre>";
+        // print_r($dataArray);
+        // print_r($_SESSION);
+        // die;
         $this->db->insert('all_nfts_list', $dataArray);
 		return   $this->db->insert_id();
     }
@@ -54,4 +59,46 @@ class Activity_Model extends User_Model
         return $result;
     }
 
+    public function single_nft_from_user($id){
+        $this->db->select('all_nfts_list.*');
+        $this->db->from('all_nfts_list');
+        $this->db->where('rowid',$id);
+        $this->db->where('nft_user',$this->userID);
+        $result = $this->db->get()->row();
+        return $result;
+    }
+
+    public function make_new_sale($id){
+
+        // echo '<pre>';
+        // print_r($_POST);
+        // die;
+
+        
+        $type_id = $this->input->post('type_id');
+        $sale_end = $this->input->post('sale_end');
+        $sale_type = $this->input->post('sale_type');
+        $nft_price = $this->input->post('nft_price');
+
+        $dataArray = array(
+            'nft_id' => $id,
+            'owner_id' => $this->userID,
+            'sale_price' => $nft_price,
+            'created_at' =>  date('Y-m-d H:i:s'),
+            'sale_type' => $sale_type,
+            'expire_at' => $sale_end,
+            'bidding_sale' =>  $type_id,
+        );
+        $this->db->insert('nft_sales', $dataArray);
+		return   $this->db->insert_id();
+        
+
+        $this->db->select('all_nfts_list.*');
+        $this->db->from('all_nfts_list');
+        $this->db->where('rowid',$id);
+        $this->db->where('nft_user',$this->userID);
+        $result = $this->db->get()->row();
+        return $result;
+    }
+    
 }
