@@ -81,7 +81,7 @@
                                                         <th><?=$value['cate_name']?></th>
                                                         <th><?=$value['category_descriptions']?></th>
                                                         <th> 
-                                                            <img height="50px" width="50px" src="<?=base_url('uploaded/images/categories/').$value['cate_image']?>" //>    
+                                                            <img height="50px" width="50px" src="<?=base_url('uploaded/images/categories/').$value['cate_image']?>" />    
                                                         </th>
                                                       
                                                         <th>0</th>
