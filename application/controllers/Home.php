@@ -12,8 +12,13 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		
-
+		
 		$data['live'] =  $this->Home_Public_Model->get_live_auction();//
+		$data['categories'] =  $this->Home_Public_Model->all_categories();//
+
+		// echo "<pre>";
+		// print_r($data);
+		// die;
 		$this->load->view('includes/header');
 		$this->load->view('includes/menues_header');
 		$this->load->view('home/home_banner');
