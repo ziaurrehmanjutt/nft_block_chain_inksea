@@ -24,7 +24,13 @@ class Login extends CI_Controller
 				$response  = $this->Account_Model->login();
 				if($response){
 					$_SESSION['login'] = $response;
-					redirect('/','refresh');
+
+				//	print_r($response->user_type);die;
+					if($response->user_type == '2'){
+						redirect('admin/users','refresh');
+					}else{
+						redirect('/','refresh');
+					}
 					exit();
 				}
 			}

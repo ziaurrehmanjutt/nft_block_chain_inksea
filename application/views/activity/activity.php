@@ -27,6 +27,10 @@
                         </div><!-- end tablist -->
                         <div tabindex="0" role="tabpanel" aria-labelledby="all" id="all-tab">
                             <!-- tab item -->
+                            <a href="<?=base_url('create')?>">
+
+                                <button  class="float-right">Create</button>
+                            </a>
                             <?php foreach ($all as $key => $value) { ?>
                                 <div class="tab-puchage">
 

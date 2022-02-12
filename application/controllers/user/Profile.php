@@ -47,14 +47,16 @@ class Profile extends User
 
 		}
 		$result['profile'] = $this->Profile_Model->get_profile();
+		$result['live'] = $this->Profile_Model->get_live_auction($this->userID);
         $this->load->view('includes/header');
         $this->load->view('includes/menues_header');
         // $this->load->view('activity/activity_slider');
         $this->load->view('profile/profile.php', $result);
         $this->load->view('includes/footer_before');
         $this->load->view('includes/footer');
+      
 	}
-
+	
 	public function other_profile($oid){
 
 		$idOk = base64_decode($oid);
@@ -64,14 +66,33 @@ class Profile extends User
 		// 		$encrypted  =	base64_decode($encrypted);
 		// 		echo $encrypted;
 
+		if(!$oid || $oid == $this->userID){
+			redirect('profile');
+		}
+
+		if(isset($_POST['start_follow'])){
+			 $this->Profile_Model->change_following($oid);
+		}
+
+		if(isset($_POST['place_a_bid'])){
+			$this->load->model('Home_Public_Model');
+			$res = $this->Home_Public_Model->place_a_bid();
+			$_SESSION["user_status_info"] = "Bid Add Successfully";
+			redirect('profile/'.$oid);
+		}
 
 		// die;
 		$result['profile'] = $this->Profile_Model->get_profile_other($oid);
-		$this->load->view('includes/header');
+		if(!$result['profile']){
+			redirect('profile');
+		}
+		$result['live'] = $this->Profile_Model->get_live_auction($oid);
+		$this->load->view('includes/header'); 
         $this->load->view('includes/menues_header');
         // $this->load->view('activity/activity_slider');
         $this->load->view('profile/profile_other.php', $result);
         $this->load->view('includes/footer_before');
         $this->load->view('includes/footer');
+		$this->load->view('home/home_script');
 	}
 }

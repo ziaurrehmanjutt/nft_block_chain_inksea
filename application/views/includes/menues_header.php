@@ -48,10 +48,10 @@
 									<li><a href="index.php">Home</a></li>
 									<li class="has-children"><a href="#">Explore</a>
 										<ul class="sub-menu">
-											<li><a href="#">Explore One</a></li>
-											<li><a href="#"> Live Auction</a></li>
-											<li><a href="#"> Collection</a></li>
-											<li><a href="#">Item Details</a></li>
+											<!-- <li><a href="#">Explore One</a></li> -->
+											<li><a href="<?=base_url('search')?>"> Live Auction</a></li>
+											<!-- <li><a href="#"> Collection</a></li>
+											<li><a href="#">Item Details</a></li> -->
 										</ul>
 									</li>
 									<li class="has-children"><a href="#">Community</a>
@@ -84,9 +84,9 @@
 						<div class="action-nav">
 							<select id="language" class="wide">
 								<option value="0">ENG</option>
-								<option value="1">ARB</option>
+								<!-- <option value="1">ARB</option>
 								<option value="2">GER</option>
-								<option value="3">FRN</option>
+								<option value="3">FRN</option> -->
 							</select><!-- end language  -->	
                             <?php if(isset($_SESSION['login']) && $_SESSION['login']): ?>				
 							<div class="profile-nav-main">
@@ -103,11 +103,15 @@
 											<p class="price heading-L">30.656 ETH</p>
 										</div>
 										<div class="img-etherem">
-											<img class="etherem" src="<?=base_url('assets/')?>img/avatar/ethereum.png" alt="img">
+											<?php if($_SESSION['login']->user_image): ?>
+												<img class="etherem" src="<?=base_url('assets/users').$_SESSION['login']->user_image?>" alt="img">
+											<?php else: ?>
+												<img class="etherem" src="<?=base_url('assets/')?>img/avatar/ethereum.png" alt="img">
+											<?php endif  ?>
 										</div>
 									</div><!-- end balance  -->
 									<div class="copy-icon-otr">
-										<span id="wallet" class="profile_wallet text heading-SB">DdzFFzCqrhshMSxb9oW1HPa7K7f865Kk4LqnrME</span>
+										<span id="wallet" class="profile_wallet text heading-SB"><?=$_SESSION['login']->meta_mask_key?></span>
 										<button id="btn_copy" title="Copy Text">
 											<i class='bx bx-copy-alt'></i>
 										</button>
@@ -117,11 +121,11 @@
 											<a href="" class="link-profile-a heading-SB">My Item</a>
 										</li>
 										<li class="link-profile-li">
-											<a href="" class="link-profile-a heading-SB">Edit Profile</a>
+											<a href="<?=base_url('profile')?>" class="link-profile-a heading-SB">Edit Profile</a>
 										</li>
-										<li class="link-profile-li">
+										<!-- <li class="link-profile-li">
 											<a href="" class="link-profile-a heading-SB">Upload File</a>
-										</li>
+										</li> -->
 										<li class="link-profile-li">
 											<a href="<?=base_url('logout')?>" class="link-profile-a heading-SB">Logout</a>
 										</li>

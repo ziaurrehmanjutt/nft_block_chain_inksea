@@ -12,11 +12,12 @@ class Home_Public_Model extends CI_Model
     }
     public function get_live_auction()
     {
-        $this->db->select('expire_at,nft_name,user_name,sale_price,total_star,nft_sales.rowid');
+        $this->db->select('expire_at,nft_name,user_name,sale_price,total_star,nft_file,nft_sales.rowid');
         $this->db->join('all_nfts_list', 'all_nfts_list.rowid=nft_sales.nft_id');
         $this->db->join('users', 'users.rowid=nft_sales.owner_id');
         $this->db->from('nft_sales');
         $this->db->where('expire_at >', date('Y-m-d H:i:s'));
+        $this->db->where('nft_status',1);
         $result = $this->db->get()->result_array();
         return $result;
     }
@@ -117,12 +118,67 @@ class Home_Public_Model extends CI_Model
     }
 
     public function get_home_users(){
-        $this->db->select('users.*,( COUNT(all_nfts_list.rowid) as tnft FROM all_nfts_list where all_nfts_list.nft_user = users.rowid) as tnft');
+        $this->db->select('users.*,(SELECT COUNT(all_nfts_list.rowid) as tnft FROM all_nfts_list where all_nfts_list.nft_user = users.rowid) as tnft');
         $this->db->from('users');
         $this->db->where('user_type','1');
         $this->db->order_by('total_foloowings','DESC');
         $this->db->limit('8');
         return $this->db->get()->result_array();
+    }
+
+    public function get_live_auction_filter()
+    {
+        $is_Auction = false;
+        $is_EndingSoon = false;
+        $sortBy = false;
+        $category = false;
+        $searchString = false;
+
+        if(isset($_GET['auction']) && $_GET['auction'] == 'on'){
+            $is_Auction = true;
+        }
+        if(isset($_GET['ending']) && $_GET['ending'] == 'on'){
+            $is_EndingSoon = true;
+        }
+
+        if(isset($_GET['category']) && $_GET['category']){
+            $category = $_GET['category'];
+        }
+        if(isset($_GET['search']) && $_GET['search']){
+            $searchString = $_GET['search'];
+        }
+        if(isset($_GET['sort']) && $_GET['sort']){
+            $sortBy =$_GET['sort'];
+        }
+        $this->db->select('expire_at,nft_name,user_name,sale_price,total_star,nft_file,nft_sales.rowid');
+        $this->db->join('all_nfts_list', 'all_nfts_list.rowid=nft_sales.nft_id');
+        $this->db->join('users', 'users.rowid=nft_sales.owner_id');
+        $this->db->from('nft_sales');
+        $this->db->where('expire_at >', date('Y-m-d H:i:s'));
+        $this->db->where('nft_status',1);
+        if($is_Auction){
+            $this->db->where('nft_sales.sale_type',1);
+        }
+        if($category){
+            $this->db->where('nft_category',$category);
+        }
+        if($searchString){
+            $this->db->like('nft_name',$searchString);
+        }
+
+        if($sortBy == '1'){
+            $this->db->order_by('total_star','DESC');
+        }else if($sortBy == '2'){
+           // $this->db->order_by('total_star','DESC');
+        }else if($sortBy == '3'){
+            $this->db->order_by('sale_price','ASC');
+        }else if($sortBy == '4'){
+            $this->db->order_by('sale_price','DESC');
+        }else {
+            $this->db->order_by('all_nfts_list.rowid','DESC');
+        }
+        $result = $this->db->get()->result_array();
+        return $result;
     }
     //users
 

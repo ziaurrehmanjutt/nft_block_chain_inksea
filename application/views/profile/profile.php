@@ -190,7 +190,7 @@
                         </div>
                     </div>
                     <div class="author-text-link">
-                        <h6 class="author_name"><?=$profile->user_name?></h6>
+                        <h6 class="author_name"><?= $profile->user_name ?></h6>
                         <div class="copy-icon-otr author-copy-link">
                             <span id="wallet-copy" class="profile_wallet author-wallet text heading-SB">MSckb9oW1HPa7K7f865Kk4LqnrME</span>
                             <button id="wallet_btn_copy" title="Copy Text">
@@ -210,7 +210,7 @@
                     <!-- tab item -->
                     <div class="about-me-text-link">
                         <h6 class="about-heading">Author Brief</h6>
-                        <p> <?php echo $profile->user_bio?> </p>
+                        <p> <?php echo $profile->user_bio ?> </p>
                     </div>
                     <div class="share-btn social-profile">
                         <!-- start share btn -->
@@ -318,346 +318,99 @@
                         <div class="sale-item tab-area-bg">
                             <!-- start tab area -->
                             <div class="row">
-                                <!-- start row -->
-                                <div class="col-md-6 col-sm-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
-                                    <!-- start col-4 -->
-                                    <div class="single_product mt-50 pb-30">
-                                        <!-- Single Product -->
-                                        <div class="jumbotron countdown show" data-Date='2022/01/16 23:59:59' data-endText="Auction ended">
-                                            <div class="running">
-                                                <span class="timer">
-                                                    <span class="days"></span>d
-                                                    <span class="hours"></span>h
-                                                    <span class="minutes"></span>m
-                                                    <span class="seconds"></span>s
-                                                </span>
-                                            </div>
-                                        </div> <!-- end count down -->
-                                        <div class="profile-rating">
-                                            <!-- thumbsup rating -->
-                                            <i class='bx bx-heart'></i>
-                                            <span class="thumbsup">9.3k</span>
-                                        </div> <!-- end thumbsup rating -->
-                                        <div class="single_product_img">
-                                            <!-- start single product img -->
-                                            <a href="product.html" class="theme_preview_link">
-                                                <img src="img/items/1.jpg" alt="" class="responsive-fluid" />
-                                            </a>
-                                        </div> <!-- End single product img -->
-                                        <div class="nft_product_description">
-                                            <!-- start product description -->
-                                            <div class="nft_product_text">
-                                                <ul class="author-profile-link">
-                                                    <!-- start author-->
-                                                    <li class="nav-item">
-                                                        <a href="author-details.html" class="author_link offline">
-                                                            <img src="img/avatar/1.jpg" alt="author" class="responsive-fluid img-1" />
-                                                            <i class='bx bxs-check-circle'></i>
-                                                        </a>
-                                                        <span class="hover_author_link">
-                                                            <a href="author-details.html" class="author_link_text">@galaxy01</a>
+                                <?php foreach ($live as $l) : ?>
+                                    <div class="col-md-4 col-sm-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
+                                        <!-- start col-4 -->
+                                        <div class="single_product mt-50 pb-30">
+                                            <!-- Single Product -->
+                                            <div class="jumbotron countdown show" data-Date='<?= $l['expire_at'] ?>' data-endText="Auction ended">
+                                                <div class="running">
+                                                    <span class="timer">
+                                                        <span class="days"></span>d
+                                                        <span class="hours"></span>h
+                                                        <span class="minutes"></span>m
+                                                        <span class="seconds"></span>s
+                                                    </span>
+                                                </div>
+                                            </div> <!-- end count down -->
+                                            <div class="profile-rating" onclick="doRatting(<?= $l['rowid'] ?>)">
+                                                <!-- thumbsup rating -->
+                                                <i class='bx bx-heart'></i>
+                                                <span class="thumbsup" id="rat-<?= $l['rowid'] ?>"><?= $l['total_star'] ?></span>
+                                            </div> <!-- end thumbsup rating -->
+                                            <div class="single_product_img">
+                                                <!-- start single product img -->
+                                                <a href="product.html" class="theme_preview_link">
+
+                                                    <img src="<?= base_url('assets/nfts/') . $l['nft_file'] ?>" alt="" class="responsive-fluid" />
+                                                </a>
+                                            </div> <!-- End single product img -->
+                                            <div class="nft_product_description">
+                                                <!-- start product description -->
+                                                <div class="nft_product_text">
+                                                    <ul class="author-profile-link">
+                                                        <!-- start author-->
+                                                        <li class="nav-item">
+                                                            <a href="author-details.html" class="author_link offline">
+                                                                <img src="<?= base_url('assets/') ?>img/avatar/1.jpg" alt="author" class="responsive-fluid img-1" />
+                                                                <i class='bx bxs-check-circle'></i>
+                                                            </a>
+                                                            <span class="hover_author_link">
+                                                                <a href="author-details.html" class="author_link_text">@<?= $l['user_name'] ?></a>
+                                                            </span>
+                                                        </li>
+
+                                                    </ul>
+                                                </div><!-- end author-->
+                                                <div class="product_title_link">
+                                                    <!-- start product title-->
+                                                    <a class="product-title" href="#">
+                                                        <h6 class="product_title_intro"><?= $l['nft_name'] ?></h6>
+                                                    </a>
+                                                </div><!-- end product title-->
+                                            </div><!-- end product text -->
+                                            <div class="nft_product_link">
+                                                <!-- start product link -->
+                                                <ul>
+                                                    <li class="product-all-icon">
+                                                        <span class="item-history product-icon">
+                                                            <a href="#" class="item-history-btn" data-toggle="modal" data-target="#popup_history">
+                                                                <i class='bx bx-comment-detail'></i>
+                                                            </a>
                                                         </span>
                                                     </li>
-                                                    <li class="nav-item">
-                                                        <a href="author-details.html" class="author_link">
-                                                            <img src="img/avatar/2.jpg" alt="author" class="responsive-fluid img-2" />
-                                                            <i class='bx bxs-check-circle'></i>
-                                                        </a>
-                                                        <span class="hover_author_link">
-                                                            <a href="author-details.html" class="author_link_text">@manila007</a>
+                                                    <li class="product-all-icon">
+                                                        <span class="report-icon product-icon">
+                                                            <a href="#" class="report-link" data-toggle="modal" data-target="#popup_share">
+                                                                <i class='bx bxs-share-alt'></i>
+                                                            </a>
+                                                        </span>
+                                                    </li>
+                                                    <li class="product-all-icon">
+                                                        <span class="report-icon product-icon">
+                                                            <a href="#" onclick="reportBlock(<?= $l['rowid'] ?>)" class="report-link" data-toggle="modal" data-target="#popup_report">
+                                                                <i class='bx bxs-flag-alt'></i>
+                                                            </a>
+                                                        </span>
+                                                    </li>
+                                                    <li class="product-all-icon">
+                                                        <span class="sale-count product-icon">
+                                                            <span class="sale-counter"><?= $l['sale_price'] ?> ETH</span>
                                                         </span>
                                                     </li>
                                                 </ul>
-                                            </div><!-- end author-->
-                                            <div class="product_title_link">
-                                                <!-- start product title-->
-                                                <a class="product-title" href="#">
-                                                    <h6 class="product_title_intro">Mystetious Robotic Body Art</h6>
-                                                </a>
-                                            </div><!-- end product title-->
-                                        </div><!-- end product text -->
-                                        <div class="nft_product_link">
-                                            <!-- start product link -->
-                                            <ul>
-                                                <li class="product-all-icon">
-                                                    <span class="report-icon product-icon">
-                                                        <a href="#" class="report-link" data-toggle="modal" data-target="#popup_share">
-                                                            <i class='bx bxs-share-alt'></i>
-                                                        </a>
-                                                    </span>
-                                                </li>
-                                                <li class="product-all-icon">
-                                                    <span class="report-icon product-icon">
-                                                        <a href="#" class="report-link" data-toggle="modal" data-target="#popup_report">
-                                                            <i class='bx bxs-flag-alt'></i>
-                                                        </a>
-                                                    </span>
-                                                </li>
-                                                <li class="product-all-icon">
-                                                    <span class="sale-count product-icon">
-                                                        <span class="sale-counter">Unit : 22.5 ETH 1/12</span>
-                                                    </span>
-                                                </li>
-                                            </ul>
-                                        </div><!-- end product link -->
-                                        <div class="place-bid">
-                                            <!-- start place bid -->
-                                            <a href="#" class="placebid price" data-toggle="modal" data-target="#popup_bid">Bid Now</a>
-                                        </div><!-- end place bid -->
-                                    </div><!-- end Single Product -->
-                                </div> <!-- End col-4 -->
-                                <div class="col-md-6 col-sm-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                                    <!-- start col-4 -->
-                                    <div class="single_product mt-50 pb-30">
-                                        <!-- Single Product -->
-                                        <div class="jumbotron countdown show" data-Date='2022/01/28 23:59:59' data-endText="Auction ended">
-                                            <div class="running">
-                                                <span class="timer">
-                                                    <span class="days"></span>d
-                                                    <span class="hours"></span>h
-                                                    <span class="minutes"></span>m
-                                                    <span class="seconds"></span>s
-                                                </span>
-                                            </div>
-                                        </div> <!-- end count down -->
-                                        <div class="profile-rating">
-                                            <!-- thumbsup rating -->
-                                            <i class='bx bx-heart'></i>
-                                            <span class="thumbsup">2.6k</span>
-                                        </div> <!-- end thumbsup rating -->
-                                        <div class="single_product_img">
-                                            <!-- start single product img -->
-                                            <a href="product.html" class="theme_preview_link">
-                                                <img src="img/items/2.jpg" alt="" class="responsive-fluid" />
-                                            </a>
-                                        </div> <!-- End single product img -->
-                                        <div class="nft_product_description">
-                                            <!-- start product description -->
-                                            <div class="nft_product_text">
-                                                <ul class="author-profile-link">
-                                                    <!-- start author-->
-                                                    <li class="nav-item">
-                                                        <a href="author-details.html" class="author_link">
-                                                            <img src="img/avatar/3.jpg" alt="author" class="responsive-fluid img-1" />
-                                                            <i class='bx bxs-check-circle'></i>
-                                                        </a>
-                                                        <span class="hover_author_link">
-                                                            <a href="author-details.html" class="author_link_text">@manila_98</a>
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div><!-- end author-->
-                                            <div class="product_title_link">
-                                                <!-- start product title-->
-                                                <a class="product-title" href="#">
-                                                    <h6 class="product_title_intro">Mystetious Nature Beauty</h6>
-                                                </a>
-                                            </div><!-- end product title-->
-                                        </div><!-- end product text -->
-                                        <div class="nft_product_link">
-                                            <!-- start product link -->
-                                            <ul>
-                                                <li class="product-all-icon">
-                                                    <span class="report-icon product-icon">
-                                                        <a href="#" class="report-link" data-toggle="modal" data-target="#popup_share">
-                                                            <i class='bx bxs-share-alt'></i>
-                                                        </a>
-                                                    </span>
-                                                </li>
-                                                <li class="product-all-icon">
-                                                    <span class="report-icon product-icon">
-                                                        <a href="#" class="report-link" data-toggle="modal" data-target="#popup_report">
-                                                            <i class='bx bxs-flag-alt'></i>
-                                                        </a>
-                                                    </span>
-                                                </li>
-                                                <li class="product-all-icon">
-                                                    <span class="sale-count product-icon">
-                                                        <span class="sale-counter">Unit : 48.5 ETH 1/8</span>
-                                                    </span>
-                                                </li>
-                                            </ul>
-                                        </div><!-- end product link -->
-                                        <div class="place-bid">
-                                            <!-- start place bid -->
-                                            <a href="#" class="placebid price" data-toggle="modal" data-target="#popup_bid">Bid Now</a>
-                                        </div><!-- end place bid -->
-                                    </div><!-- end Single Product -->
-                                </div> <!-- End col-4 -->
-                                <div class="col-md-6 col-sm-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".7s">
-                                    <!-- start col-4 -->
-                                    <div class="single_product mt-50 pb-30">
-                                        <!-- Single Product -->
-                                        <div class="jumbotron countdown show" data-Date='2022/01/24 23:59:59' data-endText="Auction ended">
-                                            <div class="running">
-                                                <span class="timer">
-                                                    <span class="days"></span>d
-                                                    <span class="hours"></span>h
-                                                    <span class="minutes"></span>m
-                                                    <span class="seconds"></span>s
-                                                </span>
-                                            </div>
-                                        </div> <!-- end count down -->
-                                        <div class="profile-rating">
-                                            <!-- thumbsup rating -->
-                                            <i class='bx bx-heart'></i>
-                                            <span class="thumbsup">5.3k</span>
-                                        </div> <!-- end thumbsup rating -->
-                                        <div class="single_product_img">
-                                            <!-- start single product img -->
-                                            <a href="product.html" class="theme_preview_link">
-                                                <img src="img/items/3.jpg" alt="" class="responsive-fluid" />
-                                            </a>
-                                        </div> <!-- End single product img -->
-                                        <div class="nft_product_description">
-                                            <!-- start product description -->
-                                            <div class="nft_product_text">
-                                                <ul class="author-profile-link">
-                                                    <!-- start author-->
-                                                    <li class="nav-item">
-                                                        <a href="author-details.html" class="author_link">
-                                                            <img src="img/avatar/4.jpg" alt="author" class="responsive-fluid img-1" />
-                                                            <i class='bx bxs-check-circle'></i>
-                                                        </a>
-                                                        <span class="hover_author_link">
-                                                            <a href="author-details.html" class="author_link_text">@milkyway</a>
-                                                        </span>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a href="author-details.html" class="author_link offline">
-                                                            <img src="img/avatar/5.jpg" alt="author" class="responsive-fluid img-2" />
-                                                            <i class='bx bxs-check-circle'></i>
-                                                        </a>
-                                                        <span class="hover_author_link">
-                                                            <a href="author-details.html" class="author_link_text">@yanila7</a>
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div><!-- end author-->
-                                            <div class="product_title_link">
-                                                <!-- start product title-->
-                                                <a class="product-title" href="#">
-                                                    <h6 class="product_title_intro">Mystetious Robotic Art</h6>
-                                                </a>
-                                            </div><!-- end product title-->
-                                        </div><!-- end product text -->
-                                        <div class="nft_product_link">
-                                            <!-- start product link -->
-                                            <ul>
-                                                <li class="product-all-icon">
-                                                    <span class="report-icon product-icon">
-                                                        <a href="#" class="report-link" data-toggle="modal" data-target="#popup_share">
-                                                            <i class='bx bxs-share-alt'></i>
-                                                        </a>
-                                                    </span>
-                                                </li>
-                                                <li class="product-all-icon">
-                                                    <span class="report-icon product-icon">
-                                                        <a href="#" class="report-link" data-toggle="modal" data-target="#popup_report">
-                                                            <i class='bx bxs-flag-alt'></i>
-                                                        </a>
-                                                    </span>
-                                                </li>
-                                                <li class="product-all-icon">
-                                                    <span class="sale-count product-icon">
-                                                        <span class="sale-counter">Unit : 32 ETH 1/8</span>
-                                                    </span>
-                                                </li>
-                                            </ul>
-                                        </div><!-- end product link -->
-                                        <div class="place-bid">
-                                            <!-- start place bid -->
-                                            <a href="#" class="placebid price" data-toggle="modal" data-target="#popup_bid">Bid Now</a>
-                                        </div><!-- end place bid -->
-                                    </div><!-- end Single Product -->
-                                </div> <!-- End col-4 -->
-                                <div class="col-md-6 col-sm-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
-                                    <!-- start col-4 -->
-                                    <div class="single_product mt-50 pb-30">
-                                        <!-- Single Product -->
-                                        <div class="jumbotron countdown show" data-Date='2021/12/24 23:59:59' data-endText="Auction ended">
-                                            <div class="running">
-                                                <span class="timer">
-                                                    <span class="days"></span>d
-                                                    <span class="hours"></span>h
-                                                    <span class="minutes"></span>m
-                                                    <span class="seconds"></span>s
-                                                </span>
-                                            </div>
-                                        </div> <!-- end count down -->
-                                        <div class="profile-rating">
-                                            <!-- thumbsup rating -->
-                                            <i class='bx bx-heart'></i>
-                                            <span class="thumbsup">5.3k</span>
-                                        </div> <!-- end thumbsup rating -->
-                                        <div class="single_product_img">
-                                            <!-- start single product img -->
-                                            <a href="product.html" class="theme_preview_link">
-                                                <img src="img/items/4.jpg" alt="" class="responsive-fluid" />
-                                            </a>
-                                        </div> <!-- End single product img -->
-                                        <div class="nft_product_description">
-                                            <!-- start product description -->
-                                            <div class="nft_product_text">
-                                                <ul class="author-profile-link">
-                                                    <!-- start author-->
-                                                    <li class="nav-item">
-                                                        <a href="author-details.html" class="author_link">
-                                                            <img src="img/avatar/4.jpg" alt="author" class="responsive-fluid img-1" />
-                                                            <i class='bx bxs-check-circle'></i>
-                                                        </a>
-                                                        <span class="hover_author_link">
-                                                            <a href="author-details.html" class="author_link_text">@milkyway</a>
-                                                        </span>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a href="author-details.html" class="author_link offline">
-                                                            <img src="img/avatar/5.jpg" alt="author" class="responsive-fluid img-2" />
-                                                            <i class='bx bxs-check-circle'></i>
-                                                        </a>
-                                                        <span class="hover_author_link">
-                                                            <a href="author-details.html" class="author_link_text">@yanila7</a>
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div><!-- end author-->
-                                            <div class="product_title_link">
-                                                <!-- start product title-->
-                                                <a class="product-title" href="#">
-                                                    <h6 class="product_title_intro">Mystetious Robotic Art</h6>
-                                                </a>
-                                            </div><!-- end product title-->
-                                        </div><!-- end product text -->
-                                        <div class="nft_product_link">
-                                            <!-- start product link -->
-                                            <ul>
-                                                <li class="product-all-icon">
-                                                    <span class="report-icon product-icon">
-                                                        <a href="#" class="report-link" data-toggle="modal" data-target="#popup_share">
-                                                            <i class='bx bxs-share-alt'></i>
-                                                        </a>
-                                                    </span>
-                                                </li>
-                                                <li class="product-all-icon">
-                                                    <span class="report-icon product-icon">
-                                                        <a href="#" class="report-link" data-toggle="modal" data-target="#popup_report">
-                                                            <i class='bx bxs-flag-alt'></i>
-                                                        </a>
-                                                    </span>
-                                                </li>
-                                                <li class="product-all-icon">
-                                                    <span class="sale-count product-icon">
-                                                        <span class="sale-counter">Unit : 32 ETH 1/8</span>
-                                                    </span>
-                                                </li>
-                                            </ul>
-                                        </div><!-- end product link -->
-                                        <div class="place-bid">
-                                            <!-- start place bid -->
-                                            <a href="#" class="placebid price" data-toggle="modal" data-target="#popup_bid">Bid Now</a>
-                                        </div><!-- end place bid -->
-                                    </div><!-- end Single Product -->
-                                </div> <!-- End col-4 -->
+                                            </div><!-- end product link -->
+                                            <div class="place-bid">
+                                                <!-- start place bid -->
+                                                <?php if (isset($_SESSION['login'])) : ?>
+                                                    <a href="#" class="placebid price" data-toggle="modal" data-target="#popup_bid">Bid Now</a>
+                                                <?php else : ?>
+                                                    <a href="<?= base_url('login') ?>" class="placebid price">Login to Bid</a>
+                                                <?php endif; ?>
+                                            </div><!-- end place bid -->
+                                        </div><!-- end Single Product -->
+                                    </div> <!-- End col-4 -->
+                                <?php endforeach; ?>
                             </div> <!-- End row -->
                         </div> <!-- End tab area -->
                     </div> <!-- end tab panel -->
@@ -665,52 +418,52 @@
                         <!-- start tab panel -->
                         <div class="edit-profile tab-area-bg">
                             <!-- start tab area -->
-                            <form method="POST" enctype="multipart/form-data"> 
-                            <div class="row">
-                                <!-- start row -->
-                                <div class="col-md-6">
-                                    <!-- start col -->
-                                    <div class="account-info-edit">
-                                        <div class="account-info-title">
-                                            <h5 class="subtitle">Account Info</h5>
+                            <form method="POST" enctype="multipart/form-data">
+                                <div class="row">
+                                    <!-- start row -->
+                                    <div class="col-md-6">
+                                        <!-- start col -->
+                                        <div class="account-info-edit">
+                                            <div class="account-info-title">
+                                                <h5 class="subtitle">Account Info</h5>
+                                            </div>
+                                            <div class="edit-avatar">
+                                                <?php if ($profile->user_image) : ?>
+                                                    <img src="<?= base_url('assets/users/') . $profile->user_image ?>" alt="edit avatar" class="responsive-fluid" />
+                                                <?php else : ?>
+                                                    <img src="<?= base_url('assets/') ?>img/avatar/2.jpg" alt="edit avatar" class="responsive-fluid" />
+                                                <?php endif; ?>
+                                            </div>
+                                            <div class="upload-avatar">
+                                                <a href="#." class="btn-upload-avatar">Upload Photo </a>
+                                                <input id="imageUpload" type="file" name="profile_photo">
+                                            </div>
+                                            <div class="edit-form">
+                                                <!-- start edit form -->
+                                                <div class="form-group edit-form-group">
+                                                    <input value="<?= $profile->user_name ?>" type="text" name="user_name" class="form-control edit-form-control" id="subjectup" placeholder="Display name : etherino" required>
+                                                </div>
+                                                <div class="form-group edit-form-group">
+                                                    <input type="email" readonly class="form-control edit-form-control" id="emailup" placeholder="Your email">
+                                                </div>
+                                                <div class="form-group edit-form-group">
+                                                    <input type="url" readonly class="form-control edit-form-control" id="urlup" placeholder="themetum.com/etherino">
+                                                </div>
+                                                <div class="form-group edit-form-group">
+                                                    <textarea class="form-control edit-form-control" name="user_descriptions" id="descriptionup" placeholder="Bio area...." required><?= $profile->user_bio ?></textarea>
+                                                </div>
+                                            </div> <!-- end edit form -->
+                                        </div> <!-- end account info -->
+                                    </div> <!-- end col -->
+
+                                    <div class="col-md-12 text-center">
+                                        <div class="actions pt-30">
+                                            <button type="submit" name="profile_update" id="submitbtn" class="btn btn-lg btn-contact-bg">
+                                                Update Profile
+                                            </button>
                                         </div>
-                                        <div class="edit-avatar">
-                                            <?php if($profile->user_image): ?>
-                                                <img src="<?=base_url('assets/users/').$profile->user_image?>" alt="edit avatar" class="responsive-fluid" />
-                                            <?php else: ?>
-                                                <img src="<?=base_url('assets/')?>img/avatar/2.jpg" alt="edit avatar" class="responsive-fluid" />
-                                            <?php endif; ?>
-                                        </div>
-                                        <div class="upload-avatar">
-                                            <a href="#." class="btn-upload-avatar">Upload Photo </a>
-                                            <input id="imageUpload" type="file" name="profile_photo">
-                                        </div>
-                                        <div class="edit-form">
-                                            <!-- start edit form -->
-                                            <div class="form-group edit-form-group">
-                                                <input  value="<?=$profile->user_name?>" type="text" name="user_name" class="form-control edit-form-control" id="subjectup" placeholder="Display name : etherino" required>
-                                            </div>
-                                            <div class="form-group edit-form-group">
-                                                <input type="email" readonly  class="form-control edit-form-control" id="emailup" placeholder="Your email">
-                                            </div>
-                                            <div class="form-group edit-form-group">
-                                                <input type="url" readonly  class="form-control edit-form-control" id="urlup" placeholder="themetum.com/etherino">
-                                            </div>
-                                            <div class="form-group edit-form-group">
-                                                <textarea class="form-control edit-form-control" name="user_descriptions" id="descriptionup" placeholder="Bio area...." required><?=$profile->user_bio?></textarea>
-                                            </div>
-                                        </div> <!-- end edit form -->
-                                    </div> <!-- end account info -->
-                                </div> <!-- end col -->
-                               
-                                <div class="col-md-12 text-center">
-                                    <div class="actions pt-30">
-                                        <button type="submit" name="profile_update" id="submitbtn" class="btn btn-lg btn-contact-bg">
-                                            Update Profile
-                                        </button>
                                     </div>
-                                </div>
-                            </div> <!-- End row -->
+                                </div> <!-- End row -->
                             </form>
                         </div> <!-- End tab area -->
                     </div> <!-- end tab panel -->

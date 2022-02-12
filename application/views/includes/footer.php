@@ -15,5 +15,11 @@
 	<script src="<?=base_url('assets/')?>js/slick.min.js"></script>
 	<script src="<?=base_url('assets/')?>js/jquery.meanmenu.min.js"></script>
 	<script src="<?=base_url('assets/')?>js/main.js"></script>
+
+	<script> 
+		function copText(text){
+			navigator.clipboard.writeText(text);
+		}
+	</script>
 	<!-- End JS File -->
 </html>

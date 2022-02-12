@@ -4,12 +4,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class User extends CI_Controller
 {
 
+    protected $userID;
     public function __construct()
     {
         parent::__construct();
         if(!isset($_SESSION['login'])){
             redirect('login');
         }
+        if(isset($_SESSION['login'])){
+            $this->userID = $_SESSION['login']->rowid;
+        }
+
 
 
     }

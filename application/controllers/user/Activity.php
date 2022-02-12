@@ -49,7 +49,7 @@ class Activity extends User
                 $config['upload_path']          = './assets/nfts/';
                 $config['allowed_types']        = 'gif|jpg|png|jpeg';
                 if ($upType == '2') {
-                    $config['allowed_types'] =  'MP4|MOV|WMV|AVI|MKV|WEBM|FLV';
+                    $config['allowed_types'] =  'MP4|MOV|WMV|AVI|MKV|WEBM|FLV|mp4|mov|avi|mkv|webm';
                 }
                 // $config['max_size']             = 100;
                 // $config['max_width']            = 1024;
@@ -115,6 +115,8 @@ class Activity extends User
         $this->load->view('includes/footer_before');
         $this->load->view('includes/footer');
     }
+
+
 }
 
 //

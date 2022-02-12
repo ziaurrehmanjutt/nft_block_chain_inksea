@@ -6,7 +6,12 @@ class Admin extends CI_Controller
 
     public function __construct()
     {
+
         parent::__construct();
+        if(!isset($_SESSION['login']) || $_SESSION['login']->user_type != '2'){
+            redirect('/');
+            exit(0);
+        }
     }
     public function render_view($page = '',$data = [],$menu = '',$extra = false)
     {

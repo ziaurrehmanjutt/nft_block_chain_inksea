@@ -583,7 +583,7 @@ ul.sub-menu li {
 }
 ul.menu-list li a:hover,
 ul.sub-menu li a:hover {
-    color: var(--span-color); !important;
+    color: var(--span-color) !important;
 }
 .main-menu .sub-menu li a {
     padding: 13px;
@@ -2363,6 +2363,8 @@ section.author-list-area {
 
 .single-author-img a.author_link img {
     max-width: 60px;
+    width: 60px;
+    height: 60px;
 }
 .name-amount {
     position: relative;

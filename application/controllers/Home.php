@@ -48,4 +48,37 @@ class Home extends CI_Controller {
 
 		
 	}
+
+	public function search(){
+
+		if(isset($_POST['place_a_bid'])){
+			$res = $this->Home_Public_Model->place_a_bid();
+			$_SESSION["user_status_info"] = "Bid Add Successfully";
+			redirect('/');
+		}else if(isset($_POST['post_type']) && $_POST['post_type'] == 'report_nft'){
+			$res = $this->Home_Public_Model->report_nft();
+			echo json_encode($res);
+			die; 
+		}else if(isset($_POST['post_type']) && $_POST['post_type'] == 'do_ratting'){
+			$res = $this->Home_Public_Model->do_ratting();
+			echo json_encode($res);
+			die; 
+		}
+		
+		$data['live'] =  $this->Home_Public_Model->get_live_auction_filter();//
+		$data['categories'] =  $this->Home_Public_Model->all_categories();//
+
+
+
+		// echo "<pre>";
+		// print_r($data);die;
+        $this->load->view('includes/header');
+        $this->load->view('includes/menues_header');
+        // $this->load->view('activity/activity_slider');
+        $this->load->view('live_search/live.php', $data);
+        $this->load->view('includes/footer_before');
+        $this->load->view('includes/footer');
+        $this->load->view('live_search/live_script');
+		$this->load->view('home/home_script');
+    }
 }

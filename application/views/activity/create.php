@@ -51,7 +51,7 @@
                             <label  for="exampleInputEmail1">NFT Type</label>
                             <select  name="type_id" required class="form-control">
                                 <option <?= set_value('nft_price') == '1' ? 'selected' : ''?> value="1">Image</option>
-                                <option <?= set_value('nft_price') == '2' ? 'selected' : ''?> value="2">Video</option>
+                                <!-- <option <?= set_value('nft_price') == '2' ? 'selected' : ''?> value="2">Video</option> -->
                             </select>
                             <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                         </div>
