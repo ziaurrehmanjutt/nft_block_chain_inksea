@@ -118,6 +118,9 @@ class Activity extends User
 
     public function single($id){
         $result['data'] = $this->Activity_Model->single_sale($id);
+        $result['bids'] = $this->Activity_Model->get_all_bids($id);
+        $result['likes'] = $this->Activity_Model->sale_rattings($id);
+        $result['sales'] = $this->Activity_Model->single_sale($id);
         $this->load->view('includes/header'); 
         $this->load->view('includes/menues_header');
         // $this->load->view('activity/activity_slider');

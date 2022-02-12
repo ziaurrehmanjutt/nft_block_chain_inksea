@@ -73,6 +73,7 @@ $route['search'] = 'Home/search';
 //
 $route['admin/categories'] = 'admin/home/categories';
 $route['admin/users'] = 'admin/home/users';
+$route['admin/nfts/sales'] = 'admin/home/nft_sales';
 $route['admin/nft/pending'] = 'admin/home/for_approved';
 
 

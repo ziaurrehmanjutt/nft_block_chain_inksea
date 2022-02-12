@@ -26,8 +26,8 @@
                     <ul aria-expanded="false">
                         <li> <a href="#">Live Auction</a> </li>
 
-                        <li> <a href="#">Active For Sale</a> </li>
-
+                        <li> <a href="<?=base_url('admin/nfts/sales')?>">Active For Sale</a> </li>
+                        
                         <li> <a href="#">Already Sold</a> </li>
 
                         <li> <a href="#">Waiting for Payment</a> </li> 

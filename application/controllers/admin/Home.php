@@ -78,4 +78,9 @@ class Home extends Admin
 		$response['list'] = $this->Settings_Model->get_new_nft();
 		$this->render_view('extra/for_approve.php', $response,'users');
 	}
+
+	public function nft_sales(){
+		$response['list'] = $this->Settings_Model->get_active_sales();
+		$this->render_view('sales/active_sale.php', $response,'users');
+	}
 }
