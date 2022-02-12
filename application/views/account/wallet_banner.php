@@ -10,7 +10,7 @@
                     <h2 class="breadcrumb-title">Connect Wallet</h2>
                     <ul class="breadcrumb-menu clearfix">
                         <li>
-                            <a href="index.html">Home /</a>
+                            <a href="<?=base_url('/')?>">Home /</a>
                             <a href="#" class="active">wallet</a>
                         </li>
                     </ul>

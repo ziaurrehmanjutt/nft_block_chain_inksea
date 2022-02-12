@@ -30,7 +30,7 @@
                 <!-- start col-4 -->
                 <div class="single_product wallet-single mt-50 pb-30">
                     <!-- Single Product -->
-                    <a href="signin.html" class="wallet_link">
+                    <a href="<?=base_url('login')?>" class="wallet_link">
                         <div class="wallet_single_bg">
                             <img src="<?= base_url('assets/') ?>img/wallet/1.png" alt="" class="responsive-fluid" />
                             <h6 class="wallet-name">MetaMask</h6>
@@ -51,7 +51,7 @@
                 <!-- start col-4 -->
                 <div class="single_product wallet-single mt-50 pb-30">
                     <!-- Single Product -->
-                    <a href="signin.html" class="wallet_link">
+                    <a href="<?=base_url('login')?>" class="wallet_link">
                         <div class="wallet_single_bg">
                             <img src="<?= base_url('assets/') ?>img/wallet/2.png" alt="" class="responsive-fluid" />
                             <h6 class="wallet-name">Autherium</h6>
@@ -70,7 +70,7 @@
                 <!-- start col-4 -->
                 <div class="single_product wallet-single mt-50 pb-30">
                     <!-- Single Product -->
-                    <a href="signin.html" class="wallet_link">
+                    <a href="<?=base_url('login')?>" class="wallet_link">
                         <div class="wallet_single_bg">
                             <img src="<?= base_url('assets/') ?>img/wallet/3.png" alt="" class="responsive-fluid" />
                             <h6 class="wallet-name">WalletConnect</h6>
@@ -89,7 +89,7 @@
                 <!-- start col-4 -->
                 <div class="single_product wallet-single mt-50 pb-30">
                     <!-- Single Product -->
-                    <a href="signin.html" class="wallet_link">
+                    <a href="<?=base_url('login')?>" class="wallet_link">
                         <div class="wallet_single_bg">
                             <img src="<?= base_url('assets/') ?>img/wallet/4.png" alt="" class="responsive-fluid" />
                             <h6 class="wallet-name">Torus</h6>
@@ -108,7 +108,7 @@
                 <!-- start col-4 -->
                 <div class="single_product wallet-single mt-50 pb-30">
                     <!-- Single Product -->
-                    <a href="signin.html" class="wallet_link">
+                    <a href="<?=base_url('login')?>" class="wallet_link">
                         <div class="wallet_single_bg">
                             <img src="<?= base_url('assets/') ?>img/wallet/5.png" alt="" class="responsive-fluid" />
                             <h6 class="wallet-name">Fortmatic</h6>
@@ -169,9 +169,9 @@
                         </p>
                     </div>
                     <div class="promo-btn wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
-                        <a href="wallet.html" class="btn btn-wallet btn_all_nft_product mt-20">Google Play <i class="bx bxl-play-store"></i>
+                        <a href="<?=base_url('login')?>" class="btn btn-wallet btn_all_nft_product mt-20">Google Play <i class="bx bxl-play-store"></i>
                         </a>
-                        <a href="wallet.html" class="btn btn-wallet btn_all_nft_product mt-20">Apple Store<i class="bx bxl-apple"></i></a>
+                        <a href="<?=base_url('login')?>" class="btn btn-wallet btn_all_nft_product mt-20">Apple Store<i class="bx bxl-apple"></i></a>
                         <button id="sendEthButton">Send Test</button>
                     </div>
                 </div>

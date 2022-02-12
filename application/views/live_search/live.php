@@ -10,7 +10,7 @@
                     <h2 class="breadcrumb-title">Live Auction</h2>
                     <ul class="breadcrumb-menu clearfix">
                         <li>
-                            <a href="index.html">Home /</a> <a href="#" class="active">Auction</a>
+                            <a href="<?=base_url('/')?>">Home /</a> <a href="#" class="active">Auction</a>
                         </li>
                     </ul>
                 </div>
@@ -173,40 +173,7 @@
             <div class="modal-body space-y-20 p-40">
                 <!-- start modal-body -->
                 <h4> Bidding Activity </h4>
-                <div class="creator_item creator_card space-x-10">
-                    <!-- start creator item -->
-                    <div class="avatars space-x-10">
-                        <div class="media">
-                            <a href="Profile.html" class="btn-avatar">
-                                <i class='bx bxs-check-circle'></i>
-                                <img src="img/avatar/7.jpg" alt="Avatar" class="avatar avatar-md">
-                            </a>
-                        </div>
-                        <div class="bid-accepted">
-                            <p class="color_black">Bid accepted
-                                <span class="color_brand">12 ETH</span> by <a class="color_black txt_bold" href="Profile.html">Amanda</a>
-                            </p>
-                            <span class="date color_text">18/11/2021, 17:54</span>
-                        </div>
-                    </div>
-                </div><!-- end creator item -->
-                <div class="creator_item creator_card space-x-10">
-                    <!-- start creator item -->
-                    <div class="avatars space-x-10">
-                        <div class="media">
-                            <a href="Profile.html" class="btn-avatar">
-                                <i class='bx bxs-check-circle'></i>
-                                <img src="img/avatar/4.jpg" alt="Avatar" class="avatar avatar-md">
-                            </a>
-                        </div>
-                        <div class="bid-accepted">
-                            <p class="color_black">Bid accepted
-                                <span class="color_brand">5.511 ETH</span> by <a class="color_black txt_bold" href="Profile.html">Devid Monda</a>
-                            </p>
-                            <span class="date color_text">28/11/2021, 13:54</span>
-                        </div>
-                    </div>
-                </div><!-- end creator item -->
+             
             </div><!-- end modal-body -->
         </div><!-- end modal-content -->
     </div><!-- end modal-dialog -->
@@ -351,7 +318,7 @@ if(isset($_GET['sort']) && $_GET['sort']){
                         </div> <!-- end thumbsup rating -->
                         <div class="single_product_img">
                             <!-- start single product img -->
-                            <a href="product.html" class="theme_preview_link">
+                            <a href="" class="theme_preview_link">
 
                                 <img src="<?= base_url('assets/nfts/') . $l['nft_file'] ?>" alt="" class="responsive-fluid" />
                             </a>
@@ -362,12 +329,12 @@ if(isset($_GET['sort']) && $_GET['sort']){
                                 <ul class="author-profile-link">
                                     <!-- start author-->
                                     <li class="nav-item">
-                                        <a href="author-details.html" class="author_link offline">
+                                        <a href="" class="author_link offline">
                                             <img src="<?= base_url('assets/') ?>img/avatar/1.jpg" alt="author" class="responsive-fluid img-1" />
                                             <i class='bx bxs-check-circle'></i>
                                         </a>
                                         <span class="hover_author_link">
-                                            <a href="author-details.html" class="author_link_text">@<?= $l['user_name'] ?></a>
+                                            <a href="" class="author_link_text">@<?= $l['user_name'] ?></a>
                                         </span>
                                     </li>
                                     <!-- <li class="nav-item">

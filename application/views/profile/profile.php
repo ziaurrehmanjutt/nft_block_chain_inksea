@@ -130,44 +130,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            <div class="modal-body space-y-20 p-40">
-                <!-- start modal-body -->
-                <h4> Bidding Activity </h4>
-                <div class="creator_item creator_card space-x-10">
-                    <!-- start creator item -->
-                    <div class="avatars space-x-10">
-                        <div class="media">
-                            <a href="Profile.html" class="btn-avatar">
-                                <i class='bx bxs-check-circle'></i>
-                                <img src="img/avatar/7.jpg" alt="Avatar" class="avatar avatar-md">
-                            </a>
-                        </div>
-                        <div class="bid-accepted">
-                            <p class="color_black">Bid accepted
-                                <span class="color_brand">12 ETH</span> by <a class="color_black txt_bold" href="Profile.html">Amanda</a>
-                            </p>
-                            <span class="date color_text">18/11/2021, 17:54</span>
-                        </div>
-                    </div>
-                </div><!-- end creator item -->
-                <div class="creator_item creator_card space-x-10">
-                    <!-- start creator item -->
-                    <div class="avatars space-x-10">
-                        <div class="media">
-                            <a href="Profile.html" class="btn-avatar">
-                                <i class='bx bxs-check-circle'></i>
-                                <img src="img/avatar/4.jpg" alt="Avatar" class="avatar avatar-md">
-                            </a>
-                        </div>
-                        <div class="bid-accepted">
-                            <p class="color_black">Bid accepted
-                                <span class="color_brand">5.511 ETH</span> by <a class="color_black txt_bold" href="Profile.html">Devid Monda</a>
-                            </p>
-                            <span class="date color_text">28/11/2021, 13:54</span>
-                        </div>
-                    </div>
-                </div><!-- end creator item -->
-            </div><!-- end modal-body -->
+            
         </div><!-- end modal-content -->
     </div><!-- end modal-dialog -->
 </div><!-- end bid history -->
@@ -266,7 +229,7 @@
                             <div class="tab-puchage">
                                 <!-- tab item -->
                                 <div class="tab-purchage-img">
-                                    <a href="item-details.html">
+                                    <a href="">
                                         <img src="img/avatar/11.jpg" alt="author" class="responsive-fluid" />
                                     </a>
                                 </div>
@@ -275,14 +238,14 @@
                                     <p class="purchage-value">Total Value : <span class="eth-counter">450 ETH</span></p>
                                     <p class="purchage-text">
                                         Purchased by
-                                        <a href="author-details.html" class="author-link">@Devid Wane</a> for 0.01 ETH 2 hours ago
+                                        <a href="" class="author-link">@Devid Wane</a> for 0.01 ETH 2 hours ago
                                     </p>
                                 </div>
                             </div> <!-- end tab item -->
                             <div class="tab-puchage">
                                 <!-- tab item -->
                                 <div class="tab-purchage-img">
-                                    <a href="item-details.html">
+                                    <a href="">
                                         <img src="img/avatar/1.jpg" alt="author" class="responsive-fluid" />
                                     </a>
                                 </div>
@@ -290,7 +253,7 @@
                                     <a class="puchage-tilte" href="#">Wane O brain <span class="purchage_spanbtn"><i class='bx bxs-user-check'></i></span></a>
                                     <p class="purchage-text">
                                         started following
-                                        <a href="author-details.html" class="author-link">you</a> 4 hours ago
+                                        <a href="" class="author-link">you</a> 4 hours ago
                                     </p>
                                     <p class="purchage-value">Total Spent : <span class="eth-counter">3.5 ETH</span></p>
                                 </div>
@@ -298,7 +261,7 @@
                             <div class="tab-puchage">
                                 <!-- tab item -->
                                 <div class="tab-purchage-img">
-                                    <a href="item-details.html">
+                                    <a href="">
                                         <img src="img/avatar/2.jpg" alt="author" class="responsive-fluid" />
                                     </a>
                                 </div>
@@ -307,7 +270,7 @@
                                     <p class="purchage-value">Total Value : <span class="eth-counter">45 ETH</span></p>
                                     <p class="purchage-text">
                                         1 part purchased by
-                                        <a href="author-details.html" class="author-link">@Max Doe</a> for 0.01 ETH 8 hours ago
+                                        <a href="" class="author-link">@Max Doe</a> for 0.01 ETH 8 hours ago
                                     </p>
                                 </div>
                             </div> <!-- end tab item -->
@@ -340,7 +303,7 @@
                                             </div> <!-- end thumbsup rating -->
                                             <div class="single_product_img">
                                                 <!-- start single product img -->
-                                                <a href="product.html" class="theme_preview_link">
+                                                <a href="" class="theme_preview_link">
 
                                                     <img src="<?= base_url('assets/nfts/') . $l['nft_file'] ?>" alt="" class="responsive-fluid" />
                                                 </a>
@@ -351,12 +314,12 @@
                                                     <ul class="author-profile-link">
                                                         <!-- start author-->
                                                         <li class="nav-item">
-                                                            <a href="author-details.html" class="author_link offline">
+                                                            <a href="" class="author_link offline">
                                                                 <img src="<?= base_url('assets/') ?>img/avatar/1.jpg" alt="author" class="responsive-fluid img-1" />
                                                                 <i class='bx bxs-check-circle'></i>
                                                             </a>
                                                             <span class="hover_author_link">
-                                                                <a href="author-details.html" class="author_link_text">@<?= $l['user_name'] ?></a>
+                                                                <a href="" class="author_link_text">@<?= $l['user_name'] ?></a>
                                                             </span>
                                                         </li>
 
@@ -402,11 +365,9 @@
                                             </div><!-- end product link -->
                                             <div class="place-bid">
                                                 <!-- start place bid -->
-                                                <?php if (isset($_SESSION['login'])) : ?>
-                                                    <a href="#" class="placebid price" data-toggle="modal" data-target="#popup_bid">Bid Now</a>
-                                                <?php else : ?>
-                                                    <a href="<?= base_url('login') ?>" class="placebid price">Login to Bid</a>
-                                                <?php endif; ?>
+                                               
+                                                <a href="<?= base_url('activity/'). $l['rowid'] ?>" class="placebid price">See Details</a>
+                                               
                                             </div><!-- end place bid -->
                                         </div><!-- end Single Product -->
                                     </div> <!-- End col-4 -->
@@ -548,7 +509,7 @@
                                     <div class="tab-puchage">
                                         <!-- tab item -->
                                         <div class="tab-purchage-img">
-                                            <a href="item-details.html">
+                                            <a href="">
                                                 <img src="img/avatar/5.jpg" alt="author" class="responsive-fluid" />
                                             </a>
                                         </div>
@@ -557,14 +518,14 @@
                                             <p class="purchage-value">Total Value : <span class="eth-counter">450 ETH</span></p>
                                             <p class="purchage-text">
                                                 Purchased by
-                                                <a href="author-details.html" class="author-link">@Devid Wane</a> for 0.01 ETH 2 hours ago
+                                                <a href="" class="author-link">@Devid Wane</a> for 0.01 ETH 2 hours ago
                                             </p>
                                         </div>
                                     </div> <!-- end tab item -->
                                     <div class="tab-puchage">
                                         <!-- tab item -->
                                         <div class="tab-purchage-img">
-                                            <a href="item-details.html">
+                                            <a href="">
                                                 <img src="img/avatar/6.jpg" alt="author" class="responsive-fluid" />
                                             </a>
                                         </div>
@@ -572,7 +533,7 @@
                                             <a class="puchage-tilte" href="#">Wane O brain <span class="purchage_spanbtn"><i class='bx bxs-user-check'></i></span></a>
                                             <p class="purchage-text">
                                                 started following
-                                                <a href="author-details.html" class="author-link">@Max Doe</a> 4 hours ago
+                                                <a href="" class="author-link">@Max Doe</a> 4 hours ago
                                             </p>
                                             <p class="purchage-value">Total Spent : <span class="eth-counter">3.5 ETH</span></p>
                                         </div>
@@ -580,7 +541,7 @@
                                     <div class="tab-puchage">
                                         <!-- tab item -->
                                         <div class="tab-purchage-img">
-                                            <a href="item-details.html">
+                                            <a href="">
                                                 <img src="img/avatar/7.jpg" alt="author" class="responsive-fluid" />
                                             </a>
                                         </div>
@@ -589,7 +550,7 @@
                                             <p class="purchage-value">Total Value : <span class="eth-counter">45 ETH</span></p>
                                             <p class="purchage-text">
                                                 1 part purchased by
-                                                <a href="author-details.html" class="author-link">@Max Doe</a> for 0.01 ETH 8 hours ago
+                                                <a href="" class="author-link">@Max Doe</a> for 0.01 ETH 8 hours ago
                                             </p>
                                         </div>
                                     </div> <!-- end tab item -->

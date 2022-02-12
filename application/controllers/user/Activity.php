@@ -116,6 +116,16 @@ class Activity extends User
         $this->load->view('includes/footer');
     }
 
+    public function single($id){
+        $result['data'] = $this->Activity_Model->single_sale($id);
+        $this->load->view('includes/header'); 
+        $this->load->view('includes/menues_header');
+        // $this->load->view('activity/activity_slider');
+        $this->load->view('activity/single_activity.php', $result);
+        $this->load->view('includes/footer_before');
+        $this->load->view('includes/footer');
+    }
+
 
 }
 

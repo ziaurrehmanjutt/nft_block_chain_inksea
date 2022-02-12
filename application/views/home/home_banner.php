@@ -23,7 +23,7 @@
                         </p>
                     </div><!-- end header description  -->
                     <div class="header-btn-container wow fadeInUp" data-wow-duration="1s" data-wow-delay=".7s">
-                        <a href="wallet.html" class="btn btn-wallet btn_all_nft_product">Connect Wallet <i class='bx bx-arrow-back'></i> </a>
+                        <a href="<?= base_url('wallet') ?>" class="btn btn-wallet btn_all_nft_product">Connect Wallet <i class='bx bx-arrow-back'></i> </a>
                         <a href="<?= base_url('create') ?>" class="btn btn-wallet account_btn">Upload Art</a>
                     </div><!-- end header btn  -->
                     <div class="row">

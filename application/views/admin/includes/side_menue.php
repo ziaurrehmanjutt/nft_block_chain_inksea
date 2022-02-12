@@ -15,7 +15,7 @@
                       
                     </ul>
                 </li>
-                <li><a href="app-chat.html" aria-expanded="false"><i class="nav-icon ti ti-comment"></i><span class="nav-title">Dashboard</span></a> </li>
+                <li><a href="" aria-expanded="false"><i class="nav-icon ti ti-comment"></i><span class="nav-title">Dashboard</span></a> </li>
                
                 <li class="<?=$menu == 'users' ? 'active' : ''?>"><a href="<?=base_url('admin/users')?>" aria-expanded="false"><i class="nav-icon ti ti-email"></i><span class="nav-title">Users</span></a> </li>
               

@@ -59,10 +59,11 @@ $route['logout'] = 'login/logout';
 /////Activity
 $route['activity'] = 'user/Activity';
 $route['create'] = 'user/Activity/create';
+$route['activity/(:num)'] = 'user/Activity/single/$1';
 $route['sale/create/(:num)'] = 'user/Activity/create_sale/$1';
 ////Profile  
 $route['profile'] = 'user/Profile/profile';
-$route['profile/(:any)'] = 'user/Profile/other_profile/$1';
+$route['profile/(:num)'] = 'user/Profile/other_profile/$1';
 //Searc
 
 $route['search'] = 'Home/search';

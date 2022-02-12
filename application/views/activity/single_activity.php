@@ -3,65 +3,71 @@
         <!-- start activity -->
         <div class="container">
             <div class="row items">
-                <div class="col-md-9 col-sm-12 pt-100">
+                <div class="col-md-12 col-sm-12 pt-100">
                     <!-- start col-8 -->
                     <div class="macaw-tabs macaw-elegant-tabs">
                         <!-- start macaw tabs -->
                         <div role="tablist" aria-label="Resources">
                             <!-- start tablist -->
                             <button role="tab" aria-selected="true" aria-controls="all-tab" id="all">
-                                <span class="label"><i class='bx bx-clipboard'></i> All</span>
+                                <span class="label"><i class='bx bx-clipboard'></i>Details</span>
                             </button>
                             <button role="tab" aria-selected="false" aria-controls="purchage-tab" id="purchage" tabindex="-1">
-                                <span class="label"><i class='bx bx-shopping-bag'></i> Purchased</span>
+                                <span class="label"><i class='bx bx-shopping-bag'></i> Bids</span>
                             </button>
                             <button role="tab" aria-selected="false" aria-controls="following-tab" id="following" tabindex="-1">
-                                <span class="label"><i class='bx bxs-user-check'></i> Following</span>
+                                <span class="label"><i class='bx bxs-user-check'></i> Complains</span>
                             </button>
                             <button role="tab" aria-selected="false" aria-controls="liked-tab" id="liked" tabindex="-1">
                                 <span class="label"><i class='bx bxs-heart'></i> Likes</span>
                             </button>
                             <button role="tab" aria-selected="false" aria-controls="bids-tab" id="bids" tabindex="-1">
-                                <span class="label"><i class='bx bx-bitcoin'></i> Bids</span>
+                                <span class="label"><i class='bx bx-bitcoin'></i> Purchase</span>
                             </button>
                         </div><!-- end tablist -->
                         <div tabindex="0" role="tabpanel" aria-labelledby="all" id="all-tab">
                             <!-- tab item -->
-                            <a href="<?=base_url('create')?>">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <table class="table table-sm" style="color: white;">
+                                        <tr>
+                                            <th>Title</th>
+                                            <td><?=$data->nft_name?></td>
+                                        </tr>
 
-                                <button  class="float-right">Create</button>
-                            </a>
-                            <?php foreach ($all as $key => $value) { ?>
-                                <div class="tab-puchage">
+                                        <tr>
+                                            <th>Category</th>
+                                            <td><?=$data->cate_name?></td>
+                                        </tr>
 
+                                        <tr>
+                                            <th>Descriptions</th>
+                                            <td><?=$data->nft_descriptions?></td>
+                                        </tr>
 
-                                    <div class="tab-purchage-img">
-                                        <a href="">
-                                            <img src="<?= base_url('assets/nfts/') . $value['nft_file'] ?>" alt="author" class="responsive-fluid" />
-                                        </a>
+                                        <tr>
+                                            <th>Price</th>
+                                            <td><?=$data->sale_price?></td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Likes</th>
+                                            <td><?=$data->total_star?></td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Expire</th>
+                                            <td><?=$data->expire_at?></td>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                                <div class="col-md-6">
+                                    <div>
+                                    <img src="<?= base_url('assets/nfts/') . $data->nft_file ?>" alt="" class="responsive-fluid" />
                                     </div>
-
-                                    <div class="purchage-text-link"> 
-                                        <?php if(0) : ?>
-                                            <a class="puchage-tilte" href=""><?= $value['nft_name'] ?> <span class="purchage_spanbtn"><i class='bx bx-shopping-bag'></i></span></a>
-                                        <?php else: ?>
-                                            <a class="puchage-tilte" href="<?=base_url('sale/create/').$value['rowid']?>"><?= $value['nft_name'] ?> <span class="purchage_spanbtn"><i class='bx bx-shopping-bag'></i></span></a>
-                                        <?php endif;  ?>
-                                        <p class="purchage-value">Total Value : <span class="eth-counter"><?= $value['nft_price'] ?> ETH</span></p>
-                                        <p class="purchage-text">
-                                            <span>
-                                                <span>Status: </span>
-                                                <?php if($value['nft_status'] == '0'): ?>
-                                                    <span class="badge badge-warning">Pending</span>
-                                                <?php elseif($value['nft_status'] == '1'): ?>
-                                                    <span class="badge badge-success">Approved</span>
-                                                <?php endif ?>
-                                            </span>
-                                            OnSale : No
-                                        </p>
-                                    </div>
-                                </div> <!-- end tab item -->
-                            <?php } ?>
+                                </div>
+                            </div>
                         </div> <!-- end tab panel -->
                         <div tabindex="0" role="tabpanel" aria-labelledby="purchage" id="purchage-tab" hidden>
                             <div class="tab-puchage">
@@ -217,24 +223,7 @@
                         </div> <!-- end tab panel -->
                     </div> <!-- end macaw tabs -->
                 </div> <!-- end col- -->
-                <div class="col-md-3 col-sm-12 pt-100">
-                    <!-- start col -->
-                    <div class="tags-area">
-                        <div class="tags-title">
-                            <h4 class="tags-heading">Filtter by Tags</h4>
-                        </div>
-                        <div class="widget-content pt-3 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
-                            <div class="widget-content filter-widget-items mt-3">
-                                <a href="#." class="badge tag">Live Auction</a>
-                                <a href="#." class="badge tag">Purchase</a>
-                                <a href="#." class="badge tag">Transfer</a>
-                                <a href="#." class="badge tag">Sales</a>
-                                <a href="#." class="badge tag">Activity</a>
-                                <a href="#." class="badge tag">Followings</a>
-                            </div>
-                        </div>
-                    </div>
-                </div> <!-- end col -->
+               
             </div> <!-- end row -->
         </div> <!-- end container -->
     </div> <!-- End  Activity -->
