@@ -81,4 +81,8 @@ class Login extends CI_Controller
 		unset($_SESSION['login']);
 		redirect('/','refresh');
 	}
+
+	public function profile(){
+		
+	}
 }

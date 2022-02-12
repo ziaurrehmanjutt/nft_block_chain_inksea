@@ -74,7 +74,7 @@
                 <span aria-hidden="true">&times;</span>
             </button>
             <div class="modal-body space-y-20 p-40">
-                <h3 class="text-center">Your Report Successfuly Counted</h3>
+                <h3 class="text-center">Your Report Successfully Counted</h3>
                 <p class="text-center">We will take action against this item after reviewing your report. Thanks for
                     your support.</p>
                 <a href=" " class="btn btn-dark"> Watch More</a>
@@ -93,8 +93,8 @@
                 <div class="modal-body space-y-20 p-40">
                     <h3>Copyright Claim Against :</h3>
                     <div class="input-field-form">
-                        <input type="hidden" name="sale_id" class="sale_id_inputs" />
-                        <input type="text" class="form-control" placeholder="Explain behind the reason">
+                        <input type="hidden" name="sale_id" id="sale_id_report" class="sale_id_inputs" />
+                        <input type="text" id="decryptions" name="decryptions" class="form-control" placeholder="Explain behind the reason">
                     </div>
                     <div class="hr"></div>
                     <div class="place-bid-btn">
@@ -131,31 +131,41 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            <div class="modal-body space-y-20 p-40">
-                <h3>Place a Bid</h3>
-                <div class="d-flex justify-content-between">
+            <form method="POST">
+                <div class="modal-body space-y-20 p-40">
+                    <h3>Place a Bid</h3>
+                    <!-- <div class="d-flex justify-content-between">
                     <p> Gas fee : </p>
                     <p class="text-right color_black txt _bold"> .511 ETH </p>
                 </div>
                 <div class="d-flex justify-content-between last-child-bid">
                     <p> You must bid at least : </p>
                     <p class="text-right color_black txt _bold"> 5.00 ETH</p>
-                </div>
-                <div class="input-field-form">
-                    <input type="text" class="form-control" placeholder=" 5.00 ETH / UNIT">
-                    <p class="enter-quantity">Unit Quantity. <span class="offline-color">26 available</span></p>
-                </div>
-                <div class="hr"></div>
-                <div class="d-flex justify-content-between">
-                    <p> Total bid amount : </p>
-                    <p class="text-right color_black txt _bold"> 5.511 ETH </p>
-                </div>
-                <div class="place-bid-btn">
-                    <!-- start place btn -->
-                    <a href="" class="btn btn-primary w-full popup-bid-btn" data-toggle="modal" data-target="#popup_bid_success" data-dismiss="modal" aria-label="Close"> Place bid
-                    </a>
-                </div><!-- end place btn -->
-            </div><!-- end modal body -->
+                </div> -->
+                    <input type="hidden" name="sale_id" class="sale_id_inputs" />
+                    <div class="input-field-form">
+                        <input type="number" name="bid_amount" id="bid_price_required" min="0" step="0.000001" required class="form-control" placeholder=" 5.00 ETH / UNIT">
+
+                        <!-- <p class="enter-quantity">Unit Quantity. <span class="offline-color">26 available</span></p> -->
+                    </div>
+                    <div class="hr"></div>
+                    <div class="d-flex justify-content-between">
+                        <p> Gas fee & tax : </p>
+                        <p class="text-right color_black txt _bold"> 20% </p>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <p> Total bid amount : </p>
+                        <p class="text-right color_black txt _bold"> <span id="total_bid_price">5.511</span> ETH </p>
+                    </div>
+                    <div class="place-bid-btn">
+                        <!-- start place btn -->
+                        <button type="submit" name="place_a_bid" class="btn btn-primary w-full popup-bid-btn"> Place bid </button>
+                        <!-- <a href="" class="btn btn-primary w-full popup-bid-btn" data-toggle="modal" data-target="#popup_bid_success" data-dismiss="modal" aria-label="Close"> Place bid
+                    </a> -->
+                    </div><!-- end place btn -->
+                </div><!-- end modal body -->
+            </form>
         </div><!-- end modal content -->
     </div><!-- end modal dialog -->
 </div><!-- end bid input popup -->
@@ -260,10 +270,10 @@
                                 </span>
                             </div>
                         </div> <!-- end count down -->
-                        <div class="profile-rating">
+                        <div class="profile-rating" onclick="doRatting(<?=$l['rowid']?>)">
                             <!-- thumbsup rating -->
                             <i class='bx bx-heart'></i>
-                            <span class="thumbsup"><?= $l['total_star'] ?></span>
+                            <span class="thumbsup" id="rat-<?=$l['rowid']?>"><?= $l['total_star'] ?></span>
                         </div> <!-- end thumbsup rating -->
                         <div class="single_product_img">
                             <!-- start single product img -->
@@ -336,7 +346,11 @@
                         </div><!-- end product link -->
                         <div class="place-bid">
                             <!-- start place bid -->
-                            <a href="#" class="placebid price" data-toggle="modal" data-target="#popup_bid">Bid Now</a>
+                            <?php if (isset($_SESSION['login'])) : ?>
+                                <a href="#" class="placebid price" data-toggle="modal" data-target="#popup_bid">Bid Now</a>
+                            <?php else : ?>
+                                <a href="<?= base_url('login') ?>" class="placebid price">Login to Bid</a>
+                            <?php endif; ?>
                         </div><!-- end place bid -->
                     </div><!-- end Single Product -->
                 </div> <!-- End col-4 -->
@@ -2414,29 +2428,4 @@
     function reportBlock(id) {
         $('.sale_id_inputs').val(id);
     }
-
-
-
-
-    $(document).ready(function() {
-        $("#report_form").submit(function(event) {
-            var formData = {
-                name: $("#name").val(),
-                email: $("#email").val(),
-                superheroAlias: $("#superheroAlias").val(),
-            };
-
-            $.ajax({
-                type: "POST",
-                url: "process.php",
-                data: formData,
-                dataType: "json",
-                encode: true,
-            }).done(function(data) {
-                console.log(data);
-            });
-
-            event.preventDefault();
-        });
-    });
 </script>

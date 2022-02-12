@@ -36,7 +36,7 @@ class Account_Model extends CI_Model
     {
         $userID = $_SESSION['login']->rowid;
          $data = array(
-             'user_email' => $this->input->post('walletID')  
+             'meta_mask_key' => $this->input->post('walletID')  
             ); 
         $this->db->where('rowid',$userID);
         return $this->db->update('users',$data);
