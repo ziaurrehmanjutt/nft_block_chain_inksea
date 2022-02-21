@@ -29,7 +29,7 @@
                             <!-- tab item -->
                             <a href="<?=base_url('create')?>">
 
-                                <button  class="float-right">Create</button>
+                                <button  class="float-right btn btn-primary">Create New Art NFT</button>
                             </a>
                             <?php foreach ($all as $key => $value) { ?>
                                 <div class="tab-puchage">
@@ -42,8 +42,8 @@
                                     </div>
 
                                     <div class="purchage-text-link"> 
-                                        <?php if(0) : ?>
-                                            <a class="puchage-tilte" href=""><?= $value['nft_name'] ?> <span class="purchage_spanbtn"><i class='bx bx-shopping-bag'></i></span></a>
+                                        <?php if($value['nft_status'] == '0') : ?>
+                                            <a title="Wait for Admin Approval" class="puchage-tilte" ><?= $value['nft_name'] ?> <span class="purchage_spanbtn"><i class='bx bx-timer'></i></span></a> 
                                         <?php else: ?>
                                             <a class="puchage-tilte" href="<?=base_url('sale/create/').$value['rowid']?>"><?= $value['nft_name'] ?> <span class="purchage_spanbtn"><i class='bx bx-shopping-bag'></i></span></a>
                                         <?php endif;  ?>

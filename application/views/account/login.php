@@ -29,7 +29,7 @@
             <div class="col-md-6">
                 <!-- start col-6 -->
                 <div class="form_bg_area account_img mr-20 wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".4s">
-                    <img src="<?=base_url('assets/')?>img/extra/signup.png" alt="contact" class="responsive-fluid" />
+                    <img src="<?= base_url('assets/') ?>img/extra/signup.png" alt="contact" class="responsive-fluid" />
                 </div>
             </div><!-- end col-6 -->
             <div class="col-md-6">
@@ -147,9 +147,45 @@
                     </div>
                     <div class="why_text">
                         <h6 class="why_title">Ready for Sale</h6>
+
+                        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+                        </fb:login-button>
+
                     </div>
                 </div>
             </div><!-- end col-3 -->
         </div><!-- end row -->
     </div><!-- end container -->
 </div><!-- End how work area -->
+
+<script>
+
+function checkLoginState() {
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+}
+
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId: '{your-app-id}',
+            cookie: true,
+            xfbml: true,
+            version: '{api-version}'
+        });
+
+        FB.AppEvents.logPageView();
+
+    };
+
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>

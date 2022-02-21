@@ -43,19 +43,19 @@
                     <!-- start place btn -->
                     <ul class="share-icon-list">
                         <li class="nav-item">
-                            <a href="#" class="share-icon1"><i class='bx bxl-facebook'></i></a>
+                            <a href="#" target="_blank" id="face_book_share" class="share-icon1"><i class='bx bxl-facebook'></i></a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="share-icon2"><i class='bx bxl-linkedin'></i></a>
+                            <a href="#"  target="_blank" id="linked_in_share" class="share-icon2"><i class='bx bxl-linkedin'></i></a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="share-icon3"><i class='bx bxl-twitter'></i></a>
+                            <a href="#" target="_blank" id="twitter_share" class="share-icon3"><i class='bx bxl-twitter'></i></a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="share-icon4"><i class='bx bxl-pinterest-alt'></i></a>
+                            <a href="#" id="pin_sahre_button" target="_blank" class="share-icon4"><i class='bx bxl-pinterest-alt'></i></a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="share-icon5"><i class='bx bxl-google-plus'></i></a>
+                            <a href="#" id="google_sahre_button"  target="_blank" class="share-icon5"><i class='bx bxl-google-plus'></i></a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="share-icon6"><i class='bx bxl-instagram'></i></a>
@@ -181,40 +181,28 @@
             <div class="modal-body space-y-20 p-40">
                 <!-- start modal-body -->
                 <h4> Bidding Activity </h4>
-                <div class="creator_item creator_card space-x-10">
+                <div class="creator_item creator_card space-x-10" id="all_actives">
                     <!-- start creator item -->
                     <div class="avatars space-x-10">
                         <div class="media">
                             <a href="Profile.html" class="btn-avatar">
-                                <i class='bx bxs-check-circle'></i>
+                                <!-- <i class='bx bxs-check-circle'></i> -->
                                 <img src="<?= base_url('assets/') ?>img/avatar/7.jpg" alt="Avatar" class="avatar avatar-md">
+
+                                <span style="color: white;margin: -4px 10px;"> Zia Ok Ok</span>
                             </a>
                         </div>
                         <div class="bid-accepted">
-                            <p class="color_black">Bid accepted
-                                <span class="color_brand">12 ETH</span> by <a class="color_black txt_bold" href="Profile.html">Amanda</a>
+                            <p class="color_black">Bid created
+                                <span class="color_brand">12 ETH</span> at <a class="color_black txt_bold" href="Profile.html">
+                                <span class="date color_text">18/11/2022, 17:54</span>
+                                </a>
                             </p>
-                            <span class="date color_text">18/11/2022, 17:54</span>
+                            
                         </div>
                     </div>
                 </div><!-- end creator item -->
-                <div class="creator_item creator_card space-x-10">
-                    <!-- start creator item -->
-                    <div class="avatars space-x-10">
-                        <div class="media">
-                            <a href="Profile.html" class="btn-avatar">
-                                <i class='bx bxs-check-circle'></i>
-                                <img src="<?= base_url('assets/') ?>img/avatar/4.jpg" alt="Avatar" class="avatar avatar-md">
-                            </a>
-                        </div>
-                        <div class="bid-accepted">
-                            <p class="color_black">Bid accepted
-                                <span class="color_brand">5.511 ETH</span> by <a class="color_black txt_bold" href="Profile.html">Devid Monda</a>
-                            </p>
-                            <span class="date color_text">28/11/2022, 13:54</span>
-                        </div>
-                    </div>
-                </div><!-- end creator item -->
+              
             </div><!-- end modal-body -->
         </div><!-- end modal-content -->
     </div><!-- end modal-dialog -->
@@ -277,7 +265,7 @@
                         </div> <!-- end thumbsup rating -->
                         <div class="single_product_img">
                             <!-- start single product img -->
-                            <a href="product.html" class="theme_preview_link">
+                            <a href="<?=base_url('browse/detail/').$l['rowid']?>" class="theme_preview_link">
 
                                 <img src="<?= base_url('assets/nfts/') . $l['nft_file'] ?>" alt="" class="responsive-fluid" />
                             </a>
@@ -319,14 +307,14 @@
                             <ul>
                                 <li class="product-all-icon">
                                     <span class="item-history product-icon">
-                                        <a href="#" class="item-history-btn" data-toggle="modal" data-target="#popup_history">
+                                        <a href="" onclick="loadBids(<?= $l['rowid'] ?>)" class="item-history-btn" data-toggle="modal" data-target="#popup_history">
                                             <i class='bx bx-comment-detail'></i>
                                         </a>
                                     </span>
                                 </li>
                                 <li class="product-all-icon">
                                     <span class="report-icon product-icon">
-                                        <a href="#" class="report-link" data-toggle="modal" data-target="#popup_share">
+                                        <a href="#"  onclick="oprSahre(<?= $l['rowid'] ?>)" class="report-link" data-toggle="modal" data-target="#popup_share">
                                             <i class='bx bxs-share-alt'></i>
                                         </a>
                                     </span>
@@ -361,7 +349,7 @@
             <!-- start row -->
             <div class="col-md-12 pt-50 pb-30">
                 <div class="all_nft-product-area text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                    <a href="explores.html" class="btn btn_all_nft_product">View All Artwork <i class="bx bx-arrow-back"></i></a>
+                    <a href="<?=base_url('search')?>" class="btn btn_all_nft_product">View All Artwork <i class="bx bx-arrow-back"></i></a>
                 </div>
             </div>
         </div> <!-- End row -->

@@ -39,7 +39,9 @@ class Profile extends User
                    // $_SESSION["error_info"] = $this->upload->display_errors();
                 } else {
                     $data = array('upload_data' => $this->upload->data());
-                    $image = $data['upload_data']['file_name'];
+					$image = $data['upload_data']['file_name'];
+
+                    
                     $response = $this->Profile_Model->update_image($image);
                 }
 				redirect('profile', 'refresh');

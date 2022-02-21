@@ -38,13 +38,16 @@
 								<img src="<?= base_url('assets/') ?>img/favicon.png" alt="logo">
 							</a>
 						</div> <!-- End logo  -->
+						<form action="<?=base_url('search')?>">
 						<div class="input-main">
+
 							<!-- start search bar  -->
-							<input class="input" type="text" placeholder="Search...">
+							<input class="input" name="search" type="text" placeholder="Search...">
 							<button type="submit">
 								<i class="bx bx-search"></i>
 							</button>
 						</div> <!-- end search bar  -->
+						</form>
 						<div class="menu d-flex">
 							<!-- start menu  -->
 							<nav class="navigation" id="mobile-menu">
@@ -69,7 +72,7 @@
 									<li class="has-children"><a href="#">Pages</a>
 										<ul class="sub-menu">
 											<?php if (isset($_SESSION['login'])) : ?>
-												<li><a href="profile">My Account</a></li>
+												<li><a href="<?=base_url('profile')?>">My Account</a></li>
 											<?php endif;  ?>
 
 
@@ -83,7 +86,7 @@
 									</li>
 									<li><a href="<?= base_url('activity') ?>">Activity</a></li>
 									<?php if (!isset($_SESSION['login'])) : ?>
-										<li><a href="login">Login</a></li>
+										<li><a href="<?=base_url('login')?>">Login</a></li>
 									<?php endif;  ?>
 								</ul> <!-- end ul  -->
 							</nav> <!-- end nav  -->

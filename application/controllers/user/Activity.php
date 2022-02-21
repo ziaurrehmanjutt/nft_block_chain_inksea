@@ -47,7 +47,7 @@ class Activity extends User
                 $upType = $this->input->post('type_id');
 
                 $config['upload_path']          = './assets/nfts/';
-                $config['allowed_types']        = 'gif|jpg|png|jpeg';
+                $config['allowed_types']        = 'jpg|png|jpeg';
                 if ($upType == '2') {
                     $config['allowed_types'] =  'MP4|MOV|WMV|AVI|MKV|WEBM|FLV|mp4|mov|avi|mkv|webm';
                 }
@@ -62,6 +62,40 @@ class Activity extends User
                 } else {
                     $data = array('upload_data' => $this->upload->data());
                     $image = $data['upload_data']['file_name'];
+
+                    $image_type  = $data['upload_data']['image_type'];
+
+                    echo "<pre>";
+					var_dump($data);
+					
+					$stamp = imagecreatefrompng('./assets/img/helper/back.png');
+
+                    if($image_type == 'png'){
+                        $im = imagecreatefrompng('./assets/users/'.$image);
+                    }else{
+                        $im = imagecreatefromjpeg('./assets/users/'.$image);
+                    }
+					
+					$targetFilePath  = "./assets/users/";
+					// Set the margins for the stamp and get the height/width of the stamp image
+					$marge_right = 10;
+					$marge_bottom = 10;
+					$sx = imagesx($stamp);
+					$sy = imagesy($stamp);
+					
+					$imgx = imagesx($im);
+					$imgy = imagesy($im);
+					$centerX=round($imgx/2);
+					$centerY=round($imgy/2);
+					
+					// Copy the stamp image onto our photo using the margin offsets and the photo 
+					// width to calculate positioning of the stamp. 
+					imagecopy($im, $stamp, $centerX, $centerY, 0, 0, imagesx($stamp), imagesy($stamp));
+					// Save image and free memory 
+					imagepng($im, './assets/users/rel_'.$image); 
+					imagedestroy($im); 
+					die;
+
                     $response = $this->Activity_Model->saveNewNft($image);
                     if ($response) {
                         $_SESSION["user_status_info"] = "Add Employee Successfully";
@@ -128,6 +162,14 @@ class Activity extends User
         $this->load->view('includes/footer_before');
         $this->load->view('includes/footer');
     }
+
+    public function biddings_history($id){
+        $result= $this->Activity_Model->get_all_bids($id);
+        echo json_encode($result);
+    }
+
+
+    //
 
 
 }

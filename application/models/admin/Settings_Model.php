@@ -1,5 +1,5 @@
 <?php
-include "Admin_Model.php";
+include_once "Admin_Model.php";
 class Settings_Model extends Admin_Model
 {
     public function __construct()
@@ -83,4 +83,9 @@ class Settings_Model extends Admin_Model
         // $this->db->where('nft_sales.rowid',$id);
         return $this->db->get()->result_array();
     } 
+
+    public function get_settings(){
+        return $this->db->get('admin_settings')->row();
+    }
+
 }

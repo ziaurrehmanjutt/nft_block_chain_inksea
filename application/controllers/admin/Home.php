@@ -9,7 +9,8 @@ class Home extends Admin
 		parent::__construct();
 		// $this->load->model('Account_Model');
 		$this->load->model('admin/Settings_Model');
-	}
+		$this->load->model('admin/Sale_Model');
+	} 
 	public function index()
 	{
 		$this->render_view('dashboard/dashboard');
@@ -82,5 +83,19 @@ class Home extends Admin
 	public function nft_sales(){
 		$response['list'] = $this->Settings_Model->get_active_sales();
 		$this->render_view('sales/active_sale.php', $response,'users');
+	}
+
+	public function sale_single($id){
+		$response['detail'] = $this->Sale_Model->single_sale($id);
+		$response['bids'] = $this->Sale_Model->get_all_bids($id);
+		$response['rattlings'] = $this->Sale_Model->sale_rattlings($id);
+		$response['complain'] = $this->Sale_Model->sale_complain($id);
+		$this->render_view('sales/sale_single.php', $response,'users');
+	}
+
+	
+	public function settings(){
+		$response['settings'] = $this->Settings_Model->get_settings();
+		$this->render_view('extra/settings.php', $response,'users');
 	}
 }

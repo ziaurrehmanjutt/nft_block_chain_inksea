@@ -47,16 +47,15 @@
                                             <th><?= $value['nft_name'] ?></th>
                                             <th><?= $value['cate_name'] ?></th>
                                             <th><?= $value['expire_at'] ?></th>
-                                           
+
                                             <th><?= $value['sale_price'] ?> ETH</th>
                                             <th><?= $value['total_star'] ?></th>
 
 
 
                                             <th>
-                                            <button value="<?= $value['rowid'] ?>" name="approve" class="btn btn-success btn-sm">
-                                                        Detail
-                                                    </button>
+                                                <a class="btn btn-success btn-sm" href="<?= base_url('admin/nfts/sales/') . $value['rowid'] ?>">Detail</a>
+
                                             </th>
                                         </tr>
                                     <?php }  ?>
