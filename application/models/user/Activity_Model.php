@@ -25,6 +25,7 @@ class Activity_Model extends User_Model
         $nft_name = $this->input->post('nft_name');
         $nft_descriptions = $this->input->post('nft_descriptions');
         $nft_category = $this->input->post('nft_category');
+        $total_count = $this->input->post('total_count');
         // $nft_file = $this->input->post('nft_file');
         $dataArray = array(
             'type_id' => $type_id,
@@ -39,6 +40,7 @@ class Activity_Model extends User_Model
             'nft_descriptions' => $nft_descriptions,
             'nft_category' => $nft_category,
             'nft_file' => $nft_file,
+            'nft_unit' => $total_count,
         );
         
       
@@ -47,7 +49,22 @@ class Activity_Model extends User_Model
         // print_r($_SESSION);
         // die;
         $this->db->insert('all_nfts_list', $dataArray);
-		return   $this->db->insert_id();
+		$saleid =   $this->db->insert_id();
+
+        $title = $this->getUserName($this->userID)." Created New Nft ($nft_name)";
+        $desciption = $title." with <b>$nft_price</b> ETH and Having <b>$total_count</b> Units, Please Approve it";
+        $dataArray = array(
+            'title' =>$title,
+            'descriptions' => $desciption,
+            'created_at' => date('Y-m-d H:i:s'),
+            'user_id' => $this->userID,
+            'nft_id' => $saleid,
+            'n_type' => 1
+        );
+        
+        $this->db->insert('admin_notifications', $dataArray);
+		return   $saleid;
+
     }
 
     public function all_nft_of_users(){
@@ -79,25 +96,25 @@ class Activity_Model extends User_Model
         $sale_end = $this->input->post('sale_end');
         $sale_type = $this->input->post('sale_type');
         $nft_price = $this->input->post('nft_price');
+        $rotal_numbers = $this->input->post('rotal_numbers');
 
         $dataArray = array(
             'nft_id' => $id,
             'owner_id' => $this->userID,
             'sale_price' => $nft_price,
             'created_at' =>  date('Y-m-d H:i:s'),
-            'sale_type' => $sale_type,
+            // 'sale_type' => $sale_type,
             'expire_at' => $sale_end,
             'bidding_sale' =>  $type_id,
+            'total_units' =>  $rotal_numbers,
         );
         $this->db->insert('nft_sales', $dataArray);
-		return   $this->db->insert_id();
-        
+		$result =   $this->db->insert_id();
+        // 
 
-        $this->db->select('all_nfts_list.*');
-        $this->db->from('all_nfts_list');
+        $this->db->set('on_sale','on_sale +'.$rotal_numbers,false);
         $this->db->where('rowid',$id);
-        $this->db->where('nft_user',$this->userID);
-        $result = $this->db->get()->row();
+        $this->db->update('all_nfts_list');
         return $result;
     }
 
@@ -120,7 +137,7 @@ class Activity_Model extends User_Model
         $this->db->from('nft_sales_bids');
         // $this->db->where('expire_at >', date('Y-m-d H:i:s'));
         // $this->db->where('nft_status',1);
-        $this->db->where('nft_sales_bids.rowid',$id);
+        $this->db->where('nft_sales_bids.sale_id',$id);
         $result = $this->db->get()->result_array();
         return $result;
     }
@@ -135,5 +152,35 @@ class Activity_Model extends User_Model
         $result = $this->db->get()->result_array();
         return $result;
     }
+
+    public function delete_sale($id){
+        $this->db->select('total_units,nft_id');
+        $this->db->from('nft_sales');
+        $this->db->where('rowid',$id);
+        $this->db->where('owner_id',$this->userID);
+        $result = $this->db->get()->row();
+        if($result){
+            $this->db->set('on_sale','on_sale -'.$result->total_units,false);
+            $this->db->where('rowid',$result->nft_id);
+            $this->db->update('all_nfts_list');
+
+            $this->db->where('sale_rattings.sale_id',$id);
+            $this->db->delete('sale_rattings');
+
+            $this->db->where('nft_sales_bids.sale_id',$id);
+            $this->db->delete('nft_sales_bids');
+
+            $this->db->where('nft_reports.sale_id',$id);
+            $this->db->delete('nft_reports');
+
+            $this->db->where('nft_sales.rowid',$id);
+           return $this->db->delete('nft_sales');
+
+        }
+        else{
+            return false;
+        }
+    }
+
     
 }

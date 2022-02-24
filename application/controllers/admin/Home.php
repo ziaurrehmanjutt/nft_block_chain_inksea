@@ -95,6 +95,15 @@ class Home extends Admin
 
 	
 	public function settings(){
+		if(isset($_POST['meta_mask_key'])){
+			$this->form_validation->set_rules('meta_mask_key', 'Name', 'trim|required|min_length[15]');
+			if ($this->form_validation->run() == FALSE) {
+				$_SESSION['error_info'] = "Error";
+			} else {
+				$this->Settings_Model->update_key($_POST['meta_mask_key']);
+			}
+			redirect('admin/settings');
+		}
 		$response['settings'] = $this->Settings_Model->get_settings();
 		$this->render_view('extra/settings.php', $response,'users');
 	}

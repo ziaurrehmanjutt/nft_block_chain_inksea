@@ -42,7 +42,7 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">NFT Name</label>
                             <input name="nft_name" value="<?=set_value('nft_name')?>" type="text" required minlength="3" maxlength="100" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                            <small id="emailHelp" class="form-text text-muted">Name of NFT.</small>
                         </div>
                     </div>
 
@@ -53,7 +53,7 @@
                                 <option <?= set_value('nft_price') == '1' ? 'selected' : ''?> value="1">Image</option>
                                 <!-- <option <?= set_value('nft_price') == '2' ? 'selected' : ''?> value="2">Video</option> -->
                             </select>
-                            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                            <small id="emailHelp" class="form-text text-muted">Currently WE Just Accpet Image.</small>
                         </div>
                     </div>
 
@@ -74,8 +74,8 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="exampleInputEmail1">NFT Initial Price (ETH)</label>
-                            <input value="<?=set_value('nft_price')?>" name="nft_price" required type="number" min="0.000000001" max="20" step="0.00000001" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                            <input value="<?=set_value('nft_price')?>" name="nft_price" required type="number" min="0.000001" max="20" step="0.000001" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <small id="emailHelp" class="form-text text-muted">Please Enter Initial Single Unit Pice.</small>
                         </div>
                     </div>
 
@@ -91,13 +91,22 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Select File</label>
                             <input name="select_file" required type="file" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <small id="emailHelp" class="form-text text-muted">Please select JPG/PNG Image file Onlye.</small>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Number of Units</label>
+                            <input type="number" name="total_count" required class="form-control" value="<?=set_value('total_count') ? set_value('total_count') : 1 ?>" />
                             <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                         </div>
                     </div>
+
                     <div class="col-12">
                         <button name="save_nft" class="btn btn-primary float-right">
-                            Save
+                            Create NFT
                         </button>
+                        <small id="emailHelp" class="form-text text-muted">After Create and Approve, You can put it on Sale.</small>
                     </div>
                 </div>
             </form>

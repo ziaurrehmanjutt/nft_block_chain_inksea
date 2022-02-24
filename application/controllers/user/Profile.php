@@ -24,19 +24,19 @@ class Profile extends User
 
 
             if ($this->form_validation->run() == false) {
-                
+                $_SESSION["error_info"] = "Can't Update Profile";
             } else {
 
 				$response = $this->Profile_Model->update_profile();
 
                 $config['upload_path']          = './assets/users/';
-                $config['allowed_types']        = 'gif|jpg|png|jpeg';
+                $config['allowed_types']        = 'jpg|png|jpeg|PNG|JPEG|JPG';
                 
                 $this->load->library('upload', $config);
                 if (!$this->upload->do_upload('profile_photo')) {
-					echo $this->upload->display_errors();
-					die;
-                   // $_SESSION["error_info"] = $this->upload->display_errors();
+					// echo $this->upload->display_errors();
+					// die;
+                   $_SESSION["error_info"] = $this->upload->display_errors();
                 } else {
                     $data = array('upload_data' => $this->upload->data());
 					$image = $data['upload_data']['file_name'];

@@ -9,4 +9,15 @@ class User_Model extends CI_Model
         }
        
     }
+
+    public function getUserName($id){
+        $this->db->select('user_name');
+        $this->db->from('users');
+        $this->db->where('rowid',$id);
+        $result = $this->db->get()->row();
+        if($result){
+            return $result->user_name;
+        }
+        return 'UnKnown';
+    }
 }

@@ -59,6 +59,13 @@
                                         </tr>
 
                                     </table>
+
+                                    <form method="POST">
+                                        <button name="delete_live" class="btn btn-danger float-right">Delete</button>
+                                        <p class="text-danger">
+                                            It Will Delate all Bidings,Likes etc and Units Return to original NFT
+                                        </p>
+                                    </form>
                                 </div>
                                 <div class="col-md-6">
                                     <div>

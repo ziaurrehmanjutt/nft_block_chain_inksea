@@ -38,7 +38,8 @@ class Activity extends User
             $this->form_validation->set_rules('nft_descriptions', 'Descriptions', 'trim|required');
             // $this->form_validation->set_rules('select_file', 'File', 'trim|required');
             $this->form_validation->set_rules('type_id', 'TypeID', 'trim|required');
-
+            $this->form_validation->set_rules( 'total_count','Numbers of Units', 'is_natural_no_zero|trim|required');
+            
 
             if ($this->form_validation->run() == false) {
                 // echo "Form Not Submitt SuccessFully!..."; 
@@ -47,7 +48,7 @@ class Activity extends User
                 $upType = $this->input->post('type_id');
 
                 $config['upload_path']          = './assets/nfts/';
-                $config['allowed_types']        = 'jpg|png|jpeg';
+                $config['allowed_types']        = 'jpg|png|jpeg|JPG|JPEG|PNG';
                 if ($upType == '2') {
                     $config['allowed_types'] =  'MP4|MOV|WMV|AVI|MKV|WEBM|FLV|mp4|mov|avi|mkv|webm';
                 }
@@ -65,23 +66,23 @@ class Activity extends User
 
                     $image_type  = $data['upload_data']['image_type'];
 
-                    echo "<pre>";
-					var_dump($data);
+                    // echo "<pre>";
+					// var_dump($data);
 					
 					$stamp = imagecreatefrompng('./assets/img/helper/back.png');
 
-                    if($image_type == 'png'){
-                        $im = imagecreatefrompng('./assets/users/'.$image);
+                    if(strtolower($image_type) == 'png'){
+                        $im = imagecreatefrompng('./assets/nfts/'.$image);
                     }else{
-                        $im = imagecreatefromjpeg('./assets/users/'.$image);
+                        $im = imagecreatefromjpeg('./assets/nfts/'.$image);
                     }
 					
-					$targetFilePath  = "./assets/users/";
-					// Set the margins for the stamp and get the height/width of the stamp image
-					$marge_right = 10;
-					$marge_bottom = 10;
-					$sx = imagesx($stamp);
-					$sy = imagesy($stamp);
+					// $targetFilePath  = "./assets/nfts/";
+					// // Set the margins for the stamp and get the height/width of the stamp image
+					// $marge_right = 10;
+					// $marge_bottom = 10;
+					// $sx = imagesx($stamp);
+					// $sy = imagesy($stamp);
 					
 					$imgx = imagesx($im);
 					$imgy = imagesy($im);
@@ -92,9 +93,9 @@ class Activity extends User
 					// width to calculate positioning of the stamp. 
 					imagecopy($im, $stamp, $centerX, $centerY, 0, 0, imagesx($stamp), imagesy($stamp));
 					// Save image and free memory 
-					imagepng($im, './assets/users/rel_'.$image); 
+					imagepng($im, './assets/nfts/rel_'.$image); 
 					imagedestroy($im); 
-					die;
+					// die;
 
                     $response = $this->Activity_Model->saveNewNft($image);
                     if ($response) {
@@ -125,9 +126,10 @@ class Activity extends User
         if (isset($_POST['add_sale'])) {
 
             $this->form_validation->set_rules('sale_end', 'End Date', 'trim|required');
-            $this->form_validation->set_rules('sale_type', 'Type Sale', 'trim|required');
+            // $this->form_validation->set_rules('sale_type', 'Type Sale', 'trim|required');
             $this->form_validation->set_rules('nft_price', 'Price', 'trim|required');
-
+            $this->form_validation->set_rules('rotal_numbers', 'Total units', 'is_natural_no_zero|trim|required');
+            
 
             if ($this->form_validation->run() == false) {
                 // echo "Form Not Submitt SuccessFully!..."; 
@@ -151,10 +153,14 @@ class Activity extends User
     }
 
     public function single($id){
+        if(isset($_POST['delete_live'])){
+            $this->Activity_Model->delete_sale($id);
+               redirect('profile');
+        }
         $result['data'] = $this->Activity_Model->single_sale($id);
         $result['bids'] = $this->Activity_Model->get_all_bids($id);
         $result['likes'] = $this->Activity_Model->sale_rattings($id);
-        $result['sales'] = $this->Activity_Model->single_sale($id);
+        // $result['sales'] = $this->Activity_Model->single_sale($id);
         $this->load->view('includes/header'); 
         $this->load->view('includes/menues_header');
         // $this->load->view('activity/activity_slider');

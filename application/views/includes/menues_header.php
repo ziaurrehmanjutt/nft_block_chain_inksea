@@ -53,7 +53,7 @@
 							<nav class="navigation" id="mobile-menu">
 								<ul class="menu-list list-style-none mb-0">
 									<!-- start ul  -->
-									<li><a href="index.php">Home</a></li>
+									<li><a href="<?=base_url('/')?>">Home</a></li>
 									<li class="has-children"><a href="#">Explore</a>
 										<ul class="sub-menu">
 											<!-- <li><a href="#">Explore One</a></li> -->
@@ -62,13 +62,13 @@
 											<li><a href="#">Item Details</a></li> -->
 										</ul>
 									</li>
-									<li class="has-children"><a href="#">Community</a>
+									<!-- <li class="has-children"><a href="#">Community</a>
 										<ul class="sub-menu">
 											<li><a href="#">News & Press</a></li>
 											<li><a href="#">Single Blog</a></li>
 											<li><a href="#">Help Center</a></li>
 										</ul>
-									</li>
+									</li> -->
 									<li class="has-children"><a href="#">Pages</a>
 										<ul class="sub-menu">
 											<?php if (isset($_SESSION['login'])) : ?>

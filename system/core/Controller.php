@@ -100,4 +100,14 @@ class CI_Controller {
 		return self::$instance;
 	}
 
+	public function getAdminKey(){
+		$this->db->select('metamask_key');
+		$this->db->from('admin_settings');
+		$res = $this->db->get->row();
+		if($res){
+			return $res->metamask_key;
+		}
+		return null;
+	}
+
 }

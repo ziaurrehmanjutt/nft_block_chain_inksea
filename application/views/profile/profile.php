@@ -130,7 +130,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            
+
         </div><!-- end modal-content -->
     </div><!-- end modal-dialog -->
 </div><!-- end bid history -->
@@ -197,6 +197,14 @@
         </div><!-- end row -->
     </div><!-- end container -->
     <div class="container macaw-tabs-container">
+
+        <?php if (isset($_SESSION['error_info'])) : ?>
+            <div class="alert alert-danger" role="alert">
+                <?= $_SESSION['error_info'] ?>
+            </div>
+        <?php unset($_SESSION['error_info']);
+        endif;  ?>
+
         <!-- start container -->
         <div class="row">
             <!-- start row -->
@@ -365,9 +373,9 @@
                                             </div><!-- end product link -->
                                             <div class="place-bid">
                                                 <!-- start place bid -->
-                                               
-                                                <a href="<?= base_url('activity/'). $l['rowid'] ?>" class="placebid price">See Details</a>
-                                               
+
+                                                <a href="<?= base_url('activity/') . $l['rowid'] ?>" class="placebid price">See Details</a>
+
                                             </div><!-- end place bid -->
                                         </div><!-- end Single Product -->
                                     </div> <!-- End col-4 -->

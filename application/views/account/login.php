@@ -57,10 +57,17 @@
                         <!-- start row -->
                         <div class="col-md-12">
                             <div class="account_form_area text-center">
+                                <?php if (isset($_SESSION['error_info'])) : ?>
+                                    <div class="alert alert-danger" role="alert">
+                                        <?= $_SESSION['error_info'] ?>
+                                    </div>
+                                <?php unset($_SESSION['error_info']);
+                                endif;  ?>
+
                                 <form id="account-form" method="post">
                                     <div class="row">
                                         <div class="form-group account_input col-md-12 pb-10">
-                                            <input type="email" name="email" class="form-control account_style" id="email" placeholder="Email here" required="required">
+                                            <input type="email" name="email" class="form-control account_style" id="email" placeholder="Email here" value="<?=set_value('email')?>" required="required">
                                             <span class="text-danger"><?php echo form_error('email'); ?></span>
                                         </div>
                                         <div class="form-group account_input col-md-12 pb-10">
@@ -159,19 +166,18 @@
 </div><!-- End how work area -->
 
 <script>
-
-function checkLoginState() {
-  FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-  });
-}
+    function checkLoginState() {
+        FB.getLoginStatus(function(response) {
+            statusChangeCallback(response);
+        });
+    }
 
     window.fbAsyncInit = function() {
         FB.init({
-            appId: '{your-app-id}',
+            appId: '294074106124045',
             cookie: true,
             xfbml: true,
-            version: '{api-version}'
+            version: 'v13.0'
         });
 
         FB.AppEvents.logPageView();
@@ -189,3 +195,6 @@ function checkLoginState() {
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
+
+
+

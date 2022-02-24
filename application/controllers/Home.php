@@ -28,13 +28,14 @@ class Home extends CI_Controller {
 
 		//
 		$data['live'] =  $this->Home_Public_Model->get_live_auction();//
+		$data['sales1'] =  $this->Home_Public_Model->get_active_sales();//
 		$data['categories'] =  $this->Home_Public_Model->all_categories();//
 		$data['users'] =  $this->Home_Public_Model->get_home_users();//
-
+		
 		
 
 		
-		//
+		
 		// echo "<pre>";
 		// print_r($data); // : ''
 		// die;
@@ -88,13 +89,15 @@ class Home extends CI_Controller {
 		$result['data'] = $this->Home_Public_Model->single_sale($id);
         $result['bids'] = $this->Home_Public_Model->get_all_bids($id);
         $result['likes'] = $this->Home_Public_Model->sale_rattings($id);
-
+        $result['admin_ket'] = $this->getAdminKey();
+		
         $this->load->view('includes/header');
         $this->load->view('includes/menues_header');
         // $this->load->view('activity/activity_slider');
         $this->load->view('sales/single_sales.php', $result);
         $this->load->view('includes/footer_before');
         $this->load->view('includes/footer');
+		$this->load->view('home/home_script');
         // $this->load->view('live_search/live_script');
 		// $this->load->view('home/home_script');
     }

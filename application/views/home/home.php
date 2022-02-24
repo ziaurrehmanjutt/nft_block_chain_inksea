@@ -11,7 +11,7 @@
             <?php foreach ($categories as $cat) : ?>
                 <div class="col-md-2 col-sm-4 col-6 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
                     <!-- start col-2 -->
-                    <a href="#" class="single_category category_box1">
+                    <a href="<?= base_url('search?category=') . $cat['rowid'] ?>" class="single_category category_box1">
                         <!-- <span class="category_icon">
                                 <i class='bx bx-image'></i>
                             </span> -->
@@ -46,7 +46,7 @@
                             <a href="#" target="_blank" id="face_book_share" class="share-icon1"><i class='bx bxl-facebook'></i></a>
                         </li>
                         <li class="nav-item">
-                            <a href="#"  target="_blank" id="linked_in_share" class="share-icon2"><i class='bx bxl-linkedin'></i></a>
+                            <a href="#" target="_blank" id="linked_in_share" class="share-icon2"><i class='bx bxl-linkedin'></i></a>
                         </li>
                         <li class="nav-item">
                             <a href="#" target="_blank" id="twitter_share" class="share-icon3"><i class='bx bxl-twitter'></i></a>
@@ -55,10 +55,10 @@
                             <a href="#" id="pin_sahre_button" target="_blank" class="share-icon4"><i class='bx bxl-pinterest-alt'></i></a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" id="google_sahre_button"  target="_blank" class="share-icon5"><i class='bx bxl-google-plus'></i></a>
+                            <a href="#" id="google_sahre_button" target="_blank" class="share-icon5"><i class='bx bxl-google-plus'></i></a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="share-icon6"><i class='bx bxl-instagram'></i></a>
+                            <a href="#" id="wahtsapp_sahre_button" style="background: #4caf50;" target="_blank" class="share-icon6"><i class='bx bxl-whatsapp'></i></a>
                         </li>
                     </ul>
                 </div><!-- end share btn -->
@@ -195,14 +195,14 @@
                         <div class="bid-accepted">
                             <p class="color_black">Bid created
                                 <span class="color_brand">12 ETH</span> at <a class="color_black txt_bold" href="Profile.html">
-                                <span class="date color_text">18/11/2022, 17:54</span>
+                                    <span class="date color_text">18/11/2022, 17:54</span>
                                 </a>
                             </p>
-                            
+
                         </div>
                     </div>
                 </div><!-- end creator item -->
-              
+
             </div><!-- end modal-body -->
         </div><!-- end modal-content -->
     </div><!-- end modal-dialog -->
@@ -265,7 +265,7 @@
                         </div> <!-- end thumbsup rating -->
                         <div class="single_product_img">
                             <!-- start single product img -->
-                            <a href="<?=base_url('browse/detail/').$l['rowid']?>" class="theme_preview_link">
+                            <a href="<?= base_url('browse/detail/') . $l['rowid'] ?>" class="theme_preview_link">
 
                                 <img src="<?= base_url('assets/nfts/') . $l['nft_file'] ?>" alt="" class="responsive-fluid" />
                             </a>
@@ -314,18 +314,21 @@
                                 </li>
                                 <li class="product-all-icon">
                                     <span class="report-icon product-icon">
-                                        <a href="#"  onclick="oprSahre(<?= $l['rowid'] ?>)" class="report-link" data-toggle="modal" data-target="#popup_share">
+                                        <a href="#" onclick="oprSahre(<?= $l['rowid'] ?>)" class="report-link" data-toggle="modal" data-target="#popup_share">
                                             <i class='bx bxs-share-alt'></i>
                                         </a>
                                     </span>
                                 </li>
-                                <li class="product-all-icon">
-                                    <span class="report-icon product-icon">
-                                        <a href="#" onclick="reportBlock(<?= $l['rowid'] ?>)" class="report-link" data-toggle="modal" data-target="#popup_report">
-                                            <i class='bx bxs-flag-alt'></i>
-                                        </a>
-                                    </span>
-                                </li>
+
+                                <?php if (isset($_SESSION['login']) && $_SESSION['login']->rowid != $l['owner_id']) : ?> 
+                                    <li class="product-all-icon">
+                                        <span class="report-icon product-icon">
+                                            <a href="#" onclick="reportBlock(<?= $l['rowid'] ?>)" class="report-link" data-toggle="modal" data-target="#popup_report">
+                                                <i class='bx bxs-flag-alt'></i>
+                                            </a>
+                                        </span>
+                                    </li>
+                                <?php endif;  ?>
                                 <li class="product-all-icon">
                                     <span class="sale-count product-icon">
                                         <span class="sale-counter"><?= $l['sale_price'] ?> ETH</span>
@@ -336,7 +339,11 @@
                         <div class="place-bid">
                             <!-- start place bid -->
                             <?php if (isset($_SESSION['login'])) : ?>
-                                <a href="#" class="placebid price" data-toggle="modal" data-target="#popup_bid">Bid Now</a>
+                                <?php if ($_SESSION['login']->rowid == $l['owner_id']) :  ?>
+                                    <a class="placebid price">Your Own Sale</a>
+                                <?php else : ?>
+                                    <a href="#" class="placebid price" data-toggle="modal" data-target="#popup_bid">Bid Now</a>
+                                <?php endif; ?>
                             <?php else : ?>
                                 <a href="<?= base_url('login') ?>" class="placebid price">Login to Bid</a>
                             <?php endif; ?>
@@ -349,7 +356,7 @@
             <!-- start row -->
             <div class="col-md-12 pt-50 pb-30">
                 <div class="all_nft-product-area text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                    <a href="<?=base_url('search')?>" class="btn btn_all_nft_product">View All Artwork <i class="bx bx-arrow-back"></i></a>
+                    <a href="<?= base_url('search') ?>" class="btn btn_all_nft_product">View All Artwork <i class="bx bx-arrow-back"></i></a>
                 </div>
             </div>
         </div> <!-- End row -->
@@ -390,7 +397,7 @@
                     <div class="single-author-area">
                         <!-- start single author -->
                         <div class="single-author-img">
-                            <a href="<?= base_url('profile/') .$value['rowid'] ?>" class="author_link offline">
+                            <a href="<?= base_url('profile/') . $value['rowid'] ?>" class="author_link offline">
 
                                 <?php if ($value['user_image']) : ?>
                                     <img src="<?= base_url('assets/users/') . $value['user_image'] ?>" alt="author" class="responsive-fluid img-1" />
@@ -401,7 +408,7 @@
                                 <i class="bx bxs-check-circle"></i>
                             </a>
                             <div class="name-amount">
-                                <a href="<?= base_url('profile/') .$value['rowid'] ?>" class="author_link_text">@<?= $value['user_name'] ?></a>
+                                <a href="<?= base_url('profile/') . $value['rowid'] ?>" class="author_link_text">@<?= $value['user_name'] ?></a>
                                 <p class="eth-amount"> <span class="total-items">Total items : </span><?= $value['tnft'] ?></p>
                             </div>
                         </div><!-- end single author image -->
@@ -444,10 +451,12 @@
         <!-- start container -->
         <div id="owl-demo" class="owl-carousel new-proslider">
             <!-- start owl-carousel -->
-            <?php foreach ($live as $val) : ?>
+            <?php foreach ($sales1 as $l) : ?>
+
+                <?php //var_dump($val); ?>
                 <div class="single_product mt-50 pb-30">
                     <!-- Single Product -->
-                    <div class="jumbotron countdown show" data-Date='2022/04/24 23:59:59' data-endText="Auction ended">
+                    <div class="jumbotron countdown show" data-Date='<?= $l['expire_at'] ?>' data-endText="Auction ended">
                         <div class="running">
                             <span class="timer">
                                 <span class="days"></span>d
@@ -457,641 +466,87 @@
                             </span>
                         </div>
                     </div> <!-- end count down -->
-                    <div class="profile-rating">
-                        <!-- thumbsup rating -->
-                        <i class='bx bx-heart'></i>
-                        <span class="thumbsup">2.1k</span>
-                    </div> <!-- end thumbsup rating -->
+          
                     <div class="single_product_img">
                         <!-- start single product img -->
-                        <a href="product.html" class="theme_preview_link">
-                            <img src="<?= base_url('assets/') ?>img/items/12.jpg" alt="" class="responsive-fluid" />
+                        <a href="<?= base_url('browse/detail/') . $l['rowid'] ?>" class="theme_preview_link">
+
+                            <img src="<?= base_url('assets/nfts/') . $l['nft_file'] ?>" alt="" class="responsive-fluid" />
                         </a>
                     </div> <!-- End single product img -->
                     <div class="nft_product_description">
                         <!-- start product description -->
                         <div class="nft_product_text">
-                            <ul class="author-profile-link slider_item_author">
+                            <ul class="author-profile-link">
                                 <!-- start author-->
                                 <li class="nav-item">
-                                    <a href="author-details.html" class="author_link author-slider">
+                                    <a href="author-details.html" class="author_link offline">
                                         <img src="<?= base_url('assets/') ?>img/avatar/1.jpg" alt="author" class="responsive-fluid img-1" />
                                         <i class='bx bxs-check-circle'></i>
                                     </a>
+                                    <span class="hover_author_link">
+                                        <a href="author-details.html" class="author_link_text">@<?= $l['user_name'] ?></a>
+                                    </span>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="author-details.html" class="author_link author-slider offline">
-                                        <img src="<?= base_url('assets/') ?>img/avatar/2.jpg" alt="author" class="responsive-fluid img-1" />
-                                        <i class='bx bxs-check-circle'></i>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="author-details.html" class="author_link author-slider">
-                                        <img src="<?= base_url('assets/') ?>img/avatar/3.jpg" alt="author" class="responsive-fluid img-2" />
-                                        <i class='bx bxs-check-circle'></i>
-                                    </a>
-                                </li>
+                               
                             </ul>
                         </div><!-- end author-->
-                        <div class="product_title_link slider_item">
+                        <div class="product_title_link">
                             <!-- start product title-->
                             <a class="product-title" href="#">
-                                <h6 class="product_title_intro">Mysterious Robotic Body Art</h6>
+                                <h6 class="product_title_intro"><?= $l['nft_name'] ?></h6>
                             </a>
                         </div><!-- end product title-->
                     </div><!-- end product text -->
-                    <div class="nft_product_link pt-20 pb-10">
+                    <div class="nft_product_link">
                         <!-- start product link -->
                         <ul>
                             <li class="product-all-icon">
                                 <span class="item-history product-icon">
-                                    <a href="#" class="item-history-btn" data-toggle="modal" data-target="#popup_history">
+                                    <a href="" onclick="loadBids(<?= $l['rowid'] ?>)" class="item-history-btn" data-toggle="modal" data-target="#popup_history">
                                         <i class='bx bx-comment-detail'></i>
                                     </a>
                                 </span>
                             </li>
                             <li class="product-all-icon">
                                 <span class="report-icon product-icon">
-                                    <a href="#" class="report-link" data-toggle="modal" data-target="#popup_share">
+                                    <a href="#" onclick="oprSahre(<?= $l['rowid'] ?>)" class="report-link" data-toggle="modal" data-target="#popup_share">
                                         <i class='bx bxs-share-alt'></i>
                                     </a>
                                 </span>
                             </li>
+
+                            <?php if (isset($_SESSION['login']) && $_SESSION['login']->rowid != $l['owner_id']) : ?> ?>
+                                <li class="product-all-icon">
+                                    <span class="report-icon product-icon">
+                                        <a href="#" onclick="reportBlock(<?= $l['rowid'] ?>)" class="report-link" data-toggle="modal" data-target="#popup_report">
+                                            <i class='bx bxs-flag-alt'></i>
+                                        </a>
+                                    </span>
+                                </li>
+                            <?php endif;  ?>
                             <li class="product-all-icon">
-                                <span class="report-icon product-icon">
-                                    <a href="#" class="report-link" data-toggle="modal" data-target="#popup_report">
-                                        <i class='bx bxs-flag-alt'></i>
-                                    </a>
+                                <span class="sale-count product-icon">
+                                    <span class="sale-counter"><?= $l['sale_price'] ?> ETH</span>
                                 </span>
                             </li>
                         </ul>
-                        <span class="place-bid-slider">
-                            <!-- start place bid -->
-                            <a href="#" class="placebid slider-bid price" data-toggle="modal" data-target="#popup_bid">Bid Now</a>
-                        </span><!-- end place bid -->
                     </div><!-- end product link -->
+                    <div class="place-bid">
+                        <!-- start place bid -->
+                        <?php if (isset($_SESSION['login'])) : ?>
+                            <?php if ($_SESSION['login']->rowid == $l['owner_id']) :  ?>
+                                <a class="placebid price">Your Own Sale</a>
+                            <?php else : ?>
+                                <a href="<?=base_url('browse/detail/').$l['rowid']?>" class="placebid price">Purchase</a>
+                            <?php endif; ?>
+                        <?php else : ?>
+                            <a href="<?= base_url('login') ?>" class="placebid price">Login to Bid</a>
+                        <?php endif; ?>
+                    </div><!-- end place bid -->
                 </div><!-- end Single Product -->
             <?php endforeach; ?>
-            <div class="single_product mt-50 pb-30">
-                <!-- Single Product -->
-                <div class="jumbotron countdown show" data-Date='2022/07/24 23:59:59' data-endText="Auction ended">
-                    <div class="running">
-                        <span class="timer">
-                            <span class="days"></span>d
-                            <span class="hours"></span>h
-                            <span class="minutes"></span>m
-                            <span class="seconds"></span>s
-                        </span>
-                    </div>
-                </div> <!-- end count down -->
-                <div class="profile-rating">
-                    <!-- thumbsup rating -->
-                    <i class='bx bx-heart'></i>
-                    <span class="thumbsup">4.3k</span>
-                </div> <!-- end thumbsup rating -->
-                <div class="single_product_img">
-                    <!-- start single product img -->
-                    <a href="product.html" class="theme_preview_link">
-                        <img src="<?= base_url('assets/') ?>img/items/11.jpg" alt="" class="responsive-fluid" />
-                    </a>
-                </div> <!-- End single product img -->
-                <div class="nft_product_description">
-                    <!-- start product description -->
-                    <div class="nft_product_text">
-                        <ul class="author-profile-link slider_item_author">
-                            <!-- start author-->
-                            <li class="nav-item">
-                                <a href="author-details.html" class="author_link author-slider offline">
-                                    <img src="<?= base_url('assets/') ?>img/avatar/1.jpg" alt="author" class="responsive-fluid img-1" />
-                                    <i class='bx bxs-check-circle'></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div><!-- end author-->
-                    <div class="product_title_link slider_item">
-                        <!-- start product title-->
-                        <a class="product-title" href="#">
-                            <h6 class="product_title_intro">3D Artwork </h6>
-                        </a>
-                    </div><!-- end product title-->
-                </div><!-- end product text -->
-                <div class="nft_product_link pt-20 pb-10">
-                    <!-- start product link -->
-                    <ul>
-                        <li class="product-all-icon">
-                            <span class="item-history product-icon">
-                                <a href="#" class="item-history-btn" data-toggle="modal" data-target="#popup_history">
-                                    <i class='bx bx-comment-detail'></i>
-                                </a>
-                            </span>
-                        </li>
-                        <li class="product-all-icon">
-                            <span class="report-icon product-icon">
-                                <a href="#" class="report-link" data-toggle="modal" data-target="#popup_share">
-                                    <i class='bx bxs-share-alt'></i>
-                                </a>
-                            </span>
-                        </li>
-                        <li class="product-all-icon">
-                            <span class="report-icon product-icon">
-                                <a href="#" class="report-link" data-toggle="modal" data-target="#popup_report">
-                                    <i class='bx bxs-flag-alt'></i>
-                                </a>
-                            </span>
-                        </li>
-                    </ul>
-                    <span class="place-bid-slider">
-                        <!-- start place bid -->
-                        <a href="#" class="placebid slider-bid price" data-toggle="modal" data-target="#popup_bid">Bid Now</a>
-                    </span><!-- end place bid -->
-                </div><!-- end product link -->
-            </div><!-- end Single Product -->
-            <div class="single_product mt-50 pb-30">
-                <!-- Single Product -->
-                <div class="jumbotron countdown show" data-Date='2022/09/24 23:59:59' data-endText="Auction ended">
-                    <div class="running">
-                        <span class="timer">
-                            <span class="days"></span>d
-                            <span class="hours"></span>h
-                            <span class="minutes"></span>m
-                            <span class="seconds"></span>s
-                        </span>
-                    </div>
-                </div> <!-- end count down -->
-                <div class="profile-rating">
-                    <!-- thumbsup rating -->
-                    <i class='bx bx-heart'></i>
-                    <span class="thumbsup">9.3k</span>
-                </div> <!-- end thumbsup rating -->
-                <div class="single_product_img">
-                    <!-- start single product img -->
-                    <a href="product.html" class="theme_preview_link">
-                        <img src="<?= base_url('assets/') ?>img/items/10.jpg" alt="" class="responsive-fluid" />
-                    </a>
-                </div> <!-- End single product img -->
-                <div class="nft_product_description">
-                    <!-- start product description -->
-                    <div class="nft_product_text">
-                        <ul class="author-profile-link slider_item_author">
-                            <!-- start author-->
-                            <li class="nav-item">
-                                <a href="author-details.html" class="author_link author-slider">
-                                    <img src="<?= base_url('assets/') ?>img/avatar/5.jpg" alt="author" class="responsive-fluid img-1" />
-                                    <i class='bx bxs-check-circle'></i>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="author-details.html" class="author_link author-slider">
-                                    <img src="<?= base_url('assets/') ?>img/avatar/6.jpg" alt="author" class="responsive-fluid img-2" />
-                                    <i class='bx bxs-check-circle'></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div><!-- end author-->
-                    <div class="product_title_link slider_item">
-                        <!-- start product title-->
-                        <a class="product-title" href="#">
-                            <h6 class="product_title_intro">Virtual Robotic Art</h6>
-                        </a>
-                    </div><!-- end product title-->
-                </div><!-- end product text -->
-                <div class="nft_product_link pt-20 pb-10">
-                    <!-- start product link -->
-                    <ul>
-                        <li class="product-all-icon">
-                            <span class="item-history product-icon">
-                                <a href="#" class="item-history-btn" data-toggle="modal" data-target="#popup_history">
-                                    <i class='bx bx-comment-detail'></i>
-                                </a>
-                            </span>
-                        </li>
-                        <li class="product-all-icon">
-                            <span class="report-icon product-icon">
-                                <a href="#" class="report-link" data-toggle="modal" data-target="#popup_share">
-                                    <i class='bx bxs-share-alt'></i>
-                                </a>
-                            </span>
-                        </li>
-                        <li class="product-all-icon">
-                            <span class="report-icon product-icon">
-                                <a href="#" class="report-link" data-toggle="modal" data-target="#popup_report">
-                                    <i class='bx bxs-flag-alt'></i>
-                                </a>
-                            </span>
-                        </li>
-                    </ul>
-                    <span class="place-bid-slider">
-                        <!-- start place bid -->
-                        <a href="#" class="placebid slider-bid price" data-toggle="modal" data-target="#popup_bid">Bid Now</a>
-                    </span><!-- end place bid -->
-                </div><!-- end product link -->
-            </div><!-- end Single Product -->
-            <div class="single_product mt-50 pb-30">
-                <!-- Single Product -->
-                <div class="jumbotron countdown show" data-Date='2022/11/24 23:59:59' data-endText="Auction ended">
-                    <div class="running">
-                        <span class="timer">
-                            <span class="days"></span>d
-                            <span class="hours"></span>h
-                            <span class="minutes"></span>m
-                            <span class="seconds"></span>s
-                        </span>
-                    </div>
-                </div> <!-- end count down -->
-                <div class="profile-rating">
-                    <!-- thumbsup rating -->
-                    <i class='bx bx-heart'></i>
-                    <span class="thumbsup">5.7k</span>
-                </div> <!-- end thumbsup rating -->
-                <div class="single_product_img">
-                    <!-- start single product img -->
-                    <a href="product.html" class="theme_preview_link">
-                        <img src="<?= base_url('assets/') ?>img/items/9.jpg" alt="" class="responsive-fluid" />
-                    </a>
-                </div> <!-- End single product img -->
-                <div class="nft_product_description">
-                    <!-- start product description -->
-                    <div class="nft_product_text">
-                        <ul class="author-profile-link slider_item_author">
-                            <!-- start author-->
-                            <li class="nav-item">
-                                <a href="author-details.html" class="author_link author-slider offline">
-                                    <img src="<?= base_url('assets/') ?>img/avatar/4.jpg" alt="author" class="responsive-fluid img-1" />
-                                    <i class='bx bxs-check-circle'></i>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="author-details.html" class="author_link author-slider">
-                                    <img src="<?= base_url('assets/') ?>img/avatar/7.jpg" alt="author" class="responsive-fluid img-2" />
-                                    <i class='bx bxs-check-circle'></i>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="author-details.html" class="author_link author-slider">
-                                    <img src="<?= base_url('assets/') ?>img/avatar/8.jpg" alt="author" class="responsive-fluid img-2" />
-                                    <i class='bx bxs-check-circle'></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div><!-- end author-->
-                    <div class="product_title_link slider_item">
-                        <!-- start product title-->
-                        <a class="product-title" href="#">
-                            <h6 class="product_title_intro">Beautiful Natural 3D</h6>
-                        </a>
-                    </div><!-- end product title-->
-                </div><!-- end product text -->
-                <div class="nft_product_link pt-20 pb-10">
-                    <!-- start product link -->
-                    <ul>
-                        <li class="product-all-icon">
-                            <span class="item-history product-icon">
-                                <a href="#" class="item-history-btn" data-toggle="modal" data-target="#popup_history">
-                                    <i class='bx bx-comment-detail'></i>
-                                </a>
-                            </span>
-                        </li>
-                        <li class="product-all-icon">
-                            <span class="report-icon product-icon">
-                                <a href="#" class="report-link" data-toggle="modal" data-target="#popup_share">
-                                    <i class='bx bxs-share-alt'></i>
-                                </a>
-                            </span>
-                        </li>
-                        <li class="product-all-icon">
-                            <span class="report-icon product-icon">
-                                <a href="#" class="report-link" data-toggle="modal" data-target="#popup_report">
-                                    <i class='bx bxs-flag-alt'></i>
-                                </a>
-                            </span>
-                        </li>
-                    </ul>
-                    <span class="place-bid-slider">
-                        <!-- start place bid -->
-                        <a href="#" class="placebid slider-bid price" data-toggle="modal" data-target="#popup_bid">Bid Now</a>
-                    </span><!-- end place bid -->
-                </div><!-- end product link -->
-            </div><!-- end Single Product -->
-            <div class="single_product mt-50 pb-30">
-                <!-- Single Product -->
-                <div class="jumbotron countdown show" data-Date='2022/08/24 23:59:59' data-endText="Auction ended">
-                    <div class="running">
-                        <span class="timer">
-                            <span class="days"></span>d
-                            <span class="hours"></span>h
-                            <span class="minutes"></span>m
-                            <span class="seconds"></span>s
-                        </span>
-                    </div>
-                </div> <!-- end count down -->
-                <div class="profile-rating">
-                    <!-- thumbsup rating -->
-                    <i class='bx bx-heart'></i>
-                    <span class="thumbsup">4.3k</span>
-                </div> <!-- end thumbsup rating -->
-                <div class="single_product_img">
-                    <!-- start single product img -->
-                    <a href="product.html" class="theme_preview_link">
-                        <img src="<?= base_url('assets/') ?>img/items/8.jpg" alt="" class="responsive-fluid" />
-                    </a>
-                </div> <!-- End single product img -->
-                <div class="nft_product_description">
-                    <!-- start product description -->
-                    <div class="nft_product_text">
-                        <ul class="author-profile-link slider_item_author">
-                            <!-- start author-->
-                            <li class="nav-item">
-                                <a href="author-details.html" class="author_link author-slider">
-                                    <img src="<?= base_url('assets/') ?>img/avatar/1.jpg" alt="author" class="responsive-fluid img-1" />
-                                    <i class='bx bxs-check-circle'></i>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="author-details.html" class="author_link author-slider">
-                                    <img src="<?= base_url('assets/') ?>img/avatar/2.jpg" alt="author" class="responsive-fluid img-2" />
-                                    <i class='bx bxs-check-circle'></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div><!-- end author-->
-                    <div class="product_title_link slider_item">
-                        <!-- start product title-->
-                        <a class="product-title" href="#">
-                            <h6 class="product_title_intro">Mysterious Ocean Water</h6>
-                        </a>
-                    </div><!-- end product title-->
-                </div><!-- end product text -->
-                <div class="nft_product_link pt-20 pb-10">
-                    <!-- start product link -->
-                    <ul>
-                        <li class="product-all-icon">
-                            <span class="item-history product-icon">
-                                <a href="#" class="item-history-btn" data-toggle="modal" data-target="#popup_history">
-                                    <i class='bx bx-comment-detail'></i>
-                                </a>
-                            </span>
-                        </li>
-                        <li class="product-all-icon">
-                            <span class="report-icon product-icon">
-                                <a href="#" class="report-link" data-toggle="modal" data-target="#popup_share">
-                                    <i class='bx bxs-share-alt'></i>
-                                </a>
-                            </span>
-                        </li>
-                        <li class="product-all-icon">
-                            <span class="report-icon product-icon">
-                                <a href="#" class="report-link" data-toggle="modal" data-target="#popup_report">
-                                    <i class='bx bxs-flag-alt'></i>
-                                </a>
-                            </span>
-                        </li>
-                    </ul>
-                    <span class="place-bid-slider">
-                        <!-- start place bid -->
-                        <a href="#" class="placebid slider-bid price" data-toggle="modal" data-target="#popup_bid">Bid Now</a>
-                    </span><!-- end place bid -->
-                </div><!-- end product link -->
-            </div><!-- end Single Product -->
-            <div class="single_product mt-50 pb-30">
-                <!-- Single Product -->
-                <div class="jumbotron countdown show" data-Date='2022/09/24 23:59:59' data-endText="Auction ended">
-                    <div class="running">
-                        <span class="timer">
-                            <span class="days"></span>d
-                            <span class="hours"></span>h
-                            <span class="minutes"></span>m
-                            <span class="seconds"></span>s
-                        </span>
-                    </div>
-                </div> <!-- end count down -->
-                <div class="profile-rating">
-                    <!-- thumbsup rating -->
-                    <i class='bx bx-heart'></i>
-                    <span class="thumbsup">4.3k</span>
-                </div> <!-- end thumbsup rating -->
-                <div class="single_product_img">
-                    <!-- start single product img -->
-                    <a href="product.html" class="theme_preview_link">
-                        <img src="<?= base_url('assets/') ?>img/items/7.jpg" alt="" class="responsive-fluid" />
-                    </a>
-                </div> <!-- End single product img -->
-                <div class="nft_product_description">
-                    <!-- start product description -->
-                    <div class="nft_product_text">
-                        <ul class="author-profile-link slider_item_author">
-                            <!-- start author-->
-                            <li class="nav-item">
-                                <a href="author-details.html" class="author_link author-slider">
-                                    <img src="<?= base_url('assets/') ?>img/avatar/5.jpg" alt="author" class="responsive-fluid img-1" />
-                                    <i class='bx bxs-check-circle'></i>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="author-details.html" class="author_link author-slider offline">
-                                    <img src="<?= base_url('assets/') ?>img/avatar/4.jpg" alt="author" class="responsive-fluid img-1" />
-                                    <i class='bx bxs-check-circle'></i>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="author-details.html" class="author_link author-slider">
-                                    <img src="<?= base_url('assets/') ?>img/avatar/2.jpg" alt="author" class="responsive-fluid img-2" />
-                                    <i class='bx bxs-check-circle'></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div><!-- end author-->
-                    <div class="product_title_link slider_item">
-                        <!-- start product title-->
-                        <a class="product-title" href="#">
-                            <h6 class="product_title_intro">Wave Flaming Art</h6>
-                        </a>
-                    </div><!-- end product title-->
-                </div><!-- end product text -->
-                <div class="nft_product_link pt-20 pb-10">
-                    <!-- start product link -->
-                    <ul>
-                        <li class="product-all-icon">
-                            <span class="item-history product-icon">
-                                <a href="#" class="item-history-btn" data-toggle="modal" data-target="#popup_history">
-                                    <i class='bx bx-comment-detail'></i>
-                                </a>
-                            </span>
-                        </li>
-                        <li class="product-all-icon">
-                            <span class="report-icon product-icon">
-                                <a href="#" class="report-link" data-toggle="modal" data-target="#popup_share">
-                                    <i class='bx bxs-share-alt'></i>
-                                </a>
-                            </span>
-                        </li>
-                        <li class="product-all-icon">
-                            <span class="report-icon product-icon">
-                                <a href="#" class="report-link" data-toggle="modal" data-target="#popup_report">
-                                    <i class='bx bxs-flag-alt'></i>
-                                </a>
-                            </span>
-                        </li>
-                    </ul>
-                    <span class="place-bid-slider">
-                        <!-- start place bid -->
-                        <a href="#" class="placebid slider-bid price" data-toggle="modal" data-target="#popup_bid">Bid Now</a>
-                    </span><!-- end place bid -->
-                </div><!-- end product link -->
-            </div><!-- end Single Product -->
-            <div class="single_product mt-50 pb-30">
-                <!-- Single Product -->
-                <div class="jumbotron countdown show" data-Date='2022/09/24 23:59:59' data-endText="Auction ended">
-                    <div class="running">
-                        <span class="timer">
-                            <span class="days"></span>d
-                            <span class="hours"></span>h
-                            <span class="minutes"></span>m
-                            <span class="seconds"></span>s
-                        </span>
-                    </div>
-                </div> <!-- end count down -->
-                <div class="profile-rating">
-                    <!-- thumbsup rating -->
-                    <i class='bx bx-heart'></i>
-                    <span class="thumbsup">1.3k</span>
-                </div> <!-- end thumbsup rating -->
-                <div class="single_product_img">
-                    <!-- start single product img -->
-                    <a href="product.html" class="theme_preview_link">
-                        <img src="<?= base_url('assets/') ?>img/items/12.jpg" alt="" class="responsive-fluid" />
-                    </a>
-                </div> <!-- End single product img -->
-                <div class="nft_product_description">
-                    <!-- start product description -->
-                    <div class="nft_product_text">
-                        <ul class="author-profile-link slider_item_author">
-                            <!-- start author-->
-                            <li class="nav-item">
-                                <a href="author-details.html" class="author_link author-slider">
-                                    <img src="<?= base_url('assets/') ?>img/avatar/2.jpg" alt="author" class="responsive-fluid img-2" />
-                                    <i class='bx bxs-check-circle'></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div><!-- end author-->
-                    <div class="product_title_link slider_item">
-                        <!-- start product title-->
-                        <a class="product-title" href="#">
-                            <h6 class="product_title_intro">Robotic Body Art</h6>
-                        </a>
-                    </div><!-- end product title-->
-                </div><!-- end product text -->
-                <div class="nft_product_link pt-20 pb-10">
-                    <!-- start product link -->
-                    <ul>
-                        <li class="product-all-icon">
-                            <span class="item-history product-icon">
-                                <a href="#" class="item-history-btn" data-toggle="modal" data-target="#popup_history">
-                                    <i class='bx bx-comment-detail'></i>
-                                </a>
-                            </span>
-                        </li>
-                        <li class="product-all-icon">
-                            <span class="report-icon product-icon">
-                                <a href="#" class="report-link" data-toggle="modal" data-target="#popup_share">
-                                    <i class='bx bxs-share-alt'></i>
-                                </a>
-                            </span>
-                        </li>
-                        <li class="product-all-icon">
-                            <span class="report-icon product-icon">
-                                <a href="#" class="report-link" data-toggle="modal" data-target="#popup_report">
-                                    <i class='bx bxs-flag-alt'></i>
-                                </a>
-                            </span>
-                        </li>
-                    </ul>
-                    <span class="place-bid-slider">
-                        <!-- start place bid -->
-                        <a href="#" class="placebid slider-bid price" data-toggle="modal" data-target="#popup_bid">Bid Now</a>
-                    </span><!-- end place bid -->
-                </div><!-- end product link -->
-            </div><!-- end Single Product -->
-            <div class="single_product mt-50 pb-30">
-                <!-- Single Product -->
-                <div class="jumbotron countdown show" data-Date='2021/12/24 23:59:59' data-endText="Auction ended">
-                    <div class="running">
-                        <span class="timer">
-                            <span class="days"></span>d
-                            <span class="hours"></span>h
-                            <span class="minutes"></span>m
-                            <span class="seconds"></span>s
-                        </span>
-                    </div>
-                </div> <!-- end count down -->
-                <div class="profile-rating">
-                    <!-- thumbsup rating -->
-                    <i class='bx bx-heart'></i>
-                    <span class="thumbsup">5.1k</span>
-                </div> <!-- end thumbsup rating -->
-                <div class="single_product_img">
-                    <!-- start single product img -->
-                    <a href="product.html" class="theme_preview_link">
-                        <img src="<?= base_url('assets/') ?>img/items/6.jpg" alt="" class="responsive-fluid" />
-                    </a>
-                </div> <!-- End single product img -->
-                <div class="nft_product_description">
-                    <!-- start product description -->
-                    <div class="nft_product_text">
-                        <ul class="author-profile-link slider_item_author">
-                            <!-- start author-->
-                            <li class="nav-item">
-                                <a href="author-details.html" class="author_link author-slider">
-                                    <img src="<?= base_url('assets/') ?>img/avatar/7.jpg" alt="author" class="responsive-fluid img-1" />
-                                    <i class='bx bxs-check-circle'></i>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="author-details.html" class="author_link author-slider offline">
-                                    <img src="<?= base_url('assets/') ?>img/avatar/6.jpg" alt="author" class="responsive-fluid img-2" />
-                                    <i class='bx bxs-check-circle'></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div><!-- end author-->
-                    <div class="product_title_link slider_item">
-                        <!-- start product title-->
-                        <a class="product-title" href="#">
-                            <h6 class="product_title_intro">Mystetious Robotic Body Art</h6>
-                        </a>
-                    </div><!-- end product title-->
-                </div><!-- end product text -->
-                <div class="nft_product_link pt-20 pb-10">
-                    <!-- start product link -->
-                    <ul>
-                        <li class="product-all-icon">
-                            <span class="item-history product-icon">
-                                <a href="#" class="item-history-btn" data-toggle="modal" data-target="#popup_history">
-                                    <i class='bx bx-comment-detail'></i>
-                                </a>
-                            </span>
-                        </li>
-                        <li class="product-all-icon">
-                            <span class="report-icon product-icon">
-                                <a href="#" class="report-link" data-toggle="modal" data-target="#popup_share">
-                                    <i class='bx bxs-share-alt'></i>
-                                </a>
-                            </span>
-                        </li>
-                        <li class="product-all-icon">
-                            <span class="report-icon product-icon">
-                                <a href="#" class="report-link" data-toggle="modal" data-target="#popup_report">
-                                    <i class='bx bxs-flag-alt'></i>
-                                </a>
-                            </span>
-                        </li>
-                    </ul>
-                    <span class="place-bid-slider">
-                        <!-- start place bid -->
-                        <a href="#" class="placebid slider-bid price" data-toggle="modal" data-target="#popup_bid">Bid Now</a>
-                    </span><!-- end place bid -->
-                </div><!-- end product link -->
-            </div><!-- end Single Product -->
+
         </div> <!-- End Product Caroseul -->
     </div> <!-- End container -->
 </div><!-- End new product slider -->

@@ -12,8 +12,9 @@
                     </a>
                     <ul aria-expanded="false">
                         <li class=""> <a href='<?=base_url('admin/categories')?>'>Categories</a> </li>
+                        <li class=""> <a href='<?=base_url('admin/settings')?>'>Settings</a> </li>
                       
-                    </ul>
+                    </ul> 
                 </li>
                 <li><a href="" aria-expanded="false"><i class="nav-icon ti ti-comment"></i><span class="nav-title">Dashboard</span></a> </li>
                

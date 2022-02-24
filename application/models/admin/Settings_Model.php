@@ -87,5 +87,11 @@ class Settings_Model extends Admin_Model
     public function get_settings(){
         return $this->db->get('admin_settings')->row();
     }
+    public function update_key($key){
+        $this->db->set('metamask_key',$key);
+        // $this->db->where('rowid',$key);
+        return $this->db->update('admin_settings');
+    }
+
 
 }

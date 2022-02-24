@@ -66,7 +66,7 @@
             data.forEach(element => {
                 srt = "<?= base_url('assets/') ?>img/avatar/2.jpg";
                 if(element.user_image){
-                    srt = "<?= base_url('assets/users/')?>".element.user_image;
+                    srt = "<?= base_url('assets/users/')?>"+element.user_image;
                 }
                 let a = `<div class="avatars space-x-10">
                         <div class="media">
@@ -93,13 +93,14 @@
     }
 
     function oprSahre(id){
-        let url = base_url + '/browse/detail/' + id;
-         url = "https://www.google.com";
+        let url = base_url + 'browse/detail/' + id;
+        // url = "https://www.google.com";
         $('#face_book_share').attr('href','https://www.facebook.com/sharer/sharer.php?u='+url)
         $('#linked_in_share').attr('href','https://www.linkedin.com/shareArticle?mini=true&url='+url);
         $('#twitter_share').attr('href','http://www.twitter.com/share?url='+url);
         $('#pin_sahre_button').attr('href','http://pinterest.com/pin/create/link/?url='+url);
         $('#google_sahre_button').attr('href','https://plus.google.com/share?url='+url);
-    } 
+        $('#wahtsapp_sahre_button').attr('href','https://api.whatsapp.com/send?text='+url);
+    }
 </script>
 

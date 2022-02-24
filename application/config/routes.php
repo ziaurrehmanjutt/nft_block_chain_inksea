@@ -54,6 +54,7 @@ $route['login'] = 'login';
 $route['register'] = 'login/register';
 $route['wallet'] = 'login/wallet';
 $route['logout'] = 'login/logout';
+$route['linkedin_redirect'] = 'login/linkedin_redirect';
 
 
 /////Activity
