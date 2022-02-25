@@ -103,7 +103,7 @@ class CI_Controller {
 	public function getAdminKey(){
 		$this->db->select('metamask_key');
 		$this->db->from('admin_settings');
-		$res = $this->db->get->row();
+		$res = $this->db->get()->row();
 		if($res){
 			return $res->metamask_key;
 		}

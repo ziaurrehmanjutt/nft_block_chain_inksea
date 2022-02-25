@@ -205,7 +205,7 @@
                     </div>
                     <div class="place-bid-btn">
                         <!-- start place btn -->
-                        <button type="submit" name="place_a_bid" class="btn btn-primary w-full popup-bid-btn"> Buy Now </button>
+                        <button type="button" id="sendEthButton" name="place_a_bid" class="btn btn-primary w-full popup-bid-btn"> Buy Now </button>
                         <!-- <a href="" class="btn btn-primary w-full popup-bid-btn" data-toggle="modal" data-target="#popup_bid_success" data-dismiss="modal" aria-label="Close"> Place bid
                     </a> -->
                     </div><!-- end place btn -->
@@ -447,3 +447,33 @@
         </div><!-- end row -->
     </div><!-- end container -->
 </div><!-- End how work area -->
+
+<script src="<?= base_url('assets/') ?>js/bignumber/bignumber.min.js"></script>
+<script>
+    const sendEthButton = document.querySelector('#sendEthButton');
+
+    let amount = BigNumber(<?=$totalAmount?>);
+    let eth = BigNumber('1000000000000000000') * amount;
+    let tAms = '0x' + eth.toString(16)
+    let mac= '';
+    <?php if (isset($_SESSION['login'])){
+        $ac = $_SESSION['login']->meta_mask_key;
+        echo "mac = '$ac';";
+    } ?>
+    //Sending Ethereum to an address
+    sendEthButton.addEventListener('click', () => {
+        ethereum
+            .request({
+                method: 'eth_sendTransaction',
+                params: [{
+                    from: mac,
+                    to: '<?=$admin_ket?>',
+                    value: tAms,
+                    gasPrice: '0x09184e72a000',
+                    gas: '0x2710',
+                }, ],
+            })
+            .then((txHash) => console.log(txHash))
+            .catch((error) => console.error);
+    });
+</script>

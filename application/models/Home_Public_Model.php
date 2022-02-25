@@ -209,7 +209,7 @@ class Home_Public_Model extends CI_Model
 
 
     public function single_sale($id){
-        $this->db->select('expire_at,nft_name,bidding_sale,user_name,total_units,sale_price,total_star,nft_file,nft_sales.rowid,cate_name,user_image,nft_descriptions');
+        $this->db->select('expire_at,nft_name,bidding_sale,user_name,total_units,owner_id,sale_price,total_star,nft_file,nft_sales.rowid,cate_name,user_image,nft_descriptions');
         $this->db->join('all_nfts_list', 'all_nfts_list.rowid=nft_sales.nft_id');
         $this->db->join('users', 'users.rowid=nft_sales.owner_id');
         $this->db->join('all_categories', 'all_categories.rowid=all_nfts_list.nft_category');

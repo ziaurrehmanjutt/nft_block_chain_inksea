@@ -50,8 +50,8 @@
                         <div class="form-group">
                             <label  for="exampleInputEmail1">Sale Type</label>
                             <select  name="type_id" required class="form-control">
-                                <option <?= set_value('type_id') == '0' ? 'selected' : ''?> value="1">Fixed Price</option>
-                                <option <?= set_value('type_id') == '1' ? 'selected' : ''?> value="2">Bidding</option>
+                                <option <?= set_value('type_id') == '2' ? 'selected' : ''?> value="2">Fixed Price</option>
+                                <option <?= set_value('type_id') == '1' ? 'selected' : ''?> value="1">Bidding</option>
                             </select>
                             <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                         </div>
