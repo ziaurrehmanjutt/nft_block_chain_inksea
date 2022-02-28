@@ -78,7 +78,7 @@
                             <div class="col-12">
                                 <form method="post">
                                     <button name="disable_user" value="" class="btn btn-sm btn-danger">Disable User</button>
-                                    <button class="btn btn-sm btn-danger">Delate This Sale</button>
+                                    <button name="delete_sale" class="btn btn-sm btn-danger">Delate This Sale</button>
                                     <button class="btn btn-sm btn-danger">Delate Entire NFT</button>
                                     <button class="btn btn-sm btn-warning">End This Sale Bid</button>
                                 </form>
