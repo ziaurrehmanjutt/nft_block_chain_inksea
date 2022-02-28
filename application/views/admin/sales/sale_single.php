@@ -76,10 +76,12 @@
                                 <p><?= $detail->nft_descriptions ?></p>
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-sm btn-danger">Disable User</button>
-                                <button class="btn btn-sm btn-danger">Delate This Sale</button>
-                                <button class="btn btn-sm btn-danger">Delate Entire NFT</button>
-                                <button class="btn btn-sm btn-warning">End This Sale Bid</button>
+                                <form method="post">
+                                    <button name="disable_user" value="" class="btn btn-sm btn-danger">Disable User</button>
+                                    <button class="btn btn-sm btn-danger">Delate This Sale</button>
+                                    <button class="btn btn-sm btn-danger">Delate Entire NFT</button>
+                                    <button class="btn btn-sm btn-warning">End This Sale Bid</button>
+                                </form>
                             </div>
                         </div>
                         <?php
@@ -113,16 +115,16 @@
                                     </tr>
                                 </thead>
                                 <?php foreach ($bids  as $key => $value) { ?>
-                                    <tr>
-                                        <td><?= $value['user_name'] ?></td>
-                                        <td><?= $value['created_at'] ?></td>
-                                        <td><?= $value['bid_amount'] ?></td>
-                                        <td><?= $value['bid_tax'] ?></td>
-                                        <td><?= $value['total_amount'] ?></td>
-                                        <td>
-                                            <button class="btn btn-danger btn-sm">Delete This Bid</button>
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td><?= $value['user_name'] ?></td>
+                                    <td><?= $value['created_at'] ?></td>
+                                    <td><?= $value['bid_amount'] ?></td>
+                                    <td><?= $value['bid_tax'] ?></td>
+                                    <td><?= $value['total_amount'] ?></td>
+                                    <td>
+                                        <button class="btn btn-danger btn-sm">Delete This Bid</button>
+                                    </td>
+                                </tr>
                                 <?php }  ?>
                             </table>
                         </div>
@@ -156,17 +158,17 @@
                                             </tr>
                                         </thead>
                                         <?php foreach ($rattlings  as $key => $value) { ?>
-                                            <tr>
-                                                <td><?= $value['user_name'] ?></td>
-                                                <td><?= $value['created_at'] ?></td>
-                                                <td>
-                                                    <?php
+                                        <tr>
+                                            <td><?= $value['user_name'] ?></td>
+                                            <td><?= $value['created_at'] ?></td>
+                                            <td>
+                                                <?php
                                                     if ($value['ratting_type'] == '1') echo 'Yes';
                                                     else if ($value['ratting_type'] == '0') echo 'No';
 
                                                     ?>
-                                                </td>
-                                            </tr>
+                                            </td>
+                                        </tr>
                                         <?php }  ?>
                                     </table>
                                 </div>
@@ -185,14 +187,14 @@
                                             </tr>
                                         </thead>
                                         <?php foreach ($complain  as $key => $value) { ?>
-                                            <tr>
-                                                <td><?= $value['user_name'] ?></td>
-                                                <td><?= $value['created_at'] ?></td>
-                                                <td><?= $value['descriptions'] ?></td>
-                                                <td>
-                                                    <button class="btn btn-danger">Delete</button>
-                                                </td>
-                                            </tr>
+                                        <tr>
+                                            <td><?= $value['user_name'] ?></td>
+                                            <td><?= $value['created_at'] ?></td>
+                                            <td><?= $value['descriptions'] ?></td>
+                                            <td>
+                                                <button class="btn btn-danger">Delete</button>
+                                            </td>
+                                        </tr>
                                         <?php }  ?>
                                     </table>
                                 </div>

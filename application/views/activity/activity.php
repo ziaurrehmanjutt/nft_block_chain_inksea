@@ -37,7 +37,7 @@
 
                                     <div class="tab-purchage-img">
                                         <a href="">
-                                            <img src="<?= base_url('assets/nfts/') . $value['nft_file'] ?>" alt="author" class="responsive-fluid" />
+                                            <img src="<?= base_url('assets/nfts/rel_') . $value['nft_file'] ?>" alt="author" class="responsive-fluid" />
                                         </a>
                                     </div>
 

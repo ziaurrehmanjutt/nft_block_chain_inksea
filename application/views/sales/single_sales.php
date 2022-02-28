@@ -355,7 +355,7 @@
                             </div>
                         </div> <!-- end count down -->
                         <div class="slider_img">
-                            <img src="<?= base_url('assets/nfts/') . $data->nft_file ?>" alt="" class="responsive-fluid" />
+                            <img src="<?= base_url('assets/nfts/rel_') . $data->nft_file ?>" alt="" class="responsive-fluid" />
                         </div>
                     </div>
                 </div><!-- end col -->

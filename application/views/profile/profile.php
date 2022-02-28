@@ -313,7 +313,7 @@
                                                 <!-- start single product img -->
                                                 <a href="" class="theme_preview_link">
 
-                                                    <img src="<?= base_url('assets/nfts/') . $l['nft_file'] ?>" alt="" class="responsive-fluid" />
+                                                    <img src="<?= base_url('assets/nfts/rel_') . $l['nft_file'] ?>" alt="" class="responsive-fluid" />
                                                 </a>
                                             </div> <!-- End single product img -->
                                             <div class="nft_product_description">

@@ -69,7 +69,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div>
-                                        <img src="<?= base_url('assets/nfts/') . $data->nft_file ?>" alt="" class="responsive-fluid" />
+                                        <img src="<?= base_url('assets/nfts/rel_') . $data->nft_file ?>" alt="" class="responsive-fluid" />
                                     </div>
                                 </div>
                             </div>

@@ -79,7 +79,7 @@ $db['default'] = array(
 
 	'username' => 'root', //inkseadotio_beta
 	'password' => '', //Gd;2#VUj9w9E
-	'database' => 'wallet2', //inkseadotio_beta
+	'database' => 'wallet', //inkseadotio_beta
 
 
 	
