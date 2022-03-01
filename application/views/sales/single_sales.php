@@ -142,8 +142,8 @@
                     </div>
                     <div class="hr"></div>
                     <div class="d-flex justify-content-between">
-                        <p> Gas fee & tax : </p>
-                        <p class="text-right color_black txt _bold"> 20% </p>
+                        <p> Tax Fee : </p>
+                        <p class="text-right color_black txt _bold"> 1.5% </p>
                     </div>
 
                     <div class="d-flex justify-content-between">
@@ -182,39 +182,62 @@
                     </div>
                     <div class="hr"></div>
                     <div class="d-flex justify-content-between">
-                        <p> Gas fee & tax : </p>
-                        <p class="text-right color_black txt _bold"> 2% </p>
+                        <p> Tax Fee : </p>
+                        <p class="text-right color_black txt _bold"> 1.5% </p>
                     </div>
                     <div class="d-flex justify-content-between">
                         <p> No Of units : </p>
                         <p class="text-right color_black txt _bold"> <?=$data->total_units?> </p>
                     </div>
 
-
+					<input type="hidden" id='tranasction_id'  name="tranasction_id" value="">
                     <?php 
                         $initial = $data->total_units * $data->sale_price;
-                        $tax = ($initial / 100) * 2;
+                        $tax = ($initial / 100) * 1.5;
                         $totalAmount =  $initial + $tax;
-
-                    
-                    
-                    ?>
+						
+						
+						
+						?>
+						<input type="hidden" id='tax_b'  name="tax_b" value="<?=$tax?>">
+						<input type="hidden" id='total_b'  name="total_b" value="<?=$totalAmount?>">
                     <div class="d-flex justify-content-between">
                         <p> Total bid amount : </p>
                         <p class="text-right color_black txt _bold"> <span id="total_bid_price"><?=$totalAmount?></span> ETH </p>
                     </div>
                     <div class="place-bid-btn">
                         <!-- start place btn -->
-                        <button type="button" id="sendEthButton" name="place_a_bid" class="btn btn-primary w-full popup-bid-btn"> Buy Now </button>
+                        
                         <!-- <a href="" class="btn btn-primary w-full popup-bid-btn" data-toggle="modal" data-target="#popup_bid_success" data-dismiss="modal" aria-label="Close"> Place bid
                     </a> -->
                     </div><!-- end place btn -->
 
                     <div>
-                        Transfer <?=$totalAmount?> from 
-                        <?php  if (isset($_SESSION['login']) && $_SESSION['login']->rowid != $data->owner_id):?>
+                       
+					<?php 
+						$mKey ='';
+						if (isset($_SESSION['login'])){
+							$mKey = $_SESSION['login']->meta_mask_key;
+						} ?>
+
+                        <?php  if (isset($_SESSION['login']) && $_SESSION['login']->rowid != $data->owner_id && $mKey):?>
+							<button type="button" id="sendEthButton" name="place_a_bid" class="btn btn-primary w-full popup-bid-btn"> Buy Now </button>
+
+							
                         <?php endif  ?>
                     </div>
+
+					<div>
+						<p>
+						Transfer
+							<span><?=$totalAmount?></span>
+							From 
+							<span><?=$mKey?></span>
+							To 
+							<span><?=$admin_ket?></span>
+						</p> 
+					   
+					</div>
                 </div><!-- end modal body -->
             </form>
         </div><!-- end modal content -->
@@ -259,6 +282,38 @@
         </div><!-- end modal-content -->
     </div><!-- end modal-dialog -->
 </div><!-- end bid history -->
+
+
+<div class="modal fade popup" id="showError" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- start bid history -->
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <!-- start modal-dialog -->
+        <div class="modal-content">
+            <!-- start modal-content -->
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-body space-y-20 p-40">
+                <!-- start modal-body -->
+                <h4> Transaction Error </h4>
+                <div class="creator_item creator_card space-x-10" id="all_actives">
+                    <!-- start creator item -->
+                    <div class="avatars space-x-10">
+                        <div class="media">
+                            <p  class="btn-avatar">
+								We are Greatly Sorry, Transaction Can't Completed Successfully,Please try Again Later,Make Sure Meta Mask Installd and Have Suffiiant Balance
+                               
+                            </p>
+                        </div>
+                      
+                    </div>
+                </div><!-- end creator item -->
+
+            </div><!-- end modal-body -->
+        </div><!-- end modal-content -->
+    </div><!-- end modal-dialog -->
+</div><!-- end bid history -->
+
 
 <!-- End Modal Popup -->
 
@@ -473,7 +528,14 @@
                     gas: '0x2710',
                 }, ],
             })
-            .then((txHash) => console.log(txHash))
-            .catch((error) => console.error);
+            .then((txHash) => {
+				console.log(txHash);
+			})
+            .catch((error) => {
+				$('#showError').modal('show');
+				$('#popup_sale').modal('hide');
+				console.log('error');
+				
+			 console.error});
     });
 </script>

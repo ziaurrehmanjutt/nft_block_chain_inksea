@@ -103,10 +103,17 @@
                     </div>
 
                     <div class="col-12">
-                        <button name="save_nft" class="btn btn-primary float-right">
+						<?php  if($_SESSION['login'] && $_SESSION['login']->meta_mask_key):  ?>
+
+							<button name="save_nft" class="btn btn-primary float-right">
                             Create NFT
                         </button>
                         <small id="emailHelp" class="form-text text-muted">After Create and Approve, You can put it on Sale.</small>
+
+						<?php  else:  ?>
+							<small id="emailHelp" class="form-text text-muted">Please Connect Wallet Before Upload.</small>
+						<?php  endif;  ?>
+                       
                     </div>
                 </div>
             </form>

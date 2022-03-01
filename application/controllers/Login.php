@@ -13,6 +13,16 @@ class Login extends CI_Controller
 
 	public function index()
 	{
+		//v
+		if (isset($_POST['password_forget']) && $_POST['password_forget']){
+			$response  = $this->Account_Model->sendMailPassword($_POST['password_forget']);
+			if($response){
+				$_SESSION['error_info'] = "Email Sent";
+			}else{
+				$_SESSION['error_info'] = "Invalid Email Detail";
+			}
+
+		}
 		if (isset($_POST['submit']) && $_POST['submit']) {
 			$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
 			$this->form_validation->set_rules('password', 'User Name', 'required|min_length[6]|max_length[20]');
@@ -165,5 +175,43 @@ class Login extends CI_Controller
 
 	
 	}
+
+	public function forget_password(){
+		
+		$email = isset($_GET['email']) && $_GET['email'] ? $_GET['email'] : '=1';
+		$token = isset($_GET['token']) && $_GET['token'] ? $_GET['token'] : '=1';
+
+		$response  = $this->Account_Model->verify_token($email,$token);
+		if($response){
+			if(isset($_POST['submit'])){
+				$this->form_validation->set_rules('password', 'Password', 'required|min_length[5]|max_length[20]');
+				$this->form_validation->set_rules('password1', 'Confirm Password', 'trim|required|matches[password]');
+				if ($this->form_validation->run() == FALSE) {
+					$_SESSION['error_info'] = "Please try Again";
+				} else {
+					$this->Account_Model->update_password($response->rowid);
+					$_SESSION['error_info'] = "Password Update";
+					
+					redirect('login','refresh');
+					return;
+					
+				}
+			}
+			$data['detail']=$response;
+			$this->load->view('includes/header');
+			$this->load->view('includes/menues_header');
+			// $this->load->view('home/home_banner');
+			$this->load->view('account/password_gen',$data);
+			$this->load->view('includes/footer_before');
+			$this->load->view('includes/footer');
+		}else{
+			$_SESSION['error_info'] = "Invalid Link Detail";
+			// redirect('login', 'refresh');
+			return;
+			
+		}
+
+	}
 }
 //
+ 

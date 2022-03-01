@@ -10,7 +10,7 @@
                     <h2 class="breadcrumb-title">My Account</h2>
                     <ul class="breadcrumb-menu clearfix">
                         <li>
-                            <a href="index">Home /</a> <a href="#" class="active">Sign in</a>
+                            <a href="<?=base_url()?>">Home /</a> <a href="#" class="active">Forget Password</a>
                         </li>
                     </ul>
                 </div>
@@ -36,22 +36,8 @@
                 <!-- start col-6 -->
                 <div class="acount_form_bg text-center wow fadeInRight" data-wow-duration="1s" data-wow-delay=".6s" style="visibility: visible; animation-duration: 0.4s; animation-delay: 0.4s;">
                     <div class="form-title pt-30">
-                        <h2 class="account_form_title span-color"> Login your Account</h2>
-                        <div class="share-btn social-profile">
-                            <!-- start profile btn -->
-                            <ul class="share-icon-list social-list">
-                                <li class="nav-item">
-                                    <a href="#" class="share-icon1"><i class="bx bxl-facebook"></i></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="share-icon2"><i class="bx bxl-linkedin"></i></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="share-icon3"><i class="bx bxl-twitter"></i></a>
-                                </li>
-                            </ul>
-                        </div><!-- end profile btn -->
-                        <p class="account_email"> or use your email</p>
+                        <h2 class="account_form_title span-color"> Update Your Password</h2>
+                      
                     </div>
                     <div class="row mt-5">
                         <!-- start row -->
@@ -67,39 +53,23 @@
                                 <form id="account-form" method="post">
                                     <div class="row">
                                         <div class="form-group account_input col-md-12 pb-10">
-                                            <input type="email" name="email" class="form-control account_style" id="email" placeholder="Email here" value="<?=set_value('email')?>" required="required">
-                                            <span class="text-danger"><?php echo form_error('email'); ?></span>
-                                        </div>
-                                        <div class="form-group account_input col-md-12 pb-10">
-                                            <input type="password" name="password" class="form-control account_style" id="password" placeholder="Password" required="required">
+                                            <input type="password" minlength='3' name="password" class="form-control account_style" id="email" placeholder="Enter New Password" value="<?=set_value('password')?>" required="required">
                                             <span class="text-danger"><?php echo form_error('password'); ?></span>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" class="checkbox-custom" value=""> <span class="checkbox-text"> Remember Me</span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="forget-password">
-                                                <a href="#" data-toggle="modal" data-target="#popup_report" class="lost-password">Lost Password?</a>
-                                            </div>
+                                        <div class="form-group account_input col-md-12 pb-10">
+                                            <input type="password" minlength='3' name="password1"  class="form-control account_style"  placeholder="Confirm Password" required="required">
+                                            <span class="text-danger"><?php echo form_error('password1'); ?></span>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="actions pt-30">
-                                                <input type="submit" value="Sign In Now" name="submit" id="submitButton" class="btn btn-account btn-contact-bg" title="Submit Your Message!">
+                                                <input type="submit" value="Update Password" name="submit" id="submitButton" class="btn btn-account btn-contact-bg" title="Submit Your Message!">
                                             </div>
                                         </div>
                                     </div>
                                 </form>
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <div class="account-alternative">
-                                <p class="account_alter_text">Don't you have an account? <a href="register"> Create Account !</a></p>
-                            </div>
-                        </div>
+                        
                     </div><!-- end row -->
                 </div><!-- end account form bg -->
             </div><!-- end col-6 -->
