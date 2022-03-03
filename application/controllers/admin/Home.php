@@ -107,4 +107,15 @@ class Home extends Admin
 		$response['settings'] = $this->Settings_Model->get_settings();
 		$this->render_view('extra/settings.php', $response,'users');
 	}
+
+	public function payment_waiting(){
+		$response['list'] = $this->Sale_Model->get_pending_payments();
+		$this->render_view('sales/paymentw.php', $response,'users');
+	}
+
+	public function payment_waiting_single($id){
+		$response['detail'] = $this->Sale_Model->single_sale($id);
+		$this->render_view('sales/paymentw_single.php', $response,'users');
+	}
+
 }

@@ -243,6 +243,37 @@ class Home_Public_Model extends CI_Model
         return $result;
     }
 
+	public function create_direct_sale($id){
+
+
+		$userID = null;
+		if(isset($_SESSION['login'])){
+            $userID = $_SESSION['login']->rowid;
+        }else{
+			return null;
+		}
+
+		$tranasction_id = $this->input->post('tranasction_id');
+        $bid_amount = $this->input->post('bid_amount');
+        $tax_b = $this->input->post('tax_b');
+        $total_b = $this->input->post('total_b');
+        
+        $data = array(
+            'sale_at' => date('Y-m-d H:i:s'),
+            'paid_price' => $bid_amount,
+            'price_transfer_status' => 1,
+            'sale_ststus'   =>  1,
+            'buyer_id' => $userID,
+            'paid_tax' => $tax_b,
+            'paid_net' =>  $total_b,
+            'transaction_id1' => $tranasction_id
+        );
+        
+        $this->db->where('rowid', $id);
+        return $this->db->update('nft_sales',$data);
+    }
+
+
     
     //users
 

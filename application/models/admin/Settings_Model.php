@@ -77,7 +77,8 @@ class Settings_Model extends Admin_Model
         $this->db->join('users', 'users.rowid=nft_sales.owner_id');
         $this->db->join('all_categories', 'all_categories.rowid=all_nfts_list.nft_category');
         $this->db->from('nft_sales');
-        // $this->db->where('expire_at >', date('Y-m-d H:i:s'));
+        $this->db->where('expire_at >', date('Y-m-d H:i:s'));
+        $this->db->where('sale_ststus',0);
         $this->db->where('nft_status',1);
         $this->db->order_by('nft_sales.rowid','DESC');
         // $this->db->where('nft_sales.rowid',$id);

@@ -44,6 +44,8 @@ $route['admin/nfts/sales'] = 'admin/home/nft_sales';
 $route['admin/nfts/sales/(:num)'] = 'admin/home/sale_single/$1';
 $route['admin/nft/pending'] = 'admin/home/for_approved';
 $route['admin/settings'] = 'admin/home/settings';
+$route['admin/sale/waiting'] = 'admin/home/payment_waiting';
+$route['admin/sale/waiting/(:num)'] = 'admin/home/payment_waiting_single/$1';
 
 
 ///Extra urls

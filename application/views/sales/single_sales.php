@@ -170,7 +170,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            <form method="POST">
+            <form method="POST" id='buy_now'>
                 <div class="modal-body space-y-20 p-40">
                     <h3>Buy Now</h3>
                    
@@ -363,13 +363,13 @@
                         <div class="nft_product_link slide_auction_bottom pt-20 pb-10">
                             <!-- start product link -->
                             <ul>
-                                <li class="product-all-icon">
+                                <!-- <li class="product-all-icon">
                                     <span class="item-history product-icon">
                                         <a href="#" class="item-history-btn" data-toggle="modal" data-target="#popup_history">
                                             <i class='bx bx-comment-detail'></i>
                                         </a>
                                     </span>
-                                </li>
+                                </li> -->
                                 <li class="product-all-icon">
                                     <span class="report-icon product-icon">
                                         <a href="#" onclick="oprSahre(<?= $data->rowid ?>)" class="report-link" data-toggle="modal" data-target="#popup_share">
@@ -530,12 +530,21 @@
             })
             .then((txHash) => {
 				console.log(txHash);
+				$('#tranasction_id').val(txHash);
+				$('#buy_now').submit();
+
+				//tranasction_id
 			})
             .catch((error) => {
+
+				// $('#tranasction_id').val('78hf7f7f7fhyfhvy7');
+				// $('#buy_now').submit();
+
 				$('#showError').modal('show');
 				$('#popup_sale').modal('hide');
 				console.log('error');
 				
+				//
 			 console.error});
     });
 </script>

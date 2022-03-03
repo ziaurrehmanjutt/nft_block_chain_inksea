@@ -13,7 +13,8 @@ class Activity extends User
     public function index()
     {
         $result['all'] = $this->Activity_Model->all_nft_of_users();
-        $this->load->view('includes/header');
+        $result['purchased'] = $this->Activity_Model->all_purchase();
+        $this->load->view('includes/header'); 
         $this->load->view('includes/menues_header');
         $this->load->view('activity/activity_slider');
         $this->load->view('activity/activity.php', $result);

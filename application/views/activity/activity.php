@@ -64,54 +64,24 @@
                             <?php } ?>
                         </div> <!-- end tab panel -->
                         <div tabindex="0" role="tabpanel" aria-labelledby="purchage" id="purchage-tab" hidden>
-                            <div class="tab-puchage">
-                                <!-- tab item -->
-                                <div class="tab-purchage-img">
-                                    <a href="">
-                                        <img src="<?= base_url('assets/') ?>img/avatar/3.jpg" alt="author" class="responsive-fluid" />
-                                    </a>
-                                </div>
-                                <div class="purchage-text-link">
-                                    <a class="puchage-tilte" href="#">Human Machanism Picture<span class="purchage_spanbtn"><i class='bx bx-shopping-bag'></i></span></a>
-                                    <p class="purchage-value">Total Value : <span class="eth-counter">450 ETH</span></p>
-                                    <p class="purchage-text">
-                                        Purchased by
-                                        <a href="" class="author-link">@Devid Wane</a> for 0.01 ETH 2 hours ago
-                                    </p>
-                                </div>
-                            </div> <!-- end tab item -->
-                            <div class="tab-puchage">
-                                <!-- tab item -->
-                                <div class="tab-purchage-img">
-                                    <a href="">
-                                        <img src="<?= base_url('assets/') ?>img/avatar/4.jpg" alt="author" class="responsive-fluid" />
-                                    </a>
-                                </div>
-                                <div class="purchage-text-link">
-                                    <a class="puchage-tilte" href="#">Robotic 3D Art Collection <span class="purchage_spanbtn"><i class='bx bx-shopping-bag'></i></span> </a>
-                                    <p class="purchage-value">Total Value : <span class="eth-counter">42 ETH</span></p>
-                                    <p class="purchage-text">
-                                        1 part purchased by
-                                        <a href="" class="author-link">@William</a> for 0.01 ETH 4 hours ago
-                                    </p>
-                                </div>
-                            </div> <!-- end tab item -->
-                            <div class="tab-puchage">
-                                <!-- tab item -->
-                                <div class="tab-purchage-img">
-                                    <a href="">
-                                        <img src="<?= base_url('assets/') ?>img/avatar/5.jpg" alt="author" class="responsive-fluid" />
-                                    </a>
-                                </div>
-                                <div class="purchage-text-link">
-                                    <a class="puchage-tilte" href="#">Female Art Face <span class="purchage_spanbtn"><i class='bx bx-shopping-bag'></i></span></a>
-                                    <p class="purchage-value">Total Value : <span class="eth-counter">49 ETH</span></p>
-                                    <p class="purchage-text">
-                                        1 part purchased by
-                                        <a href="" class="author-link">@Max Doe</a> for 0.01 ETH 7 hours ago
-                                    </p>
-                                </div>
-                            </div> <!-- end tab item -->
+							<?php foreach ($purchased as $key => $value) { ?>
+								<div class="tab-puchage">
+									<!-- tab item -->
+									<div class="tab-purchage-img">
+										<a href="">
+											<img src="<?= base_url('assets/nfts/rel_') . $value['nft_file'] ?>" alt="author" class="responsive-fluid" />
+										</a>
+									</div>
+									<div class="purchage-text-link">
+										<a class="puchage-tilte" href="#"><?=$value['nft_name']?><span class="purchage_spanbtn"><i class='bx bx-shopping-bag'></i></span></a>
+										<p class="purchage-value">Total Value : <span class="eth-counter"><?=$value['paid_net']?> ETH</span></p>
+										<p class="purchage-text">
+											Purchased from
+											<a href="" class="author-link">@<?=$value['user_name']?></a> at <?=$value['sale_at']?>
+										</p>
+									</div>
+								</div> <!-- end tab item -->
+							<?php } ?>
                         </div> <!-- end tab panel -->
                         <div tabindex="0" role="tabpanel" aria-labelledby="following" id="following-tab" hidden>
                             <div class="tab-puchage">

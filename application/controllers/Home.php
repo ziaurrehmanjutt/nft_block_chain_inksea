@@ -85,7 +85,16 @@ class Home extends CI_Controller {
 
 	public function single_sale_public($id){
 
-		
+
+		if(isset($_POST['tranasction_id'])){
+			$this->Home_Public_Model->create_direct_sale($id);
+			
+			redirect('activity','refresh');
+			return;
+			
+			// var_dump($_POST);die;/
+		}
+		//
 		$result['data'] = $this->Home_Public_Model->single_sale($id);
         $result['bids'] = $this->Home_Public_Model->get_all_bids($id);
         $result['likes'] = $this->Home_Public_Model->sale_rattings($id);
