@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */////https://inksea.adnansaleem.com/
 $config['base_url'] = 'http://localhost:8080/nft/';
-$config['base_url'] = 'http://localhost:8080/inksea/';
+$config['base_url'] = 'http://localhost/inksea/';
 
 /*
 |--------------------------------------------------------------------------

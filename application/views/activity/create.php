@@ -102,6 +102,15 @@
                         </div>
                     </div>
 
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Creator Royalty (<span id="valBox">0</span>%)</label>
+                            <input oninput="showVal(this.value)" onchange="showVal(this.value)" type="range" min="0" max="95" name="creator_royalty" required class="form-control" value="<?=set_value('creator_royalty') ? set_value('total_count') : 1 ?>" />
+                            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                        </div>
+                    </div>
+
+
                     <div class="col-12">
 						<?php  if($_SESSION['login'] && $_SESSION['login']->meta_mask_key):  ?>
 
@@ -121,3 +130,10 @@
     </div> <!-- end container -->
     </div> <!-- End  Activity -->
 </section> <!-- end tab area white -->
+
+
+<script>
+    function showVal(newVal){
+        document.getElementById("valBox").innerHTML=newVal;
+    }
+</script>

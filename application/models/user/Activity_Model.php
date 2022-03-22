@@ -26,8 +26,9 @@ class Activity_Model extends User_Model
         $nft_descriptions = $this->input->post('nft_descriptions');
         $nft_category = $this->input->post('nft_category');
         $total_count = $this->input->post('total_count');
+        $creator_royalty = $this->input->post('creator_royalty');
         // $nft_file = $this->input->post('nft_file');
-        $dataArray = array(
+        $dataArray = array( 
             'type_id' => $type_id,
             'created_at' => date('Y-m-d H:i:s'),
             'created_by' => $this->userID,
@@ -41,6 +42,7 @@ class Activity_Model extends User_Model
             'nft_category' => $nft_category,
             'nft_file' => $nft_file,
             'nft_unit' => $total_count,
+            'total_royality' => $creator_royalty,
         );
         
       
