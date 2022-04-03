@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 25, 2022 at 05:27 AM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 7.4.19
+-- Generation Time: Apr 03, 2022 at 01:17 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `wallet2`
+-- Database: `wallet`
 --
 
 -- --------------------------------------------------------
@@ -60,7 +60,8 @@ CREATE TABLE `admin_notifications` (
 --
 
 INSERT INTO `admin_notifications` (`rowid`, `title`, `descriptions`, `created_at`, `status`, `user_id`, `sale_id`, `nft_id`, `n_type`) VALUES
-(1, 'User2 Created New Nft (New NFT Test 2)', 'User2 Created New Nft (New NFT Test 2) with <b>2</b> ETH and Having <b>6</b> Units, Please Approve it', '2022-02-24 15:49:41', 1, 3, NULL, 9, 1);
+(1, 'User2 Created New Nft (New NFT Test 2)', 'User2 Created New Nft (New NFT Test 2) with <b>2</b> ETH and Having <b>6</b> Units, Please Approve it', '2022-02-24 15:49:41', 1, 3, NULL, 9, 1),
+(2, 'Admin Created New Nft (Its new Test)', 'Admin Created New Nft (Its new Test) with <b>0.4</b> ETH and Having <b>4</b> Units, Please Approve it', '2022-03-22 16:30:47', 1, 1, NULL, 10, 1);
 
 -- --------------------------------------------------------
 
@@ -121,7 +122,7 @@ CREATE TABLE `all_foloowers` (
 --
 
 INSERT INTO `all_foloowers` (`rowid`, `created_at`, `folower_id`, `folowwing_id`) VALUES
-(12, '2022-02-24 16:58:05', 3, 2);
+(13, '2022-03-01 15:17:47', 3, 2);
 
 -- --------------------------------------------------------
 
@@ -152,16 +153,18 @@ CREATE TABLE `all_nfts_list` (
   `nft_unit` int(11) NOT NULL DEFAULT 1,
   `purchase_id` int(11) DEFAULT NULL,
   `on_sale` int(11) NOT NULL DEFAULT 0,
-  `already_sold` int(11) NOT NULL DEFAULT 0
+  `already_sold` int(11) NOT NULL DEFAULT 0,
+  `total_royality` float NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `all_nfts_list`
 --
 
-INSERT INTO `all_nfts_list` (`rowid`, `type_id`, `created_at`, `created_by`, `nft_user`, `approve_by`, `approve_at`, `nft_token`, `mining_token`, `nft_status`, `nft_price`, `price_currency`, `sale_status`, `sale_type`, `total_rattings`, `nft_name`, `nft_descriptions`, `nft_category`, `nft_file`, `nft_unit`, `purchase_id`, `on_sale`, `already_sold`) VALUES
-(8, 1, '2022-02-24 12:52:13', 2, 2, NULL, NULL, '670b14728ad9902aecba32e22fa4f6bd16217716d4d9bc8.04624146', NULL, 1, 2, 1, 0, 0, 0, 'Test 1 NFT Sale', 'Its test 1 for user1 ,  with 5 items', 7, 'Employee_QR_2_(1).png', 5, NULL, 3, 0),
-(9, 1, '2022-02-24 15:49:41', 3, 3, NULL, NULL, '670b14728ad9902aecba32e22fa4f6bd162179b053fdf21.72116682', NULL, 1, 2, 1, 0, 0, 0, 'New NFT Test 2', 'New NFT Test 2 User 2 Testibf CCOUNT', 7, 'simon-lee-hbFKxsIqclc-unsplash.jpg', 6, NULL, 4, 0);
+INSERT INTO `all_nfts_list` (`rowid`, `type_id`, `created_at`, `created_by`, `nft_user`, `approve_by`, `approve_at`, `nft_token`, `mining_token`, `nft_status`, `nft_price`, `price_currency`, `sale_status`, `sale_type`, `total_rattings`, `nft_name`, `nft_descriptions`, `nft_category`, `nft_file`, `nft_unit`, `purchase_id`, `on_sale`, `already_sold`, `total_royality`) VALUES
+(8, 1, '2022-02-24 12:52:13', 2, 2, NULL, NULL, '670b14728ad9902aecba32e22fa4f6bd16217716d4d9bc8.04624146', NULL, 1, 2, 1, 0, 0, 0, 'Test 1 NFT Sale', 'Its test 1 for user1 ,  with 5 items', 7, 'Employee_QR_2_(1).png', 5, NULL, 5, 0, 0),
+(9, 1, '2022-02-24 15:49:41', 3, 3, NULL, NULL, '670b14728ad9902aecba32e22fa4f6bd162179b053fdf21.72116682', NULL, 1, 2, 1, 0, 0, 0, 'New NFT Test 2', 'New NFT Test 2 User 2 Testibf CCOUNT', 7, 'simon-lee-hbFKxsIqclc-unsplash.jpg', 6, NULL, 6, 0, 0),
+(10, 1, '2022-03-22 16:30:47', 1, 1, NULL, NULL, '670b14728ad9902aecba32e22fa4f6bd16239eba7eed9b8.70081814', NULL, 1, 0.4, 1, 0, 0, 0, 'Its new Test', 'LOnd', 7, 'Employee_QR.png', 4, NULL, 4, 0, 8);
 
 -- --------------------------------------------------------
 
@@ -202,18 +205,25 @@ CREATE TABLE `nft_sales` (
   `complete_at` datetime DEFAULT NULL,
   `bidding_sale` tinyint(4) NOT NULL DEFAULT 0,
   `total_star` int(11) NOT NULL DEFAULT 0,
-  `total_units` int(11) NOT NULL DEFAULT 1
+  `total_units` int(11) NOT NULL DEFAULT 1,
+  `paid_tax` double NOT NULL DEFAULT 0,
+  `paid_net` double NOT NULL DEFAULT 0,
+  `transaction_id1` varchar(500) DEFAULT NULL,
+  `transaction_id2` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `nft_sales`
 --
 
-INSERT INTO `nft_sales` (`rowid`, `nft_id`, `owner_id`, `buyer_id`, `sale_ststus`, `sale_price`, `sale_tax`, `paid_price`, `price_transfer_status`, `created_at`, `sale_type`, `expire_at`, `sale_at`, `complete_at`, `bidding_sale`, `total_star`, `total_units`) VALUES
-(6, 8, 2, NULL, 0, 2.000000001, 0, 0, 0, '2022-02-24 15:33:24', 0, '2022-02-28 07:14:00', NULL, NULL, 1, 0, 2),
-(7, 9, 3, NULL, 0, 2.000000001, 0, 0, 0, '2022-02-24 15:50:42', 0, '2022-03-12 19:50:00', NULL, NULL, 2, 0, 3),
-(8, 8, 2, NULL, 0, 2.000000001, 0, 0, 0, '2022-02-24 16:12:05', 0, '2022-03-12 20:11:00', NULL, NULL, 2, 0, 1),
-(9, 9, 3, NULL, 0, 0.500000001, 0, 0, 0, '2022-02-24 17:31:47', 0, '2022-02-26 21:31:00', NULL, NULL, 2, 0, 1);
+INSERT INTO `nft_sales` (`rowid`, `nft_id`, `owner_id`, `buyer_id`, `sale_ststus`, `sale_price`, `sale_tax`, `paid_price`, `price_transfer_status`, `created_at`, `sale_type`, `expire_at`, `sale_at`, `complete_at`, `bidding_sale`, `total_star`, `total_units`, `paid_tax`, `paid_net`, `transaction_id1`, `transaction_id2`) VALUES
+(6, 8, 2, NULL, 0, 2.000000001, 0, 0, 0, '2022-02-24 15:33:24', 0, '2022-02-28 07:14:00', NULL, NULL, 1, 0, 2, 0, 0, NULL, NULL),
+(7, 9, 3, 1, 1, 2.000000001, 0, 2.000000001, 1, '2022-02-24 15:50:42', 0, '2022-03-12 19:50:00', '2022-03-03 09:03:00', NULL, 2, 0, 3, 0.090000000045, 6.090000003045, 'ffggg', NULL),
+(9, 9, 3, NULL, 0, 0.500000001, 0, 0, 0, '2022-02-24 17:31:47', 0, '2022-02-26 21:31:00', NULL, NULL, 2, 0, 1, 0, 0, NULL, NULL),
+(10, 8, 2, NULL, 0, 2.000000001, 0, 0, 0, '2022-03-01 11:20:30', 0, '2022-03-26 15:20:00', NULL, NULL, 1, 0, 2, 0, 0, NULL, NULL),
+(11, 10, 1, NULL, 0, 0.400000001, 0, 0, 0, '2022-03-23 16:37:28', 0, '2022-03-19 20:37:00', NULL, NULL, 2, 0, 4, 0, 0, NULL, NULL),
+(12, 9, 3, NULL, 0, 2.000000001, 0, 0, 0, '2022-03-23 16:47:30', 0, '2022-03-27 20:47:00', NULL, NULL, 2, 0, 2, 0, 0, NULL, NULL),
+(13, 8, 2, NULL, 0, 2.000000001, 0, 0, 0, '2022-03-23 16:49:57', 0, '2022-04-02 20:49:00', NULL, NULL, 2, 0, 1, 0, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -231,6 +241,14 @@ CREATE TABLE `nft_sales_bids` (
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `bid_status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `nft_sales_bids`
+--
+
+INSERT INTO `nft_sales_bids` (`rowid`, `sale_id`, `bid_amount`, `bid_tax`, `total_amount`, `user_id`, `created_at`, `bid_status`) VALUES
+(7, 0, 1, 0.2, 1.2, 1, '2022-03-01 15:21:05', 1),
+(8, 0, 0.000003, 0.0000006, 0.0000036, 1, '2022-03-23 20:32:55', 1);
 
 -- --------------------------------------------------------
 
@@ -337,7 +355,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`rowid`, `user_email`, `user_name`, `user_password`, `meta_mask_key`, `user_status`, `created_at`, `forget_password`, `failed_login`, `last_failed`, `user_type`, `user_balance`, `user_image`, `user_bio`, `total_foloowings`) VALUES
-(1, 'admin@admin.com', 'Admin', 'e10adc3949ba59abbe56e057f20f883e', '0xef2a8ce9079c23b8fe7d839c8b814898383ce07e', 1, '2022-01-16 22:20:27', NULL, 0, NULL, 2, 0, 'WhatsApp_Image_2021-06-10_at_3_52_50_AM.jpeg', 'sssssssssssssss', 1),
+(1, 'admin@admin.com', 'Admin', 'e10adc3949ba59abbe56e057f20f883e', '0xef2a8ce9079c23b8fe7d839c8b814898383ce07e', 1, '2022-01-16 22:20:27', '', 0, NULL, 2, 0, 'WhatsApp_Image_2021-06-10_at_3_52_50_AM.jpeg', 'sssssssssssssss', 1),
 (2, 'user1@mail.com', 'User1', 'e10adc3949ba59abbe56e057f20f883e', '0xef2a8ce9079c23b8fe7d839c8b814898383ce07e', 1, '2022-01-16 22:30:04', NULL, 0, NULL, 1, 0, 'IMG_4914_-_Copy.JPG', 'No Nia', 0),
 (3, 'user2@mail.com', 'User2', 'e10adc3949ba59abbe56e057f20f883e', '0xef2a8ce9079c23b8fe7d839c8b814898383ce07e', 1, '2022-01-31 12:40:52', NULL, 0, '2022-01-31 08:23:55', 1, 0, NULL, NULL, 1),
 (4, 'user3@mail.com', 'User3', 'e10adc3949ba59abbe56e057f20f883e', NULL, 1, '2022-02-13 00:43:22', NULL, 0, NULL, 1, 0, NULL, NULL, 0);
@@ -465,7 +483,7 @@ ALTER TABLE `admin_messages`
 -- AUTO_INCREMENT for table `admin_notifications`
 --
 ALTER TABLE `admin_notifications`
-  MODIFY `rowid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `rowid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `admin_settings`
@@ -483,13 +501,13 @@ ALTER TABLE `all_categories`
 -- AUTO_INCREMENT for table `all_foloowers`
 --
 ALTER TABLE `all_foloowers`
-  MODIFY `rowid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `rowid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `all_nfts_list`
 --
 ALTER TABLE `all_nfts_list`
-  MODIFY `rowid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `rowid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `nft_reports`
@@ -501,13 +519,13 @@ ALTER TABLE `nft_reports`
 -- AUTO_INCREMENT for table `nft_sales`
 --
 ALTER TABLE `nft_sales`
-  MODIFY `rowid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `rowid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `nft_sales_bids`
 --
 ALTER TABLE `nft_sales_bids`
-  MODIFY `rowid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `rowid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `nft_types`

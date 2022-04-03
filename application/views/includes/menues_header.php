@@ -91,7 +91,7 @@
 								</ul> <!-- end ul  -->
 							</nav> <!-- end nav  -->
 						</div><!-- end menu  -->
-						<div class="action-nav">
+						<div class="action-nav" style="position: absolute;right: 114px;">
 							<select id="language" class="wide">
 								<option value="0">ENG</option>
 								<!-- <option value="1">ARB</option>
